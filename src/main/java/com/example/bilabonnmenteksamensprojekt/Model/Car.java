@@ -8,13 +8,13 @@ public class Car {
     private String brand;
     private String model;
     private String fuelType;
-    private String fuelConsumption;
+    private double fuelConsumption;
     private int odometer;
     private double engineSize;
     private int horsePower;
     private Date firstRegDate;
 
-    public Car(String registrationNumber, String carType, String brand, String model, String fuelType, String fuelConsumption, int odometer, double engineSize, int horsePower, Date firstRegDate) {
+    public Car(String registrationNumber, String carType, String brand, String model, String fuelType, double fuelConsumption, int odometer, double engineSize, int horsePower, Date firstRegDate) {
         this.registrationNumber = registrationNumber;
         this.carType = carType;
         this.brand = brand;
@@ -67,11 +67,11 @@ public class Car {
         this.fuelType = fuelType;
     }
 
-    public String getFuelConsumption() {
+    public double getFuelConsumption() {
         return fuelConsumption;
     }
 
-    public void setFuelConsumption(String fuelConsumption) {
+    public void setFuelConsumption(double fuelConsumption) {
         this.fuelConsumption = fuelConsumption;
     }
 
