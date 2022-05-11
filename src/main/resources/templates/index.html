@@ -1,18 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="TestStylesheet.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta charset="UTF-8">
-    <title>Forside</title>
+    <title>Login</title>
 </head>
 <body>
-<div class="topbar">
-    <div id="header-icon">
-        <img id="menu-icon" src="images/Logo.svg">
-
+    <div id="icon">
+        <img src="images/Logo.svg">
     </div>
 
-</div>
+    <form class="input">
+        <label>Brugernavn:</label><br>
+        <input><br><br>
+
+        <label>Adganskode:</label><br>
+        <input type="password"><br><br>
+    </form>
+
+    <div style="text-align: center">
+        <div class="login-button" onclick="window.location.href='/forside'">
+            <p>Login</p>
+        </div>
+    </div>
+
 </body>
 </html>
