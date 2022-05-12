@@ -1,4 +1,4 @@
-package com.example.bilabonnmenteksamensprojekt.Controller;
+package com.example.bilabonnmenteksamensprojekt.controllers;
 
 
 import org.springframework.stereotype.Controller;

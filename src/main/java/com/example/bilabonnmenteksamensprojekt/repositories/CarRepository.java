@@ -1,6 +1,6 @@
-package com.example.bilabonnmenteksamensprojekt.Repository;
+package com.example.bilabonnmenteksamensprojekt.repositories;
 
-import com.example.bilabonnmenteksamensprojekt.Model.Car;
+import com.example.bilabonnmenteksamensprojekt.models.Car;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;

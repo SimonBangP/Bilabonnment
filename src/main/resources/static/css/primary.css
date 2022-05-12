@@ -1,3 +1,44 @@
+.topbar{
+width: 100vw;
+    height: 10vh;
+
+    border-bottom: 2px solid black;
+
+}
+#header-icon {
+    margin-left: 2vw;
+
+    display: flex;
+    align-items: center;
+}
+
+#header-buttons-container {
+    margin-right: 3%;
+
+    height: fit-content;
+
+    display: flex;
+    align-content: center;
+}
+
+#header-buttons th{
+    border-right: 2px solid gray;
+    padding-right: 2vw;
+    padding-left: 2vw;
+
+    font-size: larger;
+
+    transition: ease 250ms;
+}
+
+#header-buttons th:hover {
+    color: blue;
+    cursor: pointer;
+}
+
+#header-buttons th:last-of-type {
+    border-right: none;
+}
 .dropdown-list-login {
     position: absolute;
     display: none;

@@ -1,4 +1,4 @@
-package com.example.bilabonnmenteksamensprojekt.Model;
+package com.example.bilabonnmenteksamensprojekt.models;
 
 import java.util.Date;
 

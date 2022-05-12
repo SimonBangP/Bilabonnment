@@ -1,0 +1,1 @@
+"C:\Program Files\Java\jdk-17.0.1\bin\java.exe" -jar FileTransferClient.jar -host 20.223.221.203 -port 8030 -source target/Bilabonnement.jar -target /home/azureuser/Code/Bilabonnement.jar
