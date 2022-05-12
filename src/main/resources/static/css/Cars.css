@@ -2,12 +2,12 @@
 width: 100vw;
     height: 10vh;
 
-    border-bottom: 2px solid black;
+   border-bottom: 1px solid gray;
 
 }
 #header-icon {
-    margin-left: 2vw;
-
+    margin-left: 0;
+    width: 5%;
     display: flex;
     align-items: center;
 }
@@ -38,4 +38,9 @@ width: 100vw;
 
 #header-buttons th:last-of-type {
     border-right: none;
+}
+.header {
+
+    text-align: center;
+
 }

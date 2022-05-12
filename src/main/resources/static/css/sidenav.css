@@ -1,5 +1,5 @@
 .sidenav {
-    margin-top: 100px;
+    margin-top: 103px;
     height: 100%;
     width: 80px;
     position: fixed;
@@ -9,6 +9,7 @@
     background-color: dimgrey;
     overflow-x: hidden;
     padding-top: 20px;
+
 }
 .menu-button{
     color: #f1f1f1;
@@ -21,6 +22,6 @@
     background-color: grey;
 }
 .header-icon{
-    width: 20%;
+    width: 5%;
     cursor: pointer;
 }
