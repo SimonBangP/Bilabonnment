@@ -1,5 +1,5 @@
 .sidenav {
-    margin-top: 103px;
+    margin-top: 100px;
     height: 100%;
     width: 80px;
     position: fixed;
@@ -9,6 +9,7 @@
     background-color: dimgrey;
     overflow-x: hidden;
     padding-top: 20px;
+
 
 }
 
