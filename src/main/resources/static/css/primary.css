@@ -1,0 +1,14 @@
+.dropdown-list-login {
+    position: absolute;
+    display: none;
+    border-top: 4px solid white;
+    min-width: 160px;
+    cursor: default;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 30px 30px 30px;
+    right: 0;
+    margin-right: 0px;
+    top: 50px;
+    color: white;
+    text-align: center;
+}
