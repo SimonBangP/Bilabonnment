@@ -12,3 +12,11 @@
     color: white;
     text-align: center;
 }
+
+.topbar{
+    width: 100vw;
+    height: 10vh;
+
+    border-bottom: 1px solid gray;
+
+}
