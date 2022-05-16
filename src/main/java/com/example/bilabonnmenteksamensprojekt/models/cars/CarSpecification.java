@@ -3,36 +3,31 @@ package com.example.bilabonnmenteksamensprojekt.models.cars;
 public class CarSpecification {
 
     private int SpecificationId;
-    private CarModel carModel;
     private CarEngine carEngine;
+    private String brand;
+    private String model;
     private String variant;
     private String color;
 
-    public CarSpecification(int specificationId, CarModel carModel, CarEngine carEngine, String variant, String color) {
+    public CarSpecification(int specificationId, CarEngine carEngine, String brand, String model, String variant, String color) {
         SpecificationId = specificationId;
-        this.carModel = carModel;
         this.carEngine = carEngine;
+        this.brand = brand;
+        this.model = model;
         this.variant = variant;
         this.color = color;
     }
 
-    public CarSpecification(CarModel carModel, CarEngine carEngine, String variant, String color) {
-        this.carModel = carModel;
+    public CarSpecification(CarEngine carEngine, String brand, String model, String variant, String color) {
         this.carEngine = carEngine;
+        this.brand = brand;
+        this.model = model;
         this.variant = variant;
         this.color = color;
     }
 
     public int getSpecificationId() {
         return SpecificationId;
-    }
-
-    public CarModel getCarModel() {
-        return carModel;
-    }
-
-    public void setCarModel(CarModel carModel) {
-        this.carModel = carModel;
     }
 
     public CarEngine getCarEngine() {
@@ -57,5 +52,21 @@ public class CarSpecification {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
     }
 }
