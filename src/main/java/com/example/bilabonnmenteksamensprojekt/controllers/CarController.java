@@ -1,4 +1,4 @@
-package com.example.bilabonnmenteksamensprojekt.Controller;
+package com.example.bilabonnmenteksamensprojekt.controllers;
 
 import com.example.bilabonnmenteksamensprojekt.models.Car;
 import com.example.bilabonnmenteksamensprojekt.services.CarService;
