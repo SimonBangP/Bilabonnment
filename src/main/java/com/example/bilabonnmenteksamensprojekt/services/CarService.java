@@ -16,4 +16,19 @@ public class CarService {
     public List<Car> getCars(){
         return carRepository.getCars();
     }
+
+    public void createNewCar (Car car){
+        carRepository.createNewCar(car);
+    }
+    public Car findSpecificCar (String registrationNumber)  {
+
+       return carRepository.findSpecificCar(registrationNumber);
+    }
+    public boolean deleteCar (String registrationNumber){
+return carRepository.deleteCar(registrationNumber);
+    }
+    public void updateCurrentCar (Car car, String registrationNumber){
+        carRepository.updateCurrentCar(car, registrationNumber);
+    }
 }
+
