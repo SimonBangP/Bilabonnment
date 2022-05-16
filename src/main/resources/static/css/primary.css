@@ -3,6 +3,7 @@ width: 100vw;
     height: 10vh;
 
     border-bottom: 2px solid black;
+    margin-top: auto;
 
 }
 #header-icon {
