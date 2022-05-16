@@ -29,6 +29,10 @@ public class CarEngine {
     private int emissions;
     private double kilometersPerLiter;
 
+    public CarEngine() {
+
+    }
+
     public CarEngine(int engineId, int enginePower, GearType gearType, FuelType fuelType, int emissions, double kilometersPerLiter) {
         this.engineId = engineId;
         this.enginePower = enginePower;
@@ -48,6 +52,10 @@ public class CarEngine {
 
     public int getEngineId() {
         return engineId;
+    }
+
+    public void setEngineId(int engineId) {
+        this.engineId = engineId;
     }
 
     public int getEnginePower() {

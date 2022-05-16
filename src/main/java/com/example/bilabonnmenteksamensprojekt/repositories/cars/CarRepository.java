@@ -1,4 +1,4 @@
-package com.example.bilabonnmenteksamensprojekt.repositories;
+package com.example.bilabonnmenteksamensprojekt.repositories.cars;
 
 import com.example.bilabonnmenteksamensprojekt.models.cars.Car;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
 import java.util.List;
 
 @Repository
@@ -15,11 +16,35 @@ public class CarRepository {
     @Autowired
     JdbcTemplate template;
 
+    @Autowired
+    CarSpecificationRepository carSpecificationRepository;
+
     public List<Car> getCars(){
         String sql = "SELECT * FROM cars";
         RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
-        return template.query(sql, rowMapper);
+
+       return template.query(sql, (ResultSet rs, int rowNum) -> {
+            Car foundCar = rowMapper.mapRow(rs, rowNum);
+
+            foundCar.setCarSpecification(carSpecificationRepository.getSpecificationById(rs.getInt(2)));
+
+            return foundCar;
+        });
     }
+
+    public Car getCarFromId(int id) {
+        String sql = "SELECT * FROM cars WHERE CarId = ?";
+        RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
+
+        return template.query(sql, (ResultSet rs, int rowNum) -> {
+            Car foundCar = rowMapper.mapRow(rs, rowNum);
+
+            foundCar.setCarSpecification(carSpecificationRepository.getSpecificationById(rs.getInt(2)));
+
+            return foundCar;
+        }, id).get(0);
+    }
+
     public void createNewCar (Car car){}
 
     public void updateCurrentCar (Car car, String regNum ){}

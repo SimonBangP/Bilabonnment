@@ -2,15 +2,19 @@ package com.example.bilabonnmenteksamensprojekt.models.cars;
 
 public class CarSpecification {
 
-    private int SpecificationId;
+    private int specificationId;
     private CarEngine carEngine;
     private String brand;
     private String model;
     private String variant;
     private String color;
 
+    public CarSpecification() {
+
+    }
+
     public CarSpecification(int specificationId, CarEngine carEngine, String brand, String model, String variant, String color) {
-        SpecificationId = specificationId;
+        this.specificationId = specificationId;
         this.carEngine = carEngine;
         this.brand = brand;
         this.model = model;
@@ -27,7 +31,11 @@ public class CarSpecification {
     }
 
     public int getSpecificationId() {
-        return SpecificationId;
+        return specificationId;
+    }
+
+    public void setSpecificationId(int specificationId) {
+        this.specificationId = specificationId;
     }
 
     public CarEngine getCarEngine() {

@@ -2,18 +2,22 @@ package com.example.bilabonnmenteksamensprojekt.models.cars;
 
 public class Car {
 
-    private int CarId;
+    private int carId;
     private CarSpecification carSpecification;
     private double price;
-    private boolean insurranceIncluded;
+    private boolean insuranceIncluded;
     private boolean ownersFeeIncluded;
     private String ShortDescription;
 
+    public Car() {
+
+    }
+
     public Car(int carId, CarSpecification carSpecification, double price, boolean insurranceIncluded, boolean ownersFeeIncluded, String shortDescription) {
-        CarId = carId;
+        this.carId = carId;
         this.carSpecification = carSpecification;
         this.price = price;
-        this.insurranceIncluded = insurranceIncluded;
+        this.insuranceIncluded = insurranceIncluded;
         this.ownersFeeIncluded = ownersFeeIncluded;
         ShortDescription = shortDescription;
     }
@@ -21,13 +25,17 @@ public class Car {
     public Car(CarSpecification carSpecification, double price, boolean insurranceIncluded, boolean ownersFeeIncluded, String shortDescription) {
         this.carSpecification = carSpecification;
         this.price = price;
-        this.insurranceIncluded = insurranceIncluded;
+        this.insuranceIncluded = insurranceIncluded;
         this.ownersFeeIncluded = ownersFeeIncluded;
         ShortDescription = shortDescription;
     }
 
     public int getCarId() {
-        return CarId;
+        return carId;
+    }
+
+    public void setCarId(int carId) {
+        this.carId = carId;
     }
 
     public CarSpecification getCarSpecification() {
@@ -46,12 +54,12 @@ public class Car {
         this.price = price;
     }
 
-    public boolean isInsurranceIncluded() {
-        return insurranceIncluded;
+    public boolean isInsuranceIncluded() {
+        return insuranceIncluded;
     }
 
-    public void setInsurranceIncluded(boolean insurranceIncluded) {
-        this.insurranceIncluded = insurranceIncluded;
+    public void setInsuranceIncluded(boolean insuranceIncluded) {
+        this.insuranceIncluded = insuranceIncluded;
     }
 
     public boolean isOwnersFeeIncluded() {

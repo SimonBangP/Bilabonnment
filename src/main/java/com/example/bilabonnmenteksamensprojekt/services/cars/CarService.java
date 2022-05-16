@@ -1,7 +1,7 @@
-package com.example.bilabonnmenteksamensprojekt.services;
+package com.example.bilabonnmenteksamensprojekt.services.cars;
 
 import com.example.bilabonnmenteksamensprojekt.models.cars.Car;
-import com.example.bilabonnmenteksamensprojekt.repositories.CarRepository;
+import com.example.bilabonnmenteksamensprojekt.repositories.cars.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,10 @@ public class CarService {
 
     public List<Car> getCars(){
         return carRepository.getCars();
+    }
+
+    public Car getCarById(int id) {
+        return carRepository.getCarFromId(id);
     }
 
     public void createNewCar (Car car){
