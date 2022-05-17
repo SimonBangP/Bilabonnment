@@ -1,9 +1,4 @@
-.topbar{
-    width: 100vw;
-    height: 10vh;
 
-    border-bottom: 2px solid black;
-}
 #header-icon {
     margin-left: 2vw;
 
@@ -54,9 +49,8 @@
 }
 
 .topbar{
-
     width: 100vw;
-    height: 10vh;
+    height: 100px;
     position: fixed;
     border-bottom: 1px solid gray;
     background-color: white;
