@@ -48,6 +48,40 @@
 </div>
 
 
+<div class="body-container">
+    <div class="table-title">
+        <h1>Cars in repository</h1>
+    </div>
+    <div class="table-container">
+        <div class="menu-table">
+            <table>
+                <thead>
+                <tr>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>Registration</th>
+                    <th>Type</th>
+                    <th>Image</th>
+                    <th>Actions</th>
 
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="car: ${cars}">
+                    <td th:text="${car.brand}"></td>
+                    <td th:text="${car.model}"></td>
+                    <td th:text="${car.registrationNumber}"></td>
+                    <td th:text="${car.carType}"></td>
+                    <td><span class="material-symbols-outlined">help</span></td>
+                    <td class="dual-link-data"><a th:href="@{'/carDetails/'+${car.registrationNumber}}">Details</a>
+                        <a th:href="@{'/deleteCar/'+${car.registrationNumber}}">Remove</a></td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
 </body>
 </html>
