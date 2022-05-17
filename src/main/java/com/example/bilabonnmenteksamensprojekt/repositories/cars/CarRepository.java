@@ -1,6 +1,7 @@
 package com.example.bilabonnmenteksamensprojekt.repositories.cars;
 
 import com.example.bilabonnmenteksamensprojekt.models.cars.Car;
+import com.example.bilabonnmenteksamensprojekt.services.cars.CarSpecificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -17,7 +18,7 @@ public class CarRepository {
     JdbcTemplate template;
 
     @Autowired
-    CarSpecificationRepository carSpecificationRepository;
+    CarSpecificationService carSpecificationService;
 
     public List<Car> getCars(){
         String sql = "SELECT * FROM cars";
@@ -26,7 +27,7 @@ public class CarRepository {
        return template.query(sql, (ResultSet rs, int rowNum) -> {
             Car foundCar = rowMapper.mapRow(rs, rowNum);
 
-            foundCar.setCarSpecification(carSpecificationRepository.getSpecificationById(rs.getInt(2)));
+            foundCar.setCarSpecification(carSpecificationService.getSpecificationById(rs.getInt(2)));
 
             return foundCar;
         });
@@ -39,7 +40,7 @@ public class CarRepository {
         return template.query(sql, (ResultSet rs, int rowNum) -> {
             Car foundCar = rowMapper.mapRow(rs, rowNum);
 
-            foundCar.setCarSpecification(carSpecificationRepository.getSpecificationById(rs.getInt(2)));
+            foundCar.setCarSpecification(carSpecificationService .getSpecificationById(rs.getInt(2)));
 
             return foundCar;
         }, id).get(0);
