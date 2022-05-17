@@ -1,7 +1,7 @@
 .sidenav {
-    margin-top: 12vh;
+   /* margin-top: 20vh;  */
     height: 100%;
-    width: 80px;
+    /*width: 10vh;   */
     position: fixed;
     z-index: 1;
     top: 0;
@@ -11,6 +11,18 @@
     padding-top: 20px;
 
 
+}
+.sidenav1 {
+    margin-top: 12vh;
+    width: 10vh;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: dimgrey;
+    overflow-x: hidden;
+    padding-top: 20px;
 }
 
 .menu-button{
