@@ -1,4 +1,6 @@
-
+#body-container {
+    display: flex;
+}
 
 .pheader {
     margin-top: 0px;

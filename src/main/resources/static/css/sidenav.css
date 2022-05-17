@@ -1,18 +1,4 @@
 .sidenav {
-   /* margin-top: 20vh;  */
-    height: 100%;
-    /*width: 10vh;   */
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: dimgrey;
-    overflow-x: hidden;
-    padding-top: 20px;
-
-
-}
-.sidenav1 {
     margin-top: 12vh;
     width: 10vh;
     height: 100%;
