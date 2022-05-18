@@ -1,1 +1,60 @@
+#header-icon {
 
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+}
+
+#header-buttons-container {
+    margin-right: 3%;
+
+    height: fit-content;
+
+    display: flex;
+    align-content: center;
+}
+
+#header-buttons th{
+    border-right: 2px solid gray;
+    padding-right: 2vw;
+    padding-left: 2vw;
+
+    font-size: larger;
+
+    transition: ease 250ms;
+}
+
+#header-buttons th:hover {
+    color: blue;
+    cursor: pointer;
+}
+
+#header-buttons th:last-of-type {
+    border-right: none;
+}
+.dropdown-list-login {
+    position: absolute;
+    display: none;
+    border-top: 4px solid white;
+    min-width: 160px;
+    cursor: default;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 30px 30px 30px;
+    right: 0;
+    margin-right: 0px;
+    top: 50px;
+    color: white;
+    text-align: center;
+}
+.topbar {
+    width: 100vw;
+    height: 12vh;
+    position: fixed;
+    border-bottom: 1px solid gray;
+    background-color: white;
+
+}
+body{
+    margin: 0;
+}

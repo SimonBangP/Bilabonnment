@@ -20,5 +20,4 @@ public class CarController {
         model.addAttribute("cars", carList);*/
         return "cars/newCars";
     }
-
 }
