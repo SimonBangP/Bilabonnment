@@ -1,0 +1,23 @@
+#header-icon {
+    padding: 10px;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+}
+
+#menu-icons {
+    max-height: 10vh;
+}
+
+.topbar {
+    width: 100vw;
+    height: fit-content;
+    position: fixed;
+    border-bottom: 1px solid gray;
+    background-color: white;
+
+}
+body{
+    margin: 0;
+}

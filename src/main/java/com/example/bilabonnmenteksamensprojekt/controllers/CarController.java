@@ -18,7 +18,7 @@ public class CarController {
     public String car (Model model){
        /* List<Car> carList = carService.getCars();
         model.addAttribute("cars", carList);*/
-        return "cars/cars";
+        return "cars/newCars";
     }
 
 }
