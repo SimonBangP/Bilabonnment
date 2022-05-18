@@ -36,20 +36,21 @@
     border-left: 2px solid gray;
 }
 
-.body-container {
-    margin: 5%;
-    margin-right: 0px;
+.table-body {
+    width: 100%;
 }
 
 .table-title {
+    margin-left: 5vw;
+    margin-top: 10vh;
     font-size: larger;
 }
 
 .table-container {
     padding: 2%;
-    margin-left: 5vh;
-    border: 2px solid black;
-    margin-top: 20vh;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    border-top: 2px solid rgb(197, 197, 197);
 }
 
 .table-button-container {

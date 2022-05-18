@@ -1,2 +1,28 @@
+#details-body {
+    width: 100%;
+}
 
+#details-input {
+    margin-left: 5vw;
+}
+
+#inputs {
+    width: fit-content;
+    border-top: 2px solid gray;
+}
+
+.input-row {
+    margin-top: 4vh;
+}
+
+.input-row input {
+    border: 2px solid lightgray;
+    padding: 10px;
+    font-size: 24px;
+    color: gray;
+}
+
+.input-row input:first-of-type {
+    margin-right: 3vw;
+}
 
