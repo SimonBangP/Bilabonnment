@@ -3,21 +3,30 @@
     height: 100%;
 
     display: flex;
-    align-items: center;
 }
 
-#menu-icons {
+#menu-icon {
     max-height: 10vh;
 }
 
 .topbar {
     width: 100vw;
     height: fit-content;
-    position: fixed;
     border-bottom: 1px solid gray;
     background-color: white;
-
 }
+
 body{
     margin: 0;
+}
+
+#vertical-body-contents {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+#body-container {
+    display: flex;
+    height: 100%;
 }

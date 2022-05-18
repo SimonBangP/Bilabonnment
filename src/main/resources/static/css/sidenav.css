@@ -1,26 +1,18 @@
 .sidenav {
-    margin-top: 12vh;
     width: 10vh;
     height: 100%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
     background-color: dimgrey;
-    overflow-x: hidden;
-    padding-top: 20px;
 }
 
 .menu-button{
     color: #f1f1f1;
-    margin-left: 30%;
-    margin-top: 50px;
     cursor: pointer;
-    width: 25px;
+    text-align: center;
+    margin-top: 40px;
 }
 
 .menu-button:first-of-type{
-    margin-top: 25px;
+    margin-top: 60px;
 }
 
 .menu-button span {
