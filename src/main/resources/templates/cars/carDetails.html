@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../css/shared.css">
+        <link rel="stylesheet" href="../css/sidenav.css">
+        <link rel="stylesheet" href="../css/cars.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <title th:text="'Detaljer: ' + ${car.carSpecification.brand} + ' ' + ${car.carSpecification.model}"></title>
+    </head>
+    <body>
+        <div id="vertical-body-contents">
+            <div class="topbar" >
+                <div id="header-icon">
+                    <img id="menu-icon" src="../images/testlogo.png" onclick="window.location.href='/'">
+                </div>
+            </div>
+            <div id="body-container">
+                <div class="sidenav">
+                    <div class="menu-button" onclick="window.location.href='/forside'">
+                        <span class="material-icons">search</span>
+                    </div>
+                
+                    <div class="menu-button" onclick="window.location.href='/forside'">
+                        <span class="material-icons" >home</span>
+                    </div>
+                
+                    <div class="menu-button" onclick="window.location.href='/cars'">
+                        <span class="material-icons" style="color: dodgerblue">directions_car</span>
+                    </div>
+                
+                    <div class="menu-button" onclick="window.location.href='/forside'">
+                        <span class="material-icons">group</span>
+                    </div>
+                
+                    <div class="menu-button" onclick="window.location.href='/forside'">
+                        <span class="material-icons">description</span>
+                    </div>
+                
+                    <div class="menu-button" onclick="window.location.href='/forside'">
+                        <span class="material-icons">trending_up</span>
+                    </div>
+                
+                    <div class="menu-button" onclick="window.location.href='/forside'">
+                        <span class="material-icons">settings</span>
+                    </div>
+                </div>
+                <div id="details-body">
+                    <div id="details-input">
+                        <h1>Bil detaljer</h1>
+                        <div id="inputs">
+                            <form action="../add" method="post">
+                                <div class="input-row">
+                                    <input type="text" placeholder="Mærke" th:value="${car.carSpecification.brand}">
+                                    <input type="text" placeholder="Model" th:value="${car.carSpecification.model}">
+                                </div>
+                                <div class="input-row">
+                                    <select placeholder="Geartype" th:selected="${car.carSpecification.carEngine.gearType}">
+                                        <option>Manuelt</option>
+                                        <option>Automatgear</option>
+                                        <option>Ingen</option>
+                                    </select>
+                                    <select placeholder="Brændstof type" th:selected="${car.carSpecification.carEngine.fuelType}">
+                                        <option>Benzin</option>
+                                        <option>Diesel</option>
+                                        <option>Hybrid</option>
+                                        <option>Elektrisk</option>
+                                        <option>Andet</option>
+                                    </select>
+                                </div>
+                                <div class="input-row">
+                                    <input type="text" placeholder="Co2 udledning" th:value="${car.carSpecification.carEngine.emissions}">
+                                    <input type="text" placeholder="Kilometer per liter" th:value="${car.carSpecification.carEngine.kilometersPerLiter}">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

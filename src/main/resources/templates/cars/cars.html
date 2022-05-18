@@ -1,87 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="css/sidenav.css">
-    <link rel="stylesheet" href="css/Cars.css">
-    <link rel="stylesheet" href="css/primary.css">
-    <link rel="stylesheet" href="css/TableStyle.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <meta charset="UTF-8">
-    <title>Cars</title>
-</head>
-<body>
-
-
-<div class="topbar" >
-    <div class="header-icon">
-        <img id="menu-icon" src="images/testlogo.png" onclick="window.location.href='/'">
-    </div>
-</div>
-<div id="body-container">
-    <div class="sidenav">
-        <div class="menu-button" onclick="window.location.href='/forside'">
-            <span class="material-icons">search</span>
+<html>
+    <head>
+        <link rel="stylesheet" href="css/shared.css">
+        <link rel="stylesheet" href="css/sidenav.css">
+        <link rel="stylesheet" href="css/cars.css">
+        <link rel="stylesheet" href="css/tablestyle.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <title>Liste over biler</title>
+    </head>
+    <body>
+        <div id="vertical-body-contents">
+            <div class="topbar" >
+                <div id="header-icon">
+                    <img id="menu-icon" src="images/testLogo.png" onclick="window.location.href='/'">
+                </div>
+            </div>
+            <div id="body-container">
+                <div class="sidenav">
+                    <div class="menu-button" onclick="window.location.href='/forside'">
+                        <span class="material-icons">search</span>
+                    </div>
+                
+                    <div class="menu-button" onclick="window.location.href='/forside'">
+                        <span class="material-icons" >home</span>
+                    </div>
+                
+                    <div class="menu-button" onclick="window.location.href='/cars'">
+                        <span class="material-icons" style="color: dodgerblue">directions_car</span>
+                    </div>
+                
+                    <div class="menu-button" onclick="window.location.href='/forside'">
+                        <span class="material-icons">group</span>
+                    </div>
+                
+                    <div class="menu-button" onclick="window.location.href='/forside'">
+                        <span class="material-icons">description</span>
+                    </div>
+                
+                    <div class="menu-button" onclick="window.location.href='/forside'">
+                        <span class="material-icons">trending_up</span>
+                    </div>
+                
+                    <div class="menu-button" onclick="window.location.href='/forside'">
+                        <span class="material-icons">settings</span>
+                    </div>
+                </div>
+                <div class=table-body>
+                    <div class="table-title">
+                        <h1>Tilgængelige biler </h1>
+                    </div>
+                    <div class="table-container">
+                        <div class="menu-table">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Mærke</th>
+                                    <th>Model</th>
+                                    <th>Variant</th>
+                                    <th>Geartype</th>
+                                    <th>Brændstof</th>
+                                    <th>Pris (pr måned) </th>
+                                    <th>Status</th>
+                                    <th>Aktioner</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="car: ${cars}">
+                                    <td th:text="${car.carSpecification.brand}"></td>
+                                    <td th:text="${car.carSpecification.model}"></td>
+                                    <td th:text="${car.carSpecification.variant}"></td>
+                                    <td th:text="${car.carSpecification.carEngine.gearType}"></td>
+                                    <td th:text="${car.carSpecification.carEngine.fuelType}"></td>
+                                    <td th:text="${car.price}"></td>
+                                    <td th:text="${car.status}"></td>
+                                    <td><a th:href="@{'/cars/'+${car.carId}}">Detaljer</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    
-        <div class="menu-button" onclick="window.location.href='/forside'">
-            <span class="material-icons" >home</span>
-        </div>
-    
-        <div class="menu-button" onclick="window.location.href='/cars'">
-            <span class="material-icons" style="color: dodgerblue">directions_car</span>
-        </div>
-    
-        <div class="menu-button" onclick="window.location.href='/forside'">
-            <span class="material-icons">group</span>
-        </div>
-    
-        <div class="menu-button" onclick="window.location.href='/forside'">
-            <span class="material-icons">description</span>
-        </div>
-    
-        <div class="menu-button" onclick="window.location.href='/forside'">
-            <span class="material-icons">trending_up</span>
-        </div>
-    
-        <div class="menu-button" onclick="window.location.href='/forside'">
-            <span class="material-icons">settings</span>
-        </div>
-    </div>
-    <div class="table-title">
-        <h1>Cars in repository</h1>
-    </div>
-    <div class="table-container">
-        <div class="menu-table">
-            <table>
-                <thead>
-                <tr>
-                    <th>Mærke</th>
-                    <th>Model</th>
-                    <th>Variant</th>
-                    <th>Geartype</th>
-                    <th>Brændstof</th>
-                    <th>Pris (pr måned) </th>
-                    <th>Status</th>
-                    <th>Aktioner</th>
-
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="car: ${cars}">
-                    <td th:text="${car.brand}"></td>
-                    <td th:text="${car.model}"></td>
-                    <td th:text="${car.registrationNumber}"></td>
-                    <td th:text="${car.carType}"></td>
-                    <td><span class="material-symbols-outlined">help</span></td>
-                    <td class="dual-link-data"><a th:href="@{'/carDetails/'+${car.registrationNumber}}">Details</a>
-                        <a th:href="@{'/deleteCar/'+${car.registrationNumber}}">Remove</a></td>
-                </tr>
-
-                </tbody>
-            </table>
-        </div>
-
-    </div>
-</div>
-</body>
+    </body>
 </html>

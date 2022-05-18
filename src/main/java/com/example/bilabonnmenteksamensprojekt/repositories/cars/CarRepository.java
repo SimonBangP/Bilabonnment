@@ -21,7 +21,7 @@ public class CarRepository {
     CarSpecificationService carSpecificationService;
 
     public List<Car> getCars(){
-        String sql = "SELECT * FROM cars";
+        String sql = "SELECT * FROM view_cars";
         RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
 
        return template.query(sql, (ResultSet rs, int rowNum) -> {

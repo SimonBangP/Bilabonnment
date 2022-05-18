@@ -7,27 +7,30 @@ public class Car {
     private double price;
     private boolean insuranceIncluded;
     private boolean ownersFeeIncluded;
-    private String ShortDescription;
+    private String shortDescription;
+    private String status;
 
     public Car() {
 
     }
 
-    public Car(int carId, CarSpecification carSpecification, double price, boolean insurranceIncluded, boolean ownersFeeIncluded, String shortDescription) {
+    public Car(int carId, CarSpecification carSpecification, double price, boolean insurranceIncluded, boolean ownersFeeIncluded, String shortDescription, String status) {
         this.carId = carId;
         this.carSpecification = carSpecification;
         this.price = price;
         this.insuranceIncluded = insurranceIncluded;
         this.ownersFeeIncluded = ownersFeeIncluded;
-        ShortDescription = shortDescription;
+        this.shortDescription = shortDescription;
+        this.status = status;
     }
 
-    public Car(CarSpecification carSpecification, double price, boolean insurranceIncluded, boolean ownersFeeIncluded, String shortDescription) {
+    public Car(CarSpecification carSpecification, double price, boolean insurranceIncluded, boolean ownersFeeIncluded, String shortDescription, String status) {
         this.carSpecification = carSpecification;
         this.price = price;
         this.insuranceIncluded = insurranceIncluded;
         this.ownersFeeIncluded = ownersFeeIncluded;
-        ShortDescription = shortDescription;
+        this.shortDescription = shortDescription;
+        this.status = status;
     }
 
     public int getCarId() {
@@ -71,10 +74,18 @@ public class Car {
     }
 
     public String getShortDescription() {
-        return ShortDescription;
+        return shortDescription;
     }
 
     public void setShortDescription(String shortDescription) {
-        ShortDescription = shortDescription;
+        this.shortDescription = shortDescription;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
