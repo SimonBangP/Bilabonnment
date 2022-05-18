@@ -11,21 +11,22 @@
     <div id="icon">
         <img src="images/Logo.svg" onclick="window.location.href='/'">
     </div>
-<div id="align-center">
-    <form class="input">
+
+    <form class="input" id="align-center" method="post">
+
         <label>Brugernavn:</label><br>
-        <input><br><br>
+        <input name="admin" required><br><br>
 
         <label>Adganskode:</label><br>
-        <input type="password"><br><br>
-    </form>
+        <input type="password" name="pasword" required><br><br>
 
-    <div>
-        <div class="login-button" onclick="window.location.href='/forside'">
-            <p>Login</p>
+
+        <div>
+            <button type="submit" class="login-button" onclick="window.location.href='/forside'">
+                <p>Login</p>
+            </button>
         </div>
-    </div>
-</div>
+    </form>
 
 </body>
 </html>
