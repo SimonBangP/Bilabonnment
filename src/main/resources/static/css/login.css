@@ -4,7 +4,7 @@
 }
 .login-button {
 
-    width: 5%;
+    width: 7%;
     height: 2%;
     background : dimgrey;
     text-align: center;
@@ -28,4 +28,6 @@
 #align-center {
     text-align: -webkit-center;
     margin-top: 15vh;
+    padding-bottom: 5vh;
+    
 }
