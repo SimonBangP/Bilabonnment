@@ -31,3 +31,54 @@
     padding-bottom: 5vh;
     
 }
+#bdy-background {
+    background-color: lightblue;
+}
+
+.dropdown-list-login {
+    position: absolute;
+    display: none;
+    background-color: lightgrey;
+    border-top: 4px solid white;
+    min-width: 160px;
+    cursor: default;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 30px 30px 30px;
+    right: 0;
+    margin-right: 0px;
+    top: 50px;
+    color: white;
+    text-align: center;
+}
+.dropdown {
+    display: inline;
+    position: relative;
+}
+.dropbutton {
+    padding: 5px;
+    margin-right: 5px;
+    background-color: transparent;
+    border: none;
+
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.topbarMenuItems{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.topbar-button{
+    cursor: pointer;
+    padding: 16px;
+    align-self: center;
+}
+
+.topbar-button img {
+    max-height: 5vh;
+}
+
+.topbar-button:hover {
+    background-color: darkseagreen;
+}
