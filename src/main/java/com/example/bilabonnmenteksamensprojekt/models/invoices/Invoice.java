@@ -1,6 +1,6 @@
 package com.example.bilabonnmenteksamensprojekt.models.invoices;
 
-import com.example.bilabonnmenteksamensprojekt.models.Customer;
+import com.example.bilabonnmenteksamensprojekt.models.customers.Customer;
 
 import java.sql.Date;
 

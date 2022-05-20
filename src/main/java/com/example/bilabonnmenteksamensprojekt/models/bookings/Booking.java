@@ -1,6 +1,6 @@
 package com.example.bilabonnmenteksamensprojekt.models.bookings;
 
-import com.example.bilabonnmenteksamensprojekt.models.Customer;
+import com.example.bilabonnmenteksamensprojekt.models.customers.Customer;
 import com.example.bilabonnmenteksamensprojekt.models.locations.Location;
 import com.example.bilabonnmenteksamensprojekt.models.cars.Car;
 

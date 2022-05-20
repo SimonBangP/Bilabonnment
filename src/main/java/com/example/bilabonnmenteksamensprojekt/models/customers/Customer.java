@@ -1,4 +1,4 @@
-package com.example.bilabonnmenteksamensprojekt.models;
+package com.example.bilabonnmenteksamensprojekt.models.customers;
 
 import com.example.bilabonnmenteksamensprojekt.models.locations.Address;
 
