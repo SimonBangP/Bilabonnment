@@ -6,6 +6,10 @@ public class Location {
     private String locationName;
     private Address address;
 
+    public Location() {
+
+    }
+
     public Location(int locationId, String locationName, Address address) {
         this.locationId = locationId;
         this.locationName = locationName;
@@ -15,6 +19,10 @@ public class Location {
     public Location(String locationName, Address address) {
         this.locationName = locationName;
         this.address = address;
+    }
+
+    public void setLocationId(int locationId) {
+        this.locationId = locationId;
     }
 
     public int getLocationId() {

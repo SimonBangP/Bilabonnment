@@ -7,26 +7,36 @@ public class User {
     private int userId;
     private String firstName;
     private String lastName;
-    private Location address;
+    private Location location;
     private String username;
-    //private String password   -- Should we have a password here???
+    private String userPassword;
     private UserRight[] rights;
 
-    public User(int userId, String firstName, String lastName, Location address, String username, UserRight[] rights) {
+    public User() {
+
+    }
+
+    public User(int userId, String firstName, String lastName, Location location, String username, String userPassword, UserRight[] rights) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.address = address;
+        this.location = location;
         this.username = username;
+        this.userPassword = userPassword;
         this.rights = rights;
     }
 
-    public User(String firstName, String lastName, Location address, String username, UserRight[] rights) {
+    public User(String firstName, String lastName, Location location, String username, String userPassword, UserRight[] rights) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.address = address;
+        this.location = location;
         this.username = username;
+        this.userPassword = userPassword;
         this.rights = rights;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getUserId() {
@@ -49,12 +59,12 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Location getAddress() {
-        return address;
+    public Location getLocation() {
+        return location;
     }
 
-    public void setAddress(Location address) {
-        this.address = address;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public String getUsername() {
@@ -63,6 +73,14 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getUserPassword() {
+        return userPassword;
+    }
+
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
 
     public UserRight[] getRights() {
