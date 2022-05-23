@@ -32,7 +32,7 @@ public class LoginController {
         }
         else {
             session.setAttribute("authenticated", false);
-            return new RedirectView("/nologin=true");
+            return new RedirectView("/?nologin=true");
         }
     }
 }

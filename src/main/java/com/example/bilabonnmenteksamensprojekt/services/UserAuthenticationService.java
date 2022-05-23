@@ -13,7 +13,7 @@ public class UserAuthenticationService {
 
     public boolean authenticateUser(String username, String password){
         User user = userRepository.getByUsername(username);
-        if (user.getUserPassword().equals(password)) {
+        if (user != null && user.getUserPassword().equals(password)) {
             return true;
         }
         else {

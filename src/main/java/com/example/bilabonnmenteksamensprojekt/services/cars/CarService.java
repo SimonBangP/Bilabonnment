@@ -11,28 +11,32 @@ import java.util.List;
 public class CarService {
 
     @Autowired
-    CarRepository carRepository;
+    CarRepository repository;
 
     public List<Car> getCars(){
-        return carRepository.getCars();
+        return repository.getCars();
     }
 
     public Car getCarById(int id) {
-        return carRepository.getCarFromId(id);
+        return repository.getCarFromId(id);
     }
 
-    public void createNewCar (Car car){
-        carRepository.createNewCar(car);
+    public int insertCar (Car car){
+        if (repository.carExists(car)) {
+            return repository.getCarId(car);
+        }
+        else {
+            return repository.insertNewCar(car);
+        }
     }
-    public Car findSpecificCar (String registrationNumber)  {
 
-       return carRepository.findSpecificCar(registrationNumber);
+    public void removeCar(Car car) {
+        int carId = repository.getCarId(car);
+        repository.removeCarById(carId);
     }
-    public boolean deleteCar (String registrationNumber){
-return carRepository.deleteCar(registrationNumber);
-    }
-    public void updateCurrentCar (Car car, String registrationNumber){
-        carRepository.updateCurrentCar(car, registrationNumber);
+
+    public void removeCarById(int id) {
+        repository.removeCarById(id);
     }
 }
 

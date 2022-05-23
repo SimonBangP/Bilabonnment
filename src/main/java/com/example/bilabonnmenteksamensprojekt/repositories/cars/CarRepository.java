@@ -2,6 +2,7 @@ package com.example.bilabonnmenteksamensprojekt.repositories.cars;
 
 import com.example.bilabonnmenteksamensprojekt.models.cars.Car;
 import com.example.bilabonnmenteksamensprojekt.services.cars.CarSpecificationService;
+import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -46,31 +47,47 @@ public class CarRepository {
         }, id).get(0);
     }
 
-    public void createNewCar (Car car){}
+    public int insertNewCar (Car car) {
+        String sql = "INSERT INTO cars VALUES (DEFAULT, ?, ?, ?, ?, ?)";
+        int specificationId = carSpecificationService.insertCarSpecification(car.getCarSpecification());
 
-    public void updateCurrentCar (Car car, String regNum ){}
-
-    public Boolean deleteCar (String regNum){
-        String sql = "DELETE FROM cars_features cars WHERE RegistrationNumber = ?";
-        deleteCarrental(regNum);
-        deleteCar2(regNum);
-        return template.update(sql, regNum) > 0;
-    }
-    public Boolean deleteCarrental (String regNum){
-        String sql ="DELETE FROM rental_contracts WHERE RegistrationNumber = ?";
-        return template.update(sql, regNum) > 0;
+        template.update(sql, specificationId, car.getPrice(), car.isInsuranceIncluded(), car.isOwnersFeeIncluded(), car.getShortDescription());
+        return getCarId(car);
     }
 
-    public Boolean deleteCar2 (String regNum){
-        String sql = "DELETE FROM cars WHERE RegistrationNumber = ?";
-        return template.update(sql, regNum) > 0;
+    public int getCarId(Car car) {
+        String sql = "SELECT CarId FROM cars WHERE SpecificationId = ? AND Price = ? AND InsuranceIncluded = ? AND OwnersFeeIncluded = ? AND ShortDescription = ?";
+        int specificationId = carSpecificationService.getCarSpecificationId(car.getCarSpecification());
+
+        List<Integer> ids = template.query(sql, (ResultSet rs, int rowNum) -> {
+            return rs.getInt(1);
+        }, specificationId, car.getPrice(), car.isInsuranceIncluded(), car.isOwnersFeeIncluded(), car.getShortDescription());
+
+        if (ids.size() <= 0) {
+            return -1;
+        }
+        else {
+            return ids.get(0);
+        }
     }
 
-    public Car findSpecificCar (String regNum){
-        String sql = "SELECT * FROM cars WHERE RegistrationNumber = ?";
-        RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
-        Car car = template.queryForObject(sql, rowMapper, regNum);
-        return car;
+    public boolean carExists(Car car) {
+        String sql = "SELECT COUNT(*) FROM cars WHERE SpecificationId = ? AND Price = ? AND InsuranceIncluded = ? AND OwnersFeeIncluded = ? AND ShortDescription = ?";
+        int specificationId = carSpecificationService.getCarSpecificationId(car.getCarSpecification());
+
+        return template.query(sql, (ResultSet rs, int rowNum) -> {
+            return rs.getInt(1);
+        }, specificationId, car.getPrice(), car.isInsuranceIncluded(), car.isOwnersFeeIncluded(), car.getShortDescription()).get(0) >= 1;
+    }
+
+    public void updateCarById (int id, Car car) {
+
+    }
+
+    public void removeCarById(int id) {
+        String sql = "UPDATE cars SET Removed = TRUE WHERE CarId = ?";
+
+        template.update(sql, id);
     }
 
 }

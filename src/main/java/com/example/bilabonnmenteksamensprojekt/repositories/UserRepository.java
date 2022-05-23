@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
+import java.util.List;
 
 @Repository
 public class UserRepository {
@@ -25,13 +26,20 @@ public class UserRepository {
         String sql = "SELECT * FROM users WHERE Username = ?";
         RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
 
-        return template.query(sql, (ResultSet rs, int rowNum) -> {
+        List<User> users = template.query(sql, (ResultSet rs, int rowNum) -> {
             User foundUser = rowMapper.mapRow(rs, rowNum);
 
-            foundUser.setLocation(locationsService.getLocationById(4));
+            foundUser.setLocation(locationsService.getLocationById(rs.getInt(4)));
 
             return foundUser;
-        }).get(0);
+        }, username);
+
+        if (users.size() <= 0) {
+            return null;
+        }
+        else {
+            return users.get(0);
+        }
     }
 
 }

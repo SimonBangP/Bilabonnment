@@ -15,4 +15,16 @@ public class CarEngineService {
         return repository.getCarEngineById(id);
     }
 
+    public int insertCarEngine(CarEngine engine) {
+        if (repository.carEngineExists(engine)) {
+            return repository.getEngineId(engine);
+        }
+        else {
+            return repository.insertNewEngine(engine);
+        }
+    }
+
+    public int getEngineId(CarEngine engine) {
+        return repository.getEngineId(engine);
+    }
 }

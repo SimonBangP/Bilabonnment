@@ -14,4 +14,17 @@ public class CarSpecificationService {
     public CarSpecification getSpecificationById(int id) {
         return repository.getSpecificationById(id);
     }
+
+    public int insertCarSpecification(CarSpecification carSpecification) {
+        if (repository.carSpecificationExists(carSpecification)) {
+            return repository.getCarSpecificationId(carSpecification);
+        }
+        else {
+            return repository.insertNewCarSpecification(carSpecification);
+        }
+    }
+
+    public int getCarSpecificationId(CarSpecification carSpecification){
+        return repository.getCarSpecificationId(carSpecification);
+    }
 }

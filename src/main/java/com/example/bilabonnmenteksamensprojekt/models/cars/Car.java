@@ -14,23 +14,21 @@ public class Car {
 
     }
 
-    public Car(int carId, CarSpecification carSpecification, double price, boolean insurranceIncluded, boolean ownersFeeIncluded, String shortDescription, String status) {
+    public Car(int carId, CarSpecification carSpecification, double price, boolean insurranceIncluded, boolean ownersFeeIncluded, String shortDescription) {
         this.carId = carId;
         this.carSpecification = carSpecification;
         this.price = price;
         this.insuranceIncluded = insurranceIncluded;
         this.ownersFeeIncluded = ownersFeeIncluded;
         this.shortDescription = shortDescription;
-        this.status = status;
     }
 
-    public Car(CarSpecification carSpecification, double price, boolean insurranceIncluded, boolean ownersFeeIncluded, String shortDescription, String status) {
+    public Car(CarSpecification carSpecification, double price, boolean insurranceIncluded, boolean ownersFeeIncluded, String shortDescription) {
         this.carSpecification = carSpecification;
         this.price = price;
         this.insuranceIncluded = insurranceIncluded;
         this.ownersFeeIncluded = ownersFeeIncluded;
         this.shortDescription = shortDescription;
-        this.status = status;
     }
 
     public int getCarId() {
@@ -83,9 +81,5 @@ public class Car {
 
     public String getStatus() {
         return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 }

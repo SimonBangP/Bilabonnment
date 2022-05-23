@@ -19,7 +19,7 @@
         <label>Adganskode:</label><br>
         <input type="password" name="password" required><br><br>
 
-        <input hidden="true" name="location" value="forside">
+        <input hidden="true" name="location" th:value="${param.location}">
 
         <div>
             <button type="submit" class="login-button">

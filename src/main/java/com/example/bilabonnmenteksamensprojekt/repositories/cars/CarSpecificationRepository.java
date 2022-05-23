@@ -1,12 +1,14 @@
 package com.example.bilabonnmenteksamensprojekt.repositories.cars;
 
 import com.example.bilabonnmenteksamensprojekt.models.cars.CarSpecification;
+import com.example.bilabonnmenteksamensprojekt.services.cars.CarBrandModelService;
 import com.example.bilabonnmenteksamensprojekt.services.cars.CarEngineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.*;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
+import java.util.List;
 
 @Repository
 public class CarSpecificationRepository {
@@ -16,6 +18,9 @@ public class CarSpecificationRepository {
 
     @Autowired
     CarEngineService carEngineService;
+
+    @Autowired
+    CarBrandModelService carBrandModelService;
 
     public CarSpecification getSpecificationById(int id) {
         String sql = "SELECT * FROM car_specifications WHERE SpecificationId = ?";
@@ -43,5 +48,42 @@ public class CarSpecificationRepository {
 
             return specification;
         }, id).get(0);
+    }
+
+    public boolean carSpecificationExists(CarSpecification carSpecification) {
+        String sql = "SELECT COUNT(*) FROM car_specifications WHERE ModelId = ? AND EngineId = ? AND Variant = ? AND Color = ?";
+        int modelId = carBrandModelService.getModelId(carSpecification.getBrand(), carSpecification.getModel());
+        int engineId = carEngineService.getEngineId(carSpecification.getCarEngine());
+
+        return template.query(sql, (ResultSet rs, int rowNum) -> {
+            return rs.getInt(1);
+        }, modelId, engineId, carSpecification.getVariant(), carSpecification.getColor()).get(0) >= 1;
+    }
+
+    public int getCarSpecificationId(CarSpecification carSpecification) {
+        String sql = "SELECT SpecificationId FROM car_specifications WHERE ModelId = ? AND EngineId = ? AND Variant = ? AND Color = ?";
+        int modelId = carBrandModelService.getModelId(carSpecification.getBrand(), carSpecification.getModel());
+        int engineId = carEngineService.getEngineId(carSpecification.getCarEngine());
+
+        List<Integer> ids = template.query(sql, (ResultSet rs, int rowNum) -> {
+            return rs.getInt(1);
+        }, modelId, engineId, carSpecification.getVariant(), carSpecification.getColor());
+
+        if (ids.size() <= 0) {
+            return -1;
+        }
+        else {
+            return ids.get(0);
+        }
+    }
+
+    public int insertNewCarSpecification(CarSpecification carSpecification) {
+        String sql = "INSERT INTO car_specifications VALUES (DEFAULT, ?, ?, ?, ?)";
+
+        int modelId = carBrandModelService.insertModel(carSpecification.getBrand(), carSpecification.getModel());
+        int engineId = carEngineService.insertCarEngine(carSpecification.getCarEngine());
+
+        template.update(sql, modelId, engineId, carSpecification.getVariant(), carSpecification.getColor());
+        return getCarSpecificationId(carSpecification);
     }
 }
