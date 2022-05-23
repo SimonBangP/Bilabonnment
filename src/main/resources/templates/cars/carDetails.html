@@ -50,26 +50,40 @@
                         <div id="inputs">
                             <form action="../add" method="post">
                                 <div class="input-row">
-                                    <input type="text" placeholder="Mærke" th:value="${car.carSpecification.brand}">
-                                    <input type="text" placeholder="Model" th:value="${car.carSpecification.model}">
+                                    <div class="input-column">
+                                        <p>Mærke:</p><input type="text" placeholder="Mærke" th:value="${car.carSpecification.brand}">
+                                    </div>
+                                    <div class="input-column">
+                                        <p>Model:</p><input type="text" placeholder="Model" th:value="${car.carSpecification.model}">
+                                    </div>  
                                 </div>
                                 <div class="input-row">
-                                    <select placeholder="Geartype" th:selected="${car.carSpecification.carEngine.gearType}">
-                                        <option>Manuelt</option>
-                                        <option>Automatgear</option>
-                                        <option>Ingen</option>
-                                    </select>
-                                    <select placeholder="Brændstof type" th:selected="${car.carSpecification.carEngine.fuelType}">
-                                        <option>Benzin</option>
-                                        <option>Diesel</option>
-                                        <option>Hybrid</option>
-                                        <option>Elektrisk</option>
-                                        <option>Andet</option>
-                                    </select>
+                                    <div class="input-column">
+                                        <p>Gear type:</p><select placeholder="Geartype">
+                                            <option th:each="gearType : ${T(com.example.bilabonnmenteksamensprojekt.models.cars.CarEngine.GearType).values()}"
+                                                    th:value="${gearType}"
+                                                    th:text="${gearType}"
+                                                    th:selected="${gearType eq car.carSpecification.carEngine.gearType}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="input-column">
+                                        <p>Brændstof type:</p><select placeholder="Brændstof type">
+                                            <option th:each="fuelType : ${T(com.example.bilabonnmenteksamensprojekt.models.cars.CarEngine.FuelType).values()}"
+                                                    th:value="${fuelType}"
+                                                    th:text="${fuelType}"
+                                                    th:selected="${fuelType eq car.carSpecification.carEngine.fuelType}">
+                                            </option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="input-row">
-                                    <input type="text" placeholder="Co2 udledning" th:value="${car.carSpecification.carEngine.emissions}">
-                                    <input type="text" placeholder="Kilometer per liter" th:value="${car.carSpecification.carEngine.kilometersPerLiter}">
+                                    <div class="input-column">
+                                        <p>Co2 Udledning:</p><input type="text" placeholder="Co2 udledning" th:value="${car.carSpecification.carEngine.emissions}">
+                                    </div>
+                                    <div class="input-column">
+                                        <p>Km/l:</p><input type="text" placeholder="Kilometer per liter" th:value="${car.carSpecification.carEngine.kilometersPerLiter}">
+                                    </div>
                                 </div>
                             </form>
                         </div>

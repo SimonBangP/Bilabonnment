@@ -1,10 +1,8 @@
 package com.example.bilabonnmenteksamensprojekt.models.cars;
 
-
-
 public class CarEngine {
 
-    private enum GearType {
+    public enum GearType {
 
         Manuelt,
         Automatgear,
@@ -12,7 +10,7 @@ public class CarEngine {
 
     }
 
-    private enum FuelType {
+    public enum FuelType {
 
         Benzin,
         Diesel,

@@ -8,6 +8,7 @@ public class ForsideController {
 
     @GetMapping ("/forside")
     public String forside(){
+        System.out.println("Getting main site");
         return "forside";
     }
 }

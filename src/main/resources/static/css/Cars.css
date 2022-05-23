@@ -1,3 +1,8 @@
+select, input {
+    box-sizing: border-box;
+    width: 100%;
+}
+
 #details-body {
     width: 100%;
 }
@@ -13,16 +18,37 @@
 
 .input-row {
     margin-top: 4vh;
+    display: flex;
 }
 
-.input-row input {
+.input-column {
+    width: 15vw;
+}
+
+.input-column input {
     border: 2px solid lightgray;
     padding: 10px;
     font-size: 24px;
-    color: gray;
+    color: rgb(95, 95, 95);
 }
 
-.input-row input:first-of-type {
+.input-row .input-column:first-of-type {
     margin-right: 3vw;
 }
 
+.input-column select {
+    border: 2px solid lightgray;
+    padding: 10px;
+    font-size: 24px;
+    color: rgb(95, 95, 95);
+}
+
+.input-column select:first-of-type {
+    margin-right: 3vw;
+}
+
+.input-row p {
+    margin-right: 20px;
+    font-weight: bold;
+    font-size: larger;
+}
