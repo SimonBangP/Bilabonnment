@@ -33,3 +33,19 @@ body{
     display: flex;
     height: 100%;
 }
+.top-buttons {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+    height: 1%;
+    /* background: linear-gradient(45deg, rgb(117, 224, 192), #5db883);*/
+    background-color: lightgrey;
+    font-size: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    padding: 40px;
+
+}

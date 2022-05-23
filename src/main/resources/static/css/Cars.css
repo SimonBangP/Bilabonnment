@@ -56,6 +56,7 @@ select, input {
 .tilbage-btn {
     margin-left: 80vh;
     font-size: 20px;
+    font-weight: bold;
 }
 
 .car-picture {
@@ -66,5 +67,12 @@ select, input {
     margin-top: -70vh;
     border: 2px solid;
     border-radius: 5px;
+    background-color: lightgrey;
 
+}
+#car-brand {
+    text-align: center;
+    margin-top: 40%;
+    font-size: 29px;
+    font-weight: bold;
 }
