@@ -81,7 +81,10 @@ public class CarRepository {
     }
 
     public void updateCarById (int id, Car car) {
+        String sql = "Update cars SET SpecificationId = ?, Price = ?, InsuranceIncluded = ?, OwnersFeeIncluded = ?, ShortDescription = ?";
 
+        int specificationId = carSpecificationService.insertCarSpecification(car.getCarSpecification());
+        template.update(sql, specificationId, car.getPrice(), car.isInsuranceIncluded(), car.isOwnersFeeIncluded(), car.getShortDescription());
     }
 
     public void removeCarById(int id) {

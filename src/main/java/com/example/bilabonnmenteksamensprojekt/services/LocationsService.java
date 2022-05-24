@@ -10,13 +10,17 @@ import org.springframework.stereotype.Service;
 public class LocationsService {
 
     @Autowired
-    LocationsRepository locationsRepository;
+    LocationsRepository repository;
 
     public Address getAddressById(int id) {
-        return locationsRepository.getAddressById(id);
+        return repository.getAddressById(id);
     }
 
     public Location getLocationById(int id) {
-        return locationsRepository.getLocationById(id);
+        return repository.getLocationById(id);
+    }
+
+    public Location getPickupLocationById(int id) {
+        return repository.getPickupLocationById(id);
     }
 }

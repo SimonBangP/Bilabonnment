@@ -1,0 +1,20 @@
+#error-message {
+    background-color: crimson;
+
+    width: 100vw;
+    height: 100vh;
+
+        
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#error-message h1 {
+    color: white;
+}
+
+#error-message a {
+    color: white;
+}

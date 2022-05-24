@@ -38,5 +38,14 @@ public class CarService {
     public void removeCarById(int id) {
         repository.removeCarById(id);
     }
+
+    public void changeCarById(int id, Car newCar) {
+        repository.updateCarById(id, newCar);
+    }
+
+    public void changeCar(Car originalCar, Car newCar) {
+        int carId = repository.getCarId(originalCar);
+        repository.updateCarById(carId, newCar);
+    }
 }
 

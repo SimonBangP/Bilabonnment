@@ -19,7 +19,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.net.URI;
 
 @Controller
-public class LoginController {
+public class AuthController {
 
     @Autowired
     UserAuthenticationService authenticationService;
@@ -27,12 +27,29 @@ public class LoginController {
     @GetMapping("/login")
     public RedirectView tryLogin(HttpSession session, @RequestParam String username, @RequestParam String password, @RequestParam String location) {
         if (authenticationService.authenticateUser(username, password)) {
+            session.setAttribute("authorizedUsername", username);
             session.setAttribute("authenticated", true);
+
+            if (location.equals("")) {
+                location = "forside";
+            }
+
             return new RedirectView("/" + location);
         }
         else {
             session.setAttribute("authenticated", false);
             return new RedirectView("/?nologin=true");
         }
+    }
+
+    @GetMapping("/logout")
+    public RedirectView logout(HttpSession session) {
+        session.invalidate();
+        return new RedirectView("/");
+    }
+
+    @GetMapping("/authError")
+    public String showAuthError() {
+        return "autherror";
     }
 }

@@ -88,15 +88,15 @@
                             </form>
                         </div>
                         <div class="tilbage-btn">
-                        <button type="submit" class="login-button" onclick="window.location.href='/cars'">
-                            <p>Tilbage</p>
-                        </button>
+                            <button type="submit" class="login-button" onclick="window.location.href='/cars'">
+                                <p>Tilbage</p>
+                            </button>
+                        </div>
                     </div>
-                    <div class="car-picture">
+                    <div id="details-image">
                         <p id="car-brand"><td th:text="${car.carSpecification.brand}"></td></p>
                         <span class="material-icons" style="display: block;text-align: center;font-size: 100px;justify-content: center;" >directions_car</span>
                     </div>
-                  </div>
                 </div>
             </div>
         </div>

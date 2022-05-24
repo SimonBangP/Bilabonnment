@@ -42,4 +42,29 @@ public class UserRepository {
         }
     }
 
+    public int getUserId(String username) {
+        String sql = "SELECT UserId FROM users WHERE username = ?";
+
+        List<Integer> ids = template.query(sql, (ResultSet rs, int rowNum) -> {
+            return rs.getInt(1);
+        }, username);
+
+        if (ids.size() <= 0) {
+            return -1;
+        }
+        else {
+            return ids.get(0);
+        }
+    }
+
+    public List<String> getUserRights(String username) {
+        String sql = "SELECT RightsDescriptions FROM rights WHERE RightsId IN (SELECT RightsId FROM users_rights WHERE UserId = ?)";
+
+        int userId = getUserId(username);
+
+        return template.query(sql, (ResultSet rs, int rowNum) -> {
+            return rs.getString(1);
+        }, userId);
+    }
+
 }

@@ -47,4 +47,30 @@ public class LocationsRepository {
         }, id).get(0);
     }
 
+    public Location getPickupLocationById(int id) {
+        String sql = "SELECT * FROM locations WHERE LocationId IN (SELECT LocationId FROM pickup_locations WHERE LocationId = ?)";
+        RowMapper<Location> rowMapper = new BeanPropertyRowMapper<>(Location.class);
+
+        return template.query(sql, (ResultSet rs, int rowNum) -> {
+            Location foundLocation = rowMapper.mapRow(rs, rowNum);
+
+            foundLocation.setAddress(getAddressById(rs.getInt(3)));
+
+            return foundLocation;
+        }, id).get(0);
+    }
+
+    public Location getDropoffLocationById(int id) {
+        String sql = "SELECT * FROM locations WHERE LocationId IN (SELECT LocationId FROM dropoff_locations WHERE LocationId = ?)";
+        RowMapper<Location> rowMapper = new BeanPropertyRowMapper<>(Location.class);
+
+        return template.query(sql, (ResultSet rs, int rowNum) -> {
+            Location foundLocation = rowMapper.mapRow(rs, rowNum);
+
+            foundLocation.setAddress(getAddressById(rs.getInt(3)));
+
+            return foundLocation;
+        }, id).get(0);
+    }
+
 }

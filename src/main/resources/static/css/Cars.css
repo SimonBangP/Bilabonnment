@@ -4,11 +4,27 @@ select, input {
 }
 
 #details-body {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
 }
 
 #details-input {
     margin-left: 5vw;
+    width: 45vw;
+    height: 100%;
+}
+
+#details-image {
+    width: 50vh;
+    height: 60vh;
+    display: block;
+    border: 2px solid;
+    border-radius: 5px;
+    background-color: lightgrey;
+
+    margin-top: 5vh;
+    margin-right: 15vw;
 }
 
 #inputs {
@@ -59,17 +75,6 @@ select, input {
     font-weight: bold;
 }
 
-.car-picture {
-    width: 50vh;
-    height: 60vh;
-    display: block;
-    margin-left: 55%;
-    margin-top: -70vh;
-    border: 2px solid;
-    border-radius: 5px;
-    background-color: lightgrey;
-
-}
 #car-brand {
     text-align: center;
     margin-top: 40%;

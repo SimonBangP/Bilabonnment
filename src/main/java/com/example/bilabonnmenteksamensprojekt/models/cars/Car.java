@@ -79,6 +79,10 @@ public class Car {
         this.shortDescription = shortDescription;
     }
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public String getStatus() {
         return status;
     }

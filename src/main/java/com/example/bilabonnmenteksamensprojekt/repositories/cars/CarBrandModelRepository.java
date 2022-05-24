@@ -17,9 +17,10 @@ public class CarBrandModelRepository {
 
     public String getModelById(int id) {
         String sql = "SELECT Model FROM car_models WHERE ModelId = ?";
-        RowMapper<String> rowMapper = new BeanPropertyRowMapper<>(String.class);
 
-        List<String> models = template.query(sql, rowMapper, id);
+        List<String> models = template.query(sql, (ResultSet rs, int rowNum) -> {
+            return rs.getString(1);
+        }, id);
 
         if (models.size() <= 0) {
             return null;
@@ -65,9 +66,10 @@ public class CarBrandModelRepository {
 
     public String getBrandById(int id) {
         String sql = "SELECT Brand FROM car_brands WHERE BrandId = ?";
-        RowMapper<String> rowMapper = new BeanPropertyRowMapper<>(String.class);
 
-        List<String> brands = template.query(sql, rowMapper, id);
+        List<String> brands = template.query(sql, (ResultSet rs, int rowNum) -> {
+            return rs.getString(1);
+        }, id);
 
         if (brands.size() <= 0) {
             return null;
