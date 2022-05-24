@@ -7,18 +7,25 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
 public class BookingController {
+
     @Autowired
     BookingService bookingService;
 
     @GetMapping("/bookings")
-    public String bookings(Model model){
-        List<Booking> bookinglist = bookingService.getBookings();
-        model.addAttribute("bookings", bookinglist);
-        return "bookings/bookings";
+    public String bookings(HttpSession session, Model model){
+        if (session.getAttribute("authenticated") != null && ((boolean) session.getAttribute("authenticated"))) {
+            List<Booking> bookinglist = bookingService.getBookings();
+            model.addAttribute("bookings", bookinglist);
+            return "bookings/bookings";
+        }
+        else {
+            return "redirect:/?location=bookings";
+        }
     }
 
 

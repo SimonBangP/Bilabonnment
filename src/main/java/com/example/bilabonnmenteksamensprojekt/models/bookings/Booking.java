@@ -16,6 +16,10 @@ public class Booking {
     private Date returnDate;
     private boolean completed;
 
+    public Booking() {
+
+    }
+
     public Booking(int bookingId, Customer customer, Car car, Location pickupLocation, Date deliveryDate, Date returnDate, boolean completed) {
         this.bookingId = bookingId;
         this.customer = customer;
@@ -33,6 +37,10 @@ public class Booking {
         this.deliveryDate = deliveryDate;
         this.returnDate = returnDate;
         this.completed = completed;
+    }
+
+    public void setBookingId(int bookingId) {
+        this.bookingId = bookingId;
     }
 
     public int getBookingId() {

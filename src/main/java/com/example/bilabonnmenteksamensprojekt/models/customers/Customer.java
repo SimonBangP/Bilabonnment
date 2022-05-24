@@ -14,6 +14,10 @@ public class Customer {
     private boolean creditValidated;
     private Timestamp createdAt;
 
+    public Customer() {
+
+    }
+
     public Customer(int customerId, String firstName, String lastName, Address address, boolean identityValidated, boolean creditValidated, Timestamp createdAt) {
         this.customerId = customerId;
         this.firstName = firstName;
@@ -31,6 +35,10 @@ public class Customer {
         this.identityValidated = identityValidated;
         this.creditValidated = creditValidated;
         this.createdAt = createdAt;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
     public int getCustomerId() {
