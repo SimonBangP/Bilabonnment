@@ -16,10 +16,6 @@ public class BookingService {
     }
 
     public void createNewBooking (Booking booking){
-        bookingRepository.createNewBooking(booking);
-    }
-
-    public Booking findSpecificBooking (int bookingId){
-   return bookingRepository.findspecificBooking(bookingId);
+        //bookingRepository.createNewBooking(booking);
     }
 }

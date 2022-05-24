@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.example.bilabonnmenteksamensprojekt.models.users.User;
 import com.example.bilabonnmenteksamensprojekt.services.UserAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,8 @@ public class AuthController {
     @GetMapping("/login")
     public RedirectView tryLogin(HttpSession session, @RequestParam String username, @RequestParam String password, @RequestParam String location) {
         if (authenticationService.authenticateUser(username, password)) {
+            User user = authenticationService.getUserByUsername(username);
+            session.setAttribute("userFirstname", user.getFirstName());
             session.setAttribute("authorizedUsername", username);
             session.setAttribute("authenticated", true);
 

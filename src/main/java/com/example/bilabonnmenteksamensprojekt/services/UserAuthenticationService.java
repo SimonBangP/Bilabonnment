@@ -37,4 +37,8 @@ public class UserAuthenticationService {
 
         return false;
     }
+
+    public User getUserByUsername(String username) {
+        return repository.getByUsername(username);
+    }
 }
