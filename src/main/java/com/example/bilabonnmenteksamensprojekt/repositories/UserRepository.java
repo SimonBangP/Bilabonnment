@@ -66,5 +66,4 @@ public class UserRepository {
             return rs.getString(1);
         }, userId);
     }
-
 }

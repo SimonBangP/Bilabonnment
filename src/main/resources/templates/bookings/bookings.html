@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/sidenav.css">
+    <link rel="stylesheet" href="css/cars.css">
+    <link rel="stylesheet" href="css/tablestyle.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>booking over biler</title>
+</head>
+<body>
+<div id="vertical-body-contents">
+    <div class="topbar" >
+        <div id="header-icon">
+            <img id="menu-icon" src="images/testLogo.png" onclick="window.location.href='/'">
+        </div>
+    </div>
+    <div id="body-container">
+        <div class="sidenav">
+            <div class="menu-button" onclick="window.location.href='/forside'">
+                <span class="material-icons">search</span>
+            </div>
+
+            <div class="menu-button" onclick="window.location.href='/forside'">
+                <span class="material-icons" >home</span>
+            </div>
+
+            <div class="menu-button" onclick="window.location.href='/cars'">
+                <span class="material-icons">directions_car</span>
+            </div>
+
+            <div class="menu-button" onclick="window.location.href='/forside'">
+                <span class="material-icons">group</span>
+            </div>
+
+            <div class="menu-button" onclick="window.location.href='/forside'">
+                <span class="material-icons" style="color: dodgerblue">description</span>
+            </div>
+
+            <div class="menu-button" onclick="window.location.href='/forside'">
+                <span class="material-icons">trending_up</span>
+            </div>
+
+            <div class="menu-button" onclick="window.location.href='/forside'">
+                <span class="material-icons">settings</span>
+            </div>
+        </div>
+        <div class=table-body>
+            <div class="table-title">
+                <h1>Aktive bookings</h1>
+            </div>
+            <div class="table-container">
+                <div class="menu-table">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Kunde</th>
+                            <th>Bil</th>
+                            <th>Afhentningssted</th>
+                            <th>Leveringssted</th>
+                            <th>Leveringsdato</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="booking: ${bookings}">
+                            <td th:text="${booking.bookingId}"></td>
+                            <td th:text="${booking.customer.customerId}"></td>
+                            <td th:text="${booking.car.carId}"></td>
+                            <td th:text="${booking.pickupLocation.locationName}"></td>
+                            <td th:text="${booking.deliveryDate}"></td>
+                            <td th:text="${booking.returnDate}"></td>
+                            <td th:text="${booking.completed}"></td>
+                            <!-- <td><a th:href="@{'/bookings/'+${booking.bookingId}}">Detaljer</a></td> -->
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

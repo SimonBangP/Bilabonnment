@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository
-public class CarEngineRepository {
+public class  CarEngineRepository {
 
     @Autowired
     JdbcTemplate template;
