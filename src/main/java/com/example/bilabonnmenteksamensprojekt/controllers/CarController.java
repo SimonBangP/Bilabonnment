@@ -25,7 +25,7 @@ public class CarController {
     UserAuthenticationService authenticationService;
 
     @GetMapping("/cars")
-    public String car (HttpSession session, Model model){
+    public String viewCars(HttpSession session, Model model){
         if (session.getAttribute("authenticated") != null &&((boolean) session.getAttribute("authenticated"))) {
             List<Car> carList = carService.getCars();
             model.addAttribute("cars", carList);
