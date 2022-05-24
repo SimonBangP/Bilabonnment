@@ -28,7 +28,7 @@ public class LoginController {
     public RedirectView tryLogin(HttpSession session, @RequestParam String username, @RequestParam String password, @RequestParam String location) {
         if (authenticationService.authenticateUser(username, password)) {
             session.setAttribute("authenticated", true);
-            return new RedirectView("/" + location);
+            return new RedirectView("/forside" + location);
         }
         else {
             session.setAttribute("authenticated", false);

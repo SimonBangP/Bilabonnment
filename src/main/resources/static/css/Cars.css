@@ -54,7 +54,7 @@ select, input {
 }
 
 .tilbage-btn {
-    margin-left: 80vh;
+    margin-top: 2%;
     font-size: 20px;
     font-weight: bold;
 }
@@ -64,7 +64,7 @@ select, input {
     height: 60vh;
     display: block;
     margin-left: 55%;
-    margin-top: -70vh;
+    margin-top: -37%;
     border: 2px solid;
     border-radius: 5px;
     background-color: lightgrey;
