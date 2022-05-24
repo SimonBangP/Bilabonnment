@@ -43,6 +43,21 @@ public class BookingRepository {
             return foundBooking;
         });
     }
+    public List<Booking> getActiveBookings() {
+        String sql = "SELECT * FROM bookings WHERE Completed = 1";
+
+        RowMapper<Booking> rowMapper = new BeanPropertyRowMapper<>(Booking.class);
+
+        return template.query(sql, (ResultSet rs, int rowNum) -> {
+            Booking foundBooking = rowMapper.mapRow(rs, rowNum);
+
+            foundBooking.setCustomer(customerService.getCustomerById(rs.getInt(2)));
+            foundBooking.setCar(carService.getCarById(rs.getInt(3)));
+            foundBooking.setPickupLocation(locationsService.getPickupLocationById(rs.getInt(4)));
+
+            return foundBooking;
+        });
+    }
 
     public Booking getBookingById(int id) {
         String sql = "SELECT * FROM bookings WHERE BookingId = ?";
