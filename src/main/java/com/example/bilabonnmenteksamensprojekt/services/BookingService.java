@@ -15,7 +15,8 @@ public class BookingService {
         return bookingRepository.getBookings();
     }
 
-    public void createNewBooking (Booking booking){
-        //bookingRepository.createNewBooking(booking);
+
+    public Booking getBookingById (int bookingId){
+   return bookingRepository.getBookingById(bookingId);
     }
 }
