@@ -14,7 +14,7 @@
         <div id="header-icon">
             <img id="menu-icon" src="images/testLogo.png" onclick="window.location.href='/'">
             <div class="topbarMenuItems">
-                <p id="user-logged-on">Simon</p>
+                <p id="user-logged-on" th:value="${userFirstName}">Simon</p>
             <div class="dropdown";>
                 <button class="dropbutton"><span id="user-button" class="material-icons" style="font-size: 9vh; margin-top: -2vh;">account_circle</span></button>
                 <div class="dropdown-list-login">
