@@ -1,84 +1,45 @@
-.input{
-    margin-top: 5%;
-    text-align: center;
-}
-.login-button {
+body {font-family: Arial, Helvetica, sans-serif;}
+form {border: 3px solid #f1f1f1;}
 
-    width: 7%;
-    height: 2%;
-    background : dimgrey;
-    text-align: center;
-    font-size: 15px;
-    border-radius: 2px;
-    cursor: pointer;
-    padding: 2px;
-    font-family: 'Times New Roman', sans-serif;
-    color: white;
-   
-}
-.login-button:hover {
-    background: grey;
-}
-#icon{
-    margin-top: 2%;
-    margin-left: 5%;
-    margin-right: 5%;
-    cursor: pointer;
-}
-#align-center {
-    text-align: -webkit-center;
-    margin-top: 15vh;
-    padding-bottom: 5vh;
-    
-}
-#bdy-background {
-    background-color: lightblue;
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
 }
 
-.dropdown-list-login {
-    position: absolute;
-    display: none;
-    background-color: lightgrey;
-    border-top: 4px solid white;
-    min-width: 160px;
-    cursor: default;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    padding: 30px 30px 30px;
-    right: 0;
-    margin-right: 0px;
-    top: 50px;
+button {
+    background-color: #0093C6;
     color: white;
-    text-align: center;
-}
-.dropdown {
-    display: inline;
-    position: relative;
-}
-.dropbutton {
-    padding: 5px;
-    margin-right: 5px;
-    background-color: transparent;
+    padding: 14px 20px;
+    margin: 8px 0;
     border: none;
-
-    font-size: 16px;
     cursor: pointer;
+    width: 100%;
 }
 
-.topbarMenuItems{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+button:hover {
+    opacity: 0.8;
 }
-.topbar-button{
-    cursor: pointer;
+
+.form {
+    margin: auto;
+    width: 40%;
+    height: 40%;
+}
+
+.imgcontainer {
+    margin: auto;
+    margin-top: 20vh;
+    width: 40%;
+}
+
+.container {
     padding: 16px;
-    align-self: center;
 }
 
-.topbar-button img {
-    max-height: 5vh;
-}
-
-.topbar-button:hover {
-    background-color: darkseagreen;
+span.psw {
+    padding-top: 16px;
 }

@@ -8,16 +8,18 @@
     <title>Login</title>
 </head>
 <body>
-    <div id="icon">
-        <img src="images/Logo.svg" onclick="window.location.href='/'">
-    </div>
+<div class="imgcontainer">
+    <img src="images/LogoV2.svg">
+</div>
 
-    <form action="/login" class="input" id="align-center">
-        <label>Brugernavn:</label><br>
-        <input name="username" required><br><br>
 
-        <label>Adganskode:</label><br>
-        <input type="password" name="password" required><br><br>
+<form action="/login" class="form">
+    <div class="container">
+        <label for="username">Brugernavn</label><br>
+        <input type="text" placeholder="Indtast brugernavn" name="username" required><br><br>
+
+        <label for="password">Adganskode</label><br>
+        <input type="password" placeholder="Indtast adgangskode" name="password" required><br><br>
 
         <input hidden="true" name="location" th:value="${param.location}">
 
@@ -26,7 +28,13 @@
                 <p>Login</p>
             </button>
         </div>
-    </form>
+
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1; padding-bottom: 30px">
+        <span style="float: right" ONCLICK="alert('Kontakt venligst din systemadministrator: NAVNHER, TLF HER')">Glemt adgangskode?</span>
+    </div>
+</form>
 
 </body>
 </html>
