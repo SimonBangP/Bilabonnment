@@ -58,15 +58,15 @@
                                 <th>Kunde</th>
                                 <th>Bil</th>
                                 <th>Afhentningssted</th>
-                                <th>Leveringssted</th>
                                 <th>Leveringsdato</th>
+                                <th>Returdato</th>
                                 <th>Aktioner</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr th:each="booking: ${activeBookings}">
                                 <td th:text="${booking.customer.firstName+ ' ' + booking.customer.lastName}"></td>
-                                <td th:text="${booking.car.carSpecification.brand}"></td>
+                                <td><a th:text="${booking.car.carSpecification.brand} + ' ' + ${booking.car.carSpecification.model}" th:href="'/cars/' + ${booking.car.carId}"></a></td>
                                 <td th:text="${booking.pickupLocation.locationName}"></td>
                                 <td th:text="${booking.deliveryDate}"></td>
                                 <td th:text="${booking.returnDate}"></td>

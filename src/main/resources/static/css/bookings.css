@@ -1,3 +1,7 @@
 #tables-container {
     width: 100%;
 }
+
+#body-container {
+    height: fit-content;
+}

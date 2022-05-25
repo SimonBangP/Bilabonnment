@@ -31,5 +31,5 @@ body{
 
 #body-container {
     display: flex;
-    height: fit-content;
+    height: 100%;
 }
