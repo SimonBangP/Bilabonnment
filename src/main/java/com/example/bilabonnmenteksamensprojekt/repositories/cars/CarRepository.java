@@ -48,7 +48,7 @@ public class CarRepository {
     }
 
     public int insertNewCar (Car car) {
-        String sql = "INSERT INTO cars VALUES (DEFAULT, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO cars VALUES (DEFAULT, ?, ?, ?, ?, ?, false)";
         int specificationId = carSpecificationService.insertCarSpecification(car.getCarSpecification());
 
         template.update(sql, specificationId, car.getPrice(), car.isInsuranceIncluded(), car.isOwnersFeeIncluded(), car.getShortDescription());
