@@ -26,15 +26,48 @@
     flex-direction: column;
     text-align: center;
     align-items: center;
-    justify-content: center;
-    width: 25%;
-    height: 25%;
+    /* justify-content: center;*/
+    width: 30%;
+    height: 35%;
     font-size: 14px;
     transition: 0.3s;
     border: 1px solid black;
-    margin-left: 9vh;
+    margin-left: 9%;
     margin-top: 2%;
     position: absolute;
+}
+.aktive-sager {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    /* justify-content: center;*/
+    width: 30%;
+    height: fit-content;
+    font-size: 14px;
+    transition: 0.3s;
+    border: 1px solid black;
+    margin-left: 50%;
+    margin-top: 2%;
+    position: absolute;
+}
+#aktive-sager {
+    width: 100%;
+    margin-top: 3vh;
+    padding-bottom: 5vh;
+    border-bottom: solid 1px grey;
+    text-align: left;
+    text-decoration: underline;
+    margin-left: 5px;
+}
+#span-aktive-sager {
+    float: right;
+    padding-right: 5px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.forside-box {
+    justify-content: space-between;
 }
 
 dropdown {
@@ -97,4 +130,13 @@ margin-right: 2vh;
 
 #user-button:hover {
     color: lightblue;
+}
+
+.forside-table {
+    width: 80%;
+    height: 20%;
+    margin-top: 40%;
+    margin-left: 2%;
+    border: 1px solid lightgrey;
+
 }
