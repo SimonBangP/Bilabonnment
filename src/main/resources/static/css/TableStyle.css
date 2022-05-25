@@ -1,6 +1,7 @@
 .menu-table {
     overflow: auto;
     height: 40vh;
+    width: fit-content;
 }
 
 .menu-table table {

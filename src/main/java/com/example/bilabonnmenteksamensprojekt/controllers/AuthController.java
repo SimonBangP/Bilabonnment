@@ -30,6 +30,7 @@ public class AuthController {
         if (authenticationService.authenticateUser(username, password)) {
             User user = authenticationService.getUserByUsername(username);
             session.setAttribute("userFirstname", user.getFirstName());
+            session.setAttribute("userLastname", user.getLastName());
             session.setAttribute("authorizedUsername", username);
             session.setAttribute("authenticated", true);
 
