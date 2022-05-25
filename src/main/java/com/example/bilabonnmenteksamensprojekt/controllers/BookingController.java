@@ -55,14 +55,15 @@ public class BookingController {
     }
 
     @GetMapping("/endBooking/{bookingId}")
-    public String endBooking(@PathVariable("bookingId") int bookingId, Model model){
-        model.addAttribute("booking", bookingService.getBookingById(bookingId));
-        return "bookings/bookings";
-    }
-
-    @PostMapping("/endBooking")
-    public String endBooking(@ModelAttribute Booking booking){
-        bookingService.endBooking(booking.getBookingId(), booking);
-        return "redirect:/";
+    public String endBooking(HttpSession session, @PathVariable Integer bookingId){
+        Boolean ended = bookingService.endBooking(bookingId);
+        if (session.getAttribute("authenticated") != null && ((boolean) session.getAttribute("authenticated"))) {
+            if (ended) {
+                return "redirect:/?location=bookings";
+            } else {
+                return "redirect:/?location=bookings";
+            }
+        }
+        return "redirect:/?location=bookings";
     }
 }

@@ -82,8 +82,8 @@ public class BookingRepository {
         }
     }
 
-    public void endBooking(int bookingId, Booking booking){
+    public Boolean endBooking(int bookingId){
         String sql = "UPDATE bookings SET Completed = 0 WHERE bookingId = ?";
-        template.update(sql);
+        return template.update(sql, bookingId) > 0;
     }
 }
