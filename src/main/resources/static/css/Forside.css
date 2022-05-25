@@ -19,8 +19,8 @@
     font-size: 14px;
     transition: 0.3s;
     padding: 30px;
-
 }
+
 .statistic-buttons {
     display: flex;
     flex-direction: column;
@@ -36,6 +36,7 @@
     margin-top: 2%;
     position: absolute;
 }
+
 .aktive-sager {
     display: flex;
     flex-direction: column;
@@ -51,6 +52,7 @@
     margin-top: 2%;
     position: absolute;
 }
+
 #aktive-sager {
     width: 100%;
     margin-top: 3vh;
@@ -60,76 +62,16 @@
     text-decoration: underline;
     margin-left: 5px;
 }
+
 #span-aktive-sager {
     float: right;
     padding-right: 5px;
     text-decoration: underline;
     cursor: pointer;
 }
+
 .forside-box {
     justify-content: space-between;
-}
-
-dropdown {
-    display: inline;
-    position: relative;
-}
-.dropbutton{
-    padding: 0;
-    border: 0;
-    background-color: white;
-
-}
-.dropbutton:hover {
-    color: blue;
-}
-
-.topbarMenuItems {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-top: 0;
-}
-
-#p-logud {
-    background-color: lightgrey;
-    color: black;
-    text-align: center;
-    border: 2px solid;
-    cursor: pointer;
-}
-
-.dropdown-list-login {
-    position: absolute;
-    display: none;
-    background-color: lightgrey;
-    min-width: 160px;
-    cursor: default;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    right: 0;
-    top: 12vh;
-    text-align: center;
-    padding: 20px 10px;
-}
-
-
-.dropdown:focus-within .dropdown-list-login {
-    display:block;
-    margin-right: 0px;
-
-}
-#user-logged-on {
-margin-right: 2vh;
-    margin-top: 0;
-}
-
-#user-button {
-    color: lightgray;
-    cursor: pointer;
-}
-
-#user-button:hover {
-    color: lightblue;
 }
 
 .forside-table {

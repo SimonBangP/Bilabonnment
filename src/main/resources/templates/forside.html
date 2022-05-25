@@ -11,17 +11,21 @@
 <body>
 <div id="vertical-body-contents">
     <div class="topbar" >
-        <div id="header-icon">
-            <img id="menu-icon" src="images/Logo.svg" onclick="window.location.href='/'">
-            <div class="topbarMenuItems">
+        <div id="topbar-menu-items">
+            <div id="topbar-icon">
+                <img id="menu-icon" src="images/Logo.svg" onclick="window.location.href='/'">
+            </div>
+            <div class="topbar-item" id="user-menu" onclick="toggleDropdown()">
                 <p id="user-logged-on" th:text="${userFirstname} + ' ' + ${userLastnameChar} + '.'"></p>
-            <div class="dropdown";>
-                <button class="dropbutton"><span id="user-button" class="material-icons" style="font-size: 9vh; margin-top: -2vh;">account_circle</span></button>
-                <div class="dropdown-list-login">
-                    <button id="p-logud" type="submit" onclick="window.location.href='/logout'"><span class="material-icons" >logout</span>   Log Ud</button> <br>
+                <div>
+                    <button id="dropdown-button">
+                        <span id="user-icon-button" class="material-icons">account_circle</span>
+                    </button>
+                    <div id="dropdown-list-login" class="hide-dropdown">
+                        <button id="p-logud" type="submit" onclick="window.location.href='/logout'"><span class="material-icons">logout</span>   Log Ud</button> <br>
+                    </div>
                 </div>
             </div>
-          </div>
         </div>
     </div>
     <div id="body-container">
@@ -82,7 +86,38 @@
     </div>
 </div>
 
+<script>
+    function toggleDropdown() {
+        var dropdown = document.getElementById("dropdown-list-login");
 
+        if (dropdown.classList.contains("show-dropdown")) {
+            dropdown.classList.remove("show-dropdown");
+            dropdown.classList.add("hide-dropdown");
+        }
+        else {
+            dropdown.classList.add("show-dropdown");
+            dropdown.classList.remove("hide-dropdown");
+        }
+    }
+
+    window.onclick = function(event) {
+
+        const allowedIds = ["user-logged-on", "user-menu", "user-icon-button"]
+        console.log(event.target.id);
+        if (!allowedIds.includes(event.target.id)) {
+            hideDropdown();
+        }
+    }
+
+    function hideDropdown() {
+        var dropdown = document.getElementById("dropdown-list-login");
+
+        if (dropdown.classList.contains("show-dropdown")) {
+            dropdown.classList.remove("show-dropdown");
+            dropdown.classList.add("hide-dropdown");
+        }
+    }
+</script>
 
 </body>
 </html>
