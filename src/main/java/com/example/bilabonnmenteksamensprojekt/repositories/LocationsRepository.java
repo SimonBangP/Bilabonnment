@@ -2,7 +2,6 @@ package com.example.bilabonnmenteksamensprojekt.repositories;
 
 import com.example.bilabonnmenteksamensprojekt.models.locations.Address;
 import com.example.bilabonnmenteksamensprojekt.models.locations.Location;
-import com.example.bilabonnmenteksamensprojekt.models.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;

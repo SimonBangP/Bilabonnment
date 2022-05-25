@@ -45,7 +45,37 @@
                 <span class="material-icons">settings</span>
             </div>
         </div>
-</div>
+        <div id="details-body">
+            <div id="details-input">
+                <h1>Bil detaljer</h1>
+                <div id="inputs">
+                    <form action="../add" method="post">
+                        <div class="input-row">
+                            <div class="input-column">
+                                <p>Fornavn:</p><input type="text" placeholder="Fornavn" th:value="${customer.firstName}">
+                            </div>
+                            <div class="input-column">
+                                <p>Efternavn:</p><input type="text" placeholder="EfterNavn" th:value="${customer.lastName}">
+                            </div>
+
+                            <div class="input-column">
+                                <p>Fornavn:</p><input type="text" placeholder="Fornavn" th:value="${customer.firstName}">
+                            </div>
+                            <div class="input-column">
+                                <p>Efternavn:</p><input type="text" placeholder="EfterNavn" th:value="${customer.lastName}">
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="tilbage-btn">
+                    <button type="submit" class="login-button" onclick="window.location.href='/customers'">
+                        <p>Tilbage</p>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

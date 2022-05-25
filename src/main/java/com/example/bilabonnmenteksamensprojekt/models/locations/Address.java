@@ -9,7 +9,6 @@ public class Address {
     private String city;
 
     public Address() {
-
     }
 
     public Address(int addressId, String street, int houseNumber, int zipCode, String city) {

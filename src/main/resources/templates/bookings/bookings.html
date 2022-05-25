@@ -65,7 +65,7 @@
                             </thead>
                             <tbody>
                             <tr th:each="booking: ${activeBookings}">
-                                <td th:text="${booking.customer.firstName+ ' ' + booking.customer.lastName}"></td>
+                                <td><a th:text="${booking.customer.firstName} + ' ' + ${booking.customer.lastName}" th:href="'/customers/' + ${booking.customer.customerId}"></a></td>
                                 <td><a th:text="${booking.car.carSpecification.brand} + ' ' + ${booking.car.carSpecification.model}" th:href="'/cars/' + ${booking.car.carId}"></a></td>
                                 <td th:text="${booking.pickupLocation.locationName}"></td>
                                 <td th:text="${booking.deliveryDate}"></td>
@@ -97,7 +97,7 @@
                             </thead>
                             <tbody>
                             <tr th:each="booking: ${bookings}">
-                                <td th:text="${booking.customer.firstName+ ' ' + booking.customer.lastName}"></td>
+                                <td><a th:text="${booking.customer.firstName+ ' ' + booking.customer.lastName}" th:href="'/customers/' + ${booking.customer.customerId}"></a></td>
                                 <td><a th:text="${booking.car.carSpecification.brand} + ' ' + ${booking.car.carSpecification.model}" th:href="'/cars/' + ${booking.car.carId}"></a></td>
                                 <td th:text="${booking.pickupLocation.locationName}"></td>
                                 <td th:text="${booking.deliveryDate}"></td>
