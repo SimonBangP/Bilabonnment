@@ -17,6 +17,9 @@ public class BookingService {
         return bookingRepository.getBookings();
     }
 
+    public List<Booking> getActiveBookings (){
+        return bookingRepository.getActiveBookings();
+    }
 
     public Booking getBookingById (int bookingId){
    return bookingRepository.getBookingById(bookingId);

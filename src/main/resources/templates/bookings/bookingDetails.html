@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../css/shared.css">
+    <link rel="stylesheet" href="../css/sidenav.css">
+    <link rel="stylesheet" href="../css/cars.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Booking detaljer</title>
+</head>
+<body>
+<div id="vertical-body-contents">
+    <div class="topbar" >
+        <div id="header-icon">
+            <img id="menu-icon" src="../images/testlogo.png" onclick="window.location.href='/'">
+        </div>
+    </div>
+    <div id="body-container">
+        <div class="sidenav">
+            <div class="menu-button" onclick="window.location.href='/forside'">
+                <span class="material-icons">search</span>
+            </div>
+
+            <div class="menu-button" onclick="window.location.href='/forside'">
+                <span class="material-icons" >home</span>
+            </div>
+
+            <div class="menu-button" onclick="window.location.href='/cars'">
+                <span class="material-icons">directions_car</span>
+            </div>
+
+            <div class="menu-button" onclick="window.location.href='/forside'">
+                <span class="material-icons">group</span>
+            </div>
+
+            <div class="menu-button" onclick="window.location.href='/bookings'">
+                <span class="material-icons" style="color:dodgerblue;">description</span>
+            </div>
+
+            <div class="menu-button" onclick="window.location.href='/forside'">
+                <span class="material-icons">trending_up</span>
+            </div>
+
+            <div class="menu-button" onclick="window.location.href='/forside'">
+                <span class="material-icons">settings</span>
+            </div>
+        </div>
+        <div id="details-body">
+            <div id="details-input">
+                <h1>Booking detaljer</h1>
+                <div id="inputs">
+                    <form action="../add" method="post">
+                        <div class="input-row">
+                            <div class="input-column">
+                                <p>Fornavn:</p><input type="text" placeholder="Fornavn" th:value="${booking.customer.firstName}">
+                            </div>
+                            <div class="input-column">
+                                <p>Efternavn:</p><input type="text" placeholder="Efternavn" th:value="${booking.customer.lastName}">
+                            </div>
+                        </div>
+
+                        <div class="input-row">
+                            <div class="input-column">
+                                <p>Mærke:</p><input type="text" placeholder="Mærke" th:value="${booking.car.carSpecification.brand}">
+                            </div>
+                            <div class="input-column">
+                                <p>Model:</p><input type="text" placeholder="Model" th:value="${booking.car.carSpecification.model}">
+                            </div>
+                        </div>
+
+                        <div class="input-row">
+                            <div class="input-column">
+                                <p>Fra:</p><input type="text" placeholder="Fra" th:value="${booking.deliveryDate}">
+                            </div>
+                            <div class="input-column">
+                                <p>Til:</p><input type="text" placeholder="Til" th:value="${booking.returnDate}">
+                            </div>
+                        </div>
+
+                        <div class="input-row">
+                            <div class="input-column">
+                                <p>Afhentningssted:</p><input type="text" placeholder="Afhentningssted" th:value="${booking.pickupLocation.locationName}">
+                            </div>
+                            <div class="input-column">
+                                <p>Leveringssted:</p><input type="text" placeholder="Afhentningssted" th:value="${booking.completed}">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+
+                <div class="tilbage-btn">
+                    <button type="submit" class="login-button" onclick="window.location.href='/bookings'">
+                        <p>Tilbage</p>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</div>
+</body>
+</html>

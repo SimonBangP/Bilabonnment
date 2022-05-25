@@ -33,7 +33,7 @@
                 <span class="material-icons">group</span>
             </div>
 
-            <div class="menu-button" onclick="window.location.href='/forside'">
+            <div class="menu-button" onclick="window.location.href='/bookings'">
                 <span class="material-icons" style="color: dodgerblue">description</span>
             </div>
 
@@ -47,39 +47,68 @@
         </div>
         <div class=table-body>
             <div class="table-title">
-                <h1>Aktive bookings</h1>
+                <h1>Aktive Bookings</h1>
             </div>
             <div class="table-container">
                 <div class="menu-table">
                     <table>
                         <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Kunde</th>
                             <th>Bil</th>
                             <th>Afhentningssted</th>
                             <th>Leveringssted</th>
                             <th>Leveringsdato</th>
-                            <th>Status</th>
+                            <th>Aktioner</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="booking: ${activeBookings}">
+                            <td th:text="${booking.customer.firstName+ ' ' + booking.customer.lastName}"></td>
+                            <td th:text="${booking.car.carSpecification.brand}"></td>
+                            <td th:text="${booking.pickupLocation.locationName}"></td>
+                            <td th:text="${booking.deliveryDate}"></td>
+                            <td th:text="${booking.returnDate}"></td>
+                            <td><a th:href="@{'/bookings/'+${booking.bookingId}}">Rediger</a></td>
+                          </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+        <br><br>
+        <div class=table-body>
+            <div class="table-title">
+                <h1>Alle Bookings</h1>
+            </div>
+            <div class="table-container">
+                <div class="menu-table">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Kunde</th>
+                            <th>Bil</th>
+                            <th>Afhentningssted</th>
+                            <th>Leveringssted</th>
+                            <th>Leveringsdato</th>
+                            <th>Aktioner</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="booking: ${bookings}">
-                            <td th:text="${booking.bookingId}"></td>
-                            <td th:text="${booking.customer.customerId}"></td>
-                            <td th:text="${booking.car.carId}"></td>
+                            <td th:text="${booking.customer.firstName+ ' ' + booking.customer.lastName}"></td>
+                            <td th:text="${booking.car.carSpecification.brand}"></td>
                             <td th:text="${booking.pickupLocation.locationName}"></td>
                             <td th:text="${booking.deliveryDate}"></td>
                             <td th:text="${booking.returnDate}"></td>
-                            <td th:text="${booking.completed}"></td>
-                            <!-- <td><a th:href="@{'/bookings/'+${booking.bookingId}}">Detaljer</a></td> -->
+                            <td><a th:href="@{'/bookings/'+${booking.bookingId}}">Rediger</a></td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-    </div>
+      </div>
 </div>
-</body>
-</html>
+  </body>
+  </html>
