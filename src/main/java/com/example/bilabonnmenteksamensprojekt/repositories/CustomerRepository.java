@@ -1,5 +1,6 @@
 package com.example.bilabonnmenteksamensprojekt.repositories;
 
+import com.example.bilabonnmenteksamensprojekt.models.bookings.Booking;
 import com.example.bilabonnmenteksamensprojekt.models.customers.Customer;
 import com.example.bilabonnmenteksamensprojekt.services.LocationsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,22 @@ public class CustomerRepository {
 
     @Autowired
     LocationsService locationsService;
+
+
+    public List<Customer> getCustomers() {
+        String sql = "SELECT * FROM customers";
+
+        RowMapper<Customer> rowMapper = new BeanPropertyRowMapper<>(Customer.class);
+
+        return template.query(sql, (ResultSet rs, int rowNum) -> {
+            Customer foundCustomer = rowMapper.mapRow(rs, rowNum);
+
+            foundCustomer.setAddress(locationsService.getAddressById(rs.getInt(4)));
+
+            return foundCustomer;
+        });
+    }
+
 
     public Customer getCustomerById(int id) {
         String sql = "SELECT * FROM customers WHERE CustomerId = ?";

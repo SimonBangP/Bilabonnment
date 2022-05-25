@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/sidenav.css">
+    <link rel="stylesheet" href="css/cars.css">
+    <link rel="stylesheet" href="css/tablestyle.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Liste over kunder</title>
+</head>
+<body>
+<div id="vertical-body-contents">
+    <div class="topbar" >
+        <div id="header-icon">
+            <img id="menu-icon" src="images/Logo.svg" onclick="window.location.href='/'">
+        </div>
+    </div>
+    <div id="body-container">
+        <div class="sidenav">
+            <div class="menu-button" onclick="window.location.href='/forside'">
+                <span class="material-icons">search</span>
+            </div>
+
+            <div class="menu-button" onclick="window.location.href='/forside'">
+                <span class="material-icons" >home</span>
+            </div>
+
+            <div class="menu-button" onclick="window.location.href='/cars'">
+                <span class="material-icons">directions_car</span>
+            </div>
+
+            <div class="menu-button" onclick="window.location.href='/customers'">
+                <span class="material-icons" style="color: dodgerblue">group</span>
+            </div>
+
+            <div class="menu-button" onclick="window.location.href='/bookings'">
+                <span class="material-icons">description</span>
+            </div>
+
+            <div class="menu-button" onclick="window.location.href='/forside'">
+                <span class="material-icons">trending_up</span>
+            </div>
+
+            <div class="menu-button" onclick="window.location.href='/forside'">
+                <span class="material-icons">settings</span>
+            </div>
+        </div>
+        <div class=table-body>
+            <div class="table-title">
+                <h1>Kunder </h1>
+            </div>
+            <div class="table-container">
+                <div class="menu-table">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Fornavn</th>
+                            <th>Efternavn</th>
+                            <th>Adresse</th>
+                            <th>Kunde siden</th>
+                            <th>Aktioner</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="customer: ${customers}">
+                            <td th:text="${customer.firstName}"></td>
+                            <td th:text="${customer.lastName}"></td>
+                            <td th:text="${customer.address.street} + ' ' + ${customer.address.houseNumber} +', ' + ${customer.address.zipCode}"></td>
+                            <td th:text="${customer.createdAt}"></td>
+                            <td><a th:href="@{'/customers/'+${customer.customerId}}">Detaljer</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

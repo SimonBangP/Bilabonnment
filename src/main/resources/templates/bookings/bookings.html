@@ -29,7 +29,7 @@
                 <span class="material-icons">directions_car</span>
             </div>
 
-            <div class="menu-button" onclick="window.location.href='/forside'">
+            <div class="menu-button" onclick="window.location.href='/customers'">
                 <span class="material-icons">group</span>
             </div>
 
@@ -98,7 +98,7 @@
                             <tbody>
                             <tr th:each="booking: ${bookings}">
                                 <td th:text="${booking.customer.firstName+ ' ' + booking.customer.lastName}"></td>
-                                <td th:text="${booking.car.carSpecification.brand}"></td>
+                                <td><a th:text="${booking.car.carSpecification.brand} + ' ' + ${booking.car.carSpecification.model}" th:href="'/cars/' + ${booking.car.carId}"></a></td>
                                 <td th:text="${booking.pickupLocation.locationName}"></td>
                                 <td th:text="${booking.deliveryDate}"></td>
                                 <td th:text="${booking.returnDate}"></td>
