@@ -61,6 +61,7 @@
                                 <th>Leveringsdato</th>
                                 <th>Returdato</th>
                                 <th>Aktioner</th>
+                                <th>Afslut booking</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -71,6 +72,7 @@
                                 <td th:text="${booking.deliveryDate}"></td>
                                 <td th:text="${booking.returnDate}"></td>
                                 <td><a th:href="@{'/bookings/'+${booking.bookingId}}">Rediger</a></td>
+                                <td><a th:href="@{'/endBooking/'+${booking.bookingId}}">Afslut</a></td>
                               </tr>
                               </tbody>
                           </table>

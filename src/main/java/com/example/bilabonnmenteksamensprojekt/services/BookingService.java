@@ -24,4 +24,8 @@ public class BookingService {
     public Booking getBookingById (int bookingId){
         return bookingRepository.getBookingById(bookingId);
     }
+
+    public void endBooking(int bookingId, Booking booking){
+        bookingRepository.endBooking(bookingId, booking);
+    }
 }
