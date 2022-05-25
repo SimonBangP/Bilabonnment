@@ -18,7 +18,14 @@
 .topbar-item {
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
+.topbar-item:hover {
+    font-weight: bold;
+    font-size: larger;
+    border: 1px solid lightgrey;
+}
+
 
 #user-menu {
     margin-right: 1vw;

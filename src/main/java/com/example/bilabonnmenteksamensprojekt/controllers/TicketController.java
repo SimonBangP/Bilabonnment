@@ -17,7 +17,7 @@ public class TicketController {
     TicketService ticketService;
 
 
-    @GetMapping ("/forside")
+  /*  @GetMapping ("/forside")
     public String viewTickets (HttpSession session, Model model){
         if (session.getAttribute("authenticated") != null &&((boolean) session.getAttribute("authenticated"))) {
             List<Ticket> ticketList = ticketService.getTickets();
@@ -28,5 +28,5 @@ public class TicketController {
             return "redirect:/?location=forside";
         }
 
-    }
+    }*/
 }
