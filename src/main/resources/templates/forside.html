@@ -93,16 +93,14 @@
                             <tr th:each="ticket: ${tickets}">
                                 <td th:text="${ticket.ticketId}"></td>
                                 <td th:text="${ticket.userId}"></td>
-                                <td th:text="${ticket.serverity} + ' ' + ${customer.address.houseNumber} +', ' + ${customer.address.zipCode}"></td>
-                                <td th:text="${ticket.ticketname}"></td>
+                                <td th:text="${ticket.serverity}"></td>
+                                <td th:text="${ticket.ticketName}"></td>
                                 <td th:text="${ticket.ticketDescription}"></td>
-                                <td><a th:href="@{'/customers/'+${customer.customerId}}">Detaljer</a></td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-
             </div>
 
 
@@ -126,10 +124,9 @@
                             <tr th:each="ticket: ${tickets}">
                                 <td th:text="${ticket.ticketId}"></td>
                                 <td th:text="${ticket.userId}"></td>
-                                <td th:text="${ticket.serverity} + ' ' + ${customer.address.houseNumber} +', ' + ${customer.address.zipCode}"></td>
+                                <td th:text="${ticket.serverity}"></td>
                                 <td th:text="${ticket.ticketname}"></td>
                                 <td th:text="${ticket.ticketDescription}"></td>
-                                <td><a th:href="@{'/customers/'+${customer.customerId}}">Detaljer</a></td>
                             </tr>
                             </tbody>
                         </table>

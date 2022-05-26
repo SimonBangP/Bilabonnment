@@ -95,8 +95,6 @@ public class CarRepository {
 
     public int carsInUse (){
         String sql = "SELECT COUNT(Status) FROM view_cars WHERE Status = 'Bilen er i brug'";
-
         return template.queryForObject(sql, Integer.class);
     }
-
 }

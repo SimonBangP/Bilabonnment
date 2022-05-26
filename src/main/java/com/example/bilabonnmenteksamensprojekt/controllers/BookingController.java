@@ -57,7 +57,7 @@ public class BookingController {
         Boolean ended = bookingService.endBooking(bookingId);
         if (session.getAttribute("authenticated") != null && ((boolean) session.getAttribute("authenticated"))) {
             if (ended) {
-                return "redirect:/?location=bookings";
+                return "redirect:/bookings";
             } else {
                 return "redirect:/?location=bookings";
             }
