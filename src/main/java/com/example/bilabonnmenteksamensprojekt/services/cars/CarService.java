@@ -1,6 +1,7 @@
 package com.example.bilabonnmenteksamensprojekt.services.cars;
 
 import com.example.bilabonnmenteksamensprojekt.models.cars.Car;
+import com.example.bilabonnmenteksamensprojekt.models.customers.Customer;
 import com.example.bilabonnmenteksamensprojekt.repositories.cars.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,8 +49,9 @@ public class CarService {
         repository.updateCarById(carId, newCar);
     }
 
-    public int getUsedCars (){
+    public int getUsedCarsAmount(){
         return repository.carsInUse();
     }
+
 }
 

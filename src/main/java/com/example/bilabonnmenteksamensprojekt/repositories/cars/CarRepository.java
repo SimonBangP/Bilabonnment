@@ -1,6 +1,8 @@
 package com.example.bilabonnmenteksamensprojekt.repositories.cars;
 
 import com.example.bilabonnmenteksamensprojekt.models.cars.Car;
+import com.example.bilabonnmenteksamensprojekt.models.customers.Customer;
+import com.example.bilabonnmenteksamensprojekt.services.CustomerService;
 import com.example.bilabonnmenteksamensprojekt.services.cars.CarSpecificationService;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 @Repository
@@ -21,16 +24,24 @@ public class CarRepository {
     @Autowired
     CarSpecificationService carSpecificationService;
 
+    @Autowired
+    CustomerService customerService;
+
+    private Car mapRow(RowMapper<Car> rowMapper, ResultSet rs, int rowNum) throws SQLException {
+        Car foundCar = rowMapper.mapRow(rs, rowNum);
+
+        foundCar.setCarSpecification(carSpecificationService.getSpecificationById(rs.getInt(2)));
+        foundCar.setCustomer(customerService.getCustomerById(rs.getInt(7)));
+
+        return foundCar;
+    }
+
     public List<Car> getCars(){
         String sql = "SELECT * FROM view_cars";
         RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
 
        return template.query(sql, (ResultSet rs, int rowNum) -> {
-            Car foundCar = rowMapper.mapRow(rs, rowNum);
-
-            foundCar.setCarSpecification(carSpecificationService.getSpecificationById(rs.getInt(2)));
-
-            return foundCar;
+            return mapRow(rowMapper, rs, rowNum);
         });
     }
 
@@ -39,11 +50,7 @@ public class CarRepository {
         RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
 
         return template.query(sql, (ResultSet rs, int rowNum) -> {
-            Car foundCar = rowMapper.mapRow(rs, rowNum);
-
-            foundCar.setCarSpecification(carSpecificationService .getSpecificationById(rs.getInt(2)));
-
-            return foundCar;
+            return mapRow(rowMapper, rs, rowNum);
         }, id).get(0);
     }
 
@@ -59,25 +66,14 @@ public class CarRepository {
         String sql = "SELECT CarId FROM cars WHERE SpecificationId = ? AND Price = ? AND InsuranceIncluded = ? AND OwnersFeeIncluded = ? AND ShortDescription = ?";
         int specificationId = carSpecificationService.getCarSpecificationId(car.getCarSpecification());
 
-        List<Integer> ids = template.query(sql, (ResultSet rs, int rowNum) -> {
-            return rs.getInt(1);
-        }, specificationId, car.getPrice(), car.isInsuranceIncluded(), car.isOwnersFeeIncluded(), car.getShortDescription());
-
-        if (ids.size() <= 0) {
-            return -1;
-        }
-        else {
-            return ids.get(0);
-        }
+        return template.queryForObject(sql, Integer.class, specificationId, car.getPrice(), car.isInsuranceIncluded(), car.isOwnersFeeIncluded(), car.getShortDescription());
     }
 
     public boolean carExists(Car car) {
         String sql = "SELECT COUNT(*) FROM cars WHERE SpecificationId = ? AND Price = ? AND InsuranceIncluded = ? AND OwnersFeeIncluded = ? AND ShortDescription = ?";
         int specificationId = carSpecificationService.getCarSpecificationId(car.getCarSpecification());
 
-        return template.query(sql, (ResultSet rs, int rowNum) -> {
-            return rs.getInt(1);
-        }, specificationId, car.getPrice(), car.isInsuranceIncluded(), car.isOwnersFeeIncluded(), car.getShortDescription()).get(0) >= 1;
+        return template.queryForObject(sql, Integer.class, specificationId, car.getPrice(), car.isInsuranceIncluded(), car.isOwnersFeeIncluded(), car.getShortDescription()) >= 1;
     }
 
     public void updateCarById (int id, Car car) {

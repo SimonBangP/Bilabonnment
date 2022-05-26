@@ -1,19 +1,28 @@
 package com.example.bilabonnmenteksamensprojekt.models.tickets;
 
-public class Tickets {
+import com.example.bilabonnmenteksamensprojekt.models.users.User;
+
+public class Ticket {
     private int ticketId;
-    private int userId;
-    private String serverity;
+    private User user;
+    private String severity;
     private String ticketName;
     private String ticketDescription;
 
 
-    public Tickets(){}
+    public Ticket(){}
 
-    public Tickets(int ticketId, int userId, String serverity, String ticketName, String ticketDescription) {
+    public Ticket(int ticketId, User userId, String severity, String ticketName, String ticketDescription) {
         this.ticketId = ticketId;
-        this.userId = userId;
-        this.serverity = serverity;
+        this.user = userId;
+        this.severity = severity;
+        this.ticketName = ticketName;
+        this.ticketDescription = ticketDescription;
+    }
+
+    public Ticket(User user, String severity, String ticketName, String ticketDescription) {
+        this.user = user;
+        this.severity = severity;
         this.ticketName = ticketName;
         this.ticketDescription = ticketDescription;
     }
@@ -26,20 +35,20 @@ public class Tickets {
         this.ticketId = ticketId;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public String getServerity() {
-        return serverity;
+    public String getSeverity() {
+        return severity;
     }
 
-    public void setServerity(String serverity) {
-        this.serverity = serverity;
+    public void setSeverity(String severity) {
+        this.severity = severity;
     }
 
     public String getTicketName() {

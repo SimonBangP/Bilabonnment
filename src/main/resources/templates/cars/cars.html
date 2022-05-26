@@ -74,7 +74,15 @@
                                     <td th:text="${car.carSpecification.carEngine.gearType}"></td>
                                     <td th:text="${car.carSpecification.carEngine.fuelType}"></td>
                                     <td th:text="${car.price}"></td>
-                                    <td th:text="${car.status}"></td>
+                                    <td>
+                                        <div th:switch="${car.status}">
+                                            <div th:case="'Bilen er i brug'">
+                                                <p style="display: inline">Bilen er i brug af </p>
+                                                <a th:href="'customers/' + ${car.customer.customerId}" th:text="${car.customer.firstName} + ' ' + ${car.customer.lastName}"></a>
+                                            </div>
+                                            <p th:case="*" th:text="${car.status}"></p>
+                                        </div> 
+                                    </td>
                                     <td><a th:href="@{'/cars/'+${car.carId}}">Detaljer</a></td>
                                 </tr>
                                 </tbody>

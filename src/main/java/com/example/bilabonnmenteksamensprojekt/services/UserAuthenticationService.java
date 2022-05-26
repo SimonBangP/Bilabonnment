@@ -41,4 +41,8 @@ public class UserAuthenticationService {
     public User getUserByUsername(String username) {
         return repository.getByUsername(username);
     }
+
+    public User getUserById(int id) {
+        return repository.getUserById(id);
+    }
 }

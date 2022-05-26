@@ -1,5 +1,7 @@
 package com.example.bilabonnmenteksamensprojekt.models.cars;
 
+import com.example.bilabonnmenteksamensprojekt.models.customers.Customer;
+
 public class Car {
 
     private int carId;
@@ -8,27 +10,30 @@ public class Car {
     private boolean insuranceIncluded;
     private boolean ownersFeeIncluded;
     private String shortDescription;
+    private Customer customer;
     private String status;
 
     public Car() {
 
     }
 
-    public Car(int carId, CarSpecification carSpecification, double price, boolean insurranceIncluded, boolean ownersFeeIncluded, String shortDescription) {
+    public Car(int carId, CarSpecification carSpecification, double price, boolean insurranceIncluded, boolean ownersFeeIncluded, String shortDescription, Customer customer) {
         this.carId = carId;
         this.carSpecification = carSpecification;
         this.price = price;
         this.insuranceIncluded = insurranceIncluded;
         this.ownersFeeIncluded = ownersFeeIncluded;
         this.shortDescription = shortDescription;
+        this.customer = customer;
     }
 
-    public Car(CarSpecification carSpecification, double price, boolean insurranceIncluded, boolean ownersFeeIncluded, String shortDescription) {
+    public Car(CarSpecification carSpecification, double price, boolean insurranceIncluded, boolean ownersFeeIncluded, String shortDescription, Customer customer) {
         this.carSpecification = carSpecification;
         this.price = price;
         this.insuranceIncluded = insurranceIncluded;
         this.ownersFeeIncluded = ownersFeeIncluded;
         this.shortDescription = shortDescription;
+        this.customer = customer;
     }
 
     public int getCarId() {
@@ -77,6 +82,14 @@ public class Car {
 
     public void setShortDescription(String shortDescription) {
         this.shortDescription = shortDescription;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public void setStatus(String status) {

@@ -62,7 +62,7 @@
         <div class="sideBody">
             <div class="button-container">
                 <div class="top-buttons">
-                    <p>Antal biler lejet ud</p>
+                    <p th:text="'Antal biler lejet ud: ' + ${usedCarAmount}"></p>
                 </div>
                 <div class="top-buttons">
                 <p>Samlet pris på udlejet biler</p>
@@ -92,8 +92,8 @@
                             <tbody>
                             <tr th:each="ticket: ${tickets}">
                                 <td th:text="${ticket.ticketId}"></td>
-                                <td th:text="${ticket.userId}"></td>
-                                <td th:text="${ticket.serverity}"></td>
+                                <td th:text="${ticket.user.firstName}"></td>
+                                <td th:text="${ticket.severity}"></td>
                                 <td th:text="${ticket.ticketName}"></td>
                                 <td th:text="${ticket.ticketDescription}"></td>
                             </tr>
@@ -101,6 +101,7 @@
                         </table>
                     </div>
                 </div>
+
             </div>
 
 
@@ -123,9 +124,9 @@
                             <tbody>
                             <tr th:each="ticket: ${tickets}">
                                 <td th:text="${ticket.ticketId}"></td>
-                                <td th:text="${ticket.userId}"></td>
-                                <td th:text="${ticket.serverity}"></td>
-                                <td th:text="${ticket.ticketname}"></td>
+                                <td th:text="${ticket.user.firstName} + ' ' + ${ticket.user.lastName}"></td>
+                                <td th:text="${ticket.severity}"></td>
+                                <td th:text="${ticket.ticketName}"></td>
                                 <td th:text="${ticket.ticketDescription}"></td>
                             </tr>
                             </tbody>

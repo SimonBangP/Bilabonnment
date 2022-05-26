@@ -1,7 +1,9 @@
 package com.example.bilabonnmenteksamensprojekt.controllers;
 
-import com.example.bilabonnmenteksamensprojekt.models.tickets.Tickets;
+import com.example.bilabonnmenteksamensprojekt.models.cars.Car;
+import com.example.bilabonnmenteksamensprojekt.models.tickets.Ticket;
 import com.example.bilabonnmenteksamensprojekt.services.TicketService;
+import com.example.bilabonnmenteksamensprojekt.services.cars.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,32 +15,31 @@ import java.util.List;
 @Controller
 public class ForsideController {
 
+    @Autowired
+    TicketService ticketService;
+
+    @Autowired
+    CarService carService;
+
     @GetMapping ("/forside")
     public String forside(HttpSession session, Model model){
         if (session.getAttribute("authenticated") != null &&((boolean) session.getAttribute("authenticated"))) {
+
+            // Add session user data to the model
             model.addAttribute("userFirstname", (String)session.getAttribute("userFirstname"));
             model.addAttribute("userLastnameChar", ((String)session.getAttribute("userLastname")).charAt(0));
+
+            // Add ticket data to the model
+            List<Ticket> ticketList = ticketService.getTickets();
+            model.addAttribute("tickets", ticketList);
+
+            int usedCarAmount = carService.getUsedCarsAmount();
+            model.addAttribute("usedCarAmount", usedCarAmount);
+
             return "forside";
         }
         else {
             return "redirect:/?location=forside";
         }
     }
-
-
-
-    @Autowired
-    TicketService ticketService;
-    @GetMapping ("/tickets")
-    public String viewTickets (HttpSession session, Model model){
-        if (session.getAttribute("authenticated") != null &&((boolean) session.getAttribute("authenticated"))) {
-            List<Tickets> ticketList = ticketService.getTickets();
-            model.addAttribute("tickets", ticketList);
-            return "/forside";
-        }
-        else {
-            return "redirect:/?location=forside";
-        }
-    }
-
 }

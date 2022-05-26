@@ -42,6 +42,26 @@ public class UserRepository {
         }
     }
 
+    public User getUserById(int id) {
+        String sql = "SELECT * FROM users WHERE UserId = ?";
+        RowMapper<User> rowMapper = new BeanPropertyRowMapper<>(User.class);
+
+        List<User> users = template.query(sql, (ResultSet rs, int rowNum) -> {
+            User foundUser = rowMapper.mapRow(rs, rowNum);
+
+            foundUser.setLocation(locationsService.getLocationById(rs.getInt(4)));
+
+            return foundUser;
+        }, id);
+
+        if (users.size() <= 0) {
+            return null;
+        }
+        else {
+            return users.get(0);
+        }
+    }
+
     public int getUserId(String username) {
         String sql = "SELECT UserId FROM users WHERE username = ?";
 
