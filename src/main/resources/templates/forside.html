@@ -17,7 +17,7 @@
                 <img id="menu-icon" src="images/Logo.svg" onclick="window.location.href='/'">
             </div>
             <div class="topbar-item" id="user-menu" onclick="toggleDropdown()">
-                <p id="user-logged-on" th:text="${userFirstname} + ' ' + ${userLastnameChar} + '.'"></p>
+                <span id="expand-more" class="material-icons">expand_more</span><p id="user-logged-on" th:text="${userFirstname} + ' ' + ${userLastnameChar} + '.'"></p>
                 <div>
                     <button id="dropdown-button">
                         <span id="user-icon-button" class="material-icons">account_circle</span>
@@ -31,7 +31,7 @@
     </div>
     <div id="body-container">
         <div class="sidenav">
-            <div class="menu-button" onclick="window.location.href='/forside'">
+            <div class="menu-button" onclick="window.location.href='/search'">
                 <span class="material-icons">search</span>
             </div>
         
@@ -62,25 +62,50 @@
         <div class="sideBody">
             <div class="button-container">
                 <div class="top-buttons">
-                    <p>Tilgængelige</p>
+                    <p>Antal biler lejet ud</p>
                 </div>
                 <div class="top-buttons">
-                <p>Afhentes i dag</p>
+                <p>Samlet pris på udlejet biler</p>
                 </div>
 
                 <div class="top-buttons">
                 <p>Afleveres i dag</p>
                 </div>
             </div>
--
-        <!--     <div class="statistic-buttons">
-            <p style="width: 100%; border-bottom: 1px solid black">5 dages historik</p>
+
+            <div class=table-body style="width: 50%; float: left">
+                <div class="table-title">
+                    <h1>Biler på lager </h1>
+                </div>
+                <div class="table-container">
+                    <div class="menu-table">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Mærke</th>
+                                <th>Model</th>
+                                <th>Variant</th>
+                                <th>Pris (pr måned)</th>
+                                <th>Book</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="ticket: ${tickets}">
+                                <td th:text="${ticket.ticketId}"></td>
+                                <td th:text="${ticket.userId}"></td>
+                                <td th:text="${ticket.serverity} + ' ' + ${customer.address.houseNumber} +', ' + ${customer.address.zipCode}"></td>
+                                <td th:text="${ticket.ticketname}"></td>
+                                <td th:text="${ticket.ticketDescription}"></td>
+                                <td><a th:href="@{'/customers/'+${customer.customerId}}">Detaljer</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
             </div>
-                <div class="aktive-sager">
-                    <p style="width: 100%; border-bottom: 1px solid black; font-size: 24px">Aktive sager</p>
-                    <p id="aktive-sager">Forsinket retur af bil <span id="span-aktive-sager">Case:255</span></p>
-                    <p id="aktive-sager">Rep. forsinket grundet sygdom <span id="span-aktive-sager" onclick="window.location.href='/cars'">Case:142</span></p>
-            </div> -->
+
+
             <div class=table-body style="width: 50%; float: right">
                 <div class="table-title">
                     <h1>Aktive sager </h1>

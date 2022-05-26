@@ -21,9 +21,12 @@
     cursor: pointer;
 }
 .topbar-item:hover {
-    font-weight: bold;
-    font-size: larger;
-    border: 1px solid lightgrey;
+
+}
+
+.topbar-item:hover > #expand-more {
+    font-size: 30px;
+    font-weight: bolder;
 }
 
 
