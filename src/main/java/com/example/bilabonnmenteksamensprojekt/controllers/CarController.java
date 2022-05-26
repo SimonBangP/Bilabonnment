@@ -62,4 +62,11 @@ public class CarController {
 
         return "cars/cars";
     }
+
+    @GetMapping("/cars/used")
+    public String  getUsedCars  (Model model){
+        int usedCars = carService.getUsedCars();
+        model.addAttribute("usedCars", usedCars);
+        return "cars/cars";
+    }
 }

@@ -25,4 +25,21 @@ public class ForsideController {
         }
     }
 
+
+
+    @Autowired
+    TicketService ticketService;
+    @GetMapping ("forside/tickets")
+    public String viewTickets (HttpSession session, Model model){
+        if (session.getAttribute("authenticated") != null &&((boolean) session.getAttribute("authenticated"))) {
+            List<Ticket> ticketList = ticketService.getTickets();
+            model.addAttribute("tickets", ticketList);
+            return "/forside";
+        }
+        else {
+            return "redirect:/?location=forside";
+        }
+
+    }
+
 }

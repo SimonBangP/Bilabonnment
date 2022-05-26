@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="css/sidenav.css">
         <link rel="stylesheet" href="css/cars.css">
         <link rel="stylesheet" href="css/tablestyle.css">
+        <link rel="stylesheet" href="css/Forside.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <title>Liste over biler</title>
     </head>
@@ -14,6 +15,7 @@
                 <div id="header-icon">
                     <img id="menu-icon" src="images/Logo.svg" onclick="window.location.href='/'">
                 </div>
+
             </div>
             <div id="body-container">
                 <div class="sidenav">
@@ -79,8 +81,13 @@
                             </table>
                         </div>
                     </div>
+                    <div class="top-buttons">
+                        <p>Antal biler lejet ud</p>
+                        <p th:text="${usedCars}"></p>
+                    </div>
                 </div>
             </div>
+
         </div>
     </body>
 </html>

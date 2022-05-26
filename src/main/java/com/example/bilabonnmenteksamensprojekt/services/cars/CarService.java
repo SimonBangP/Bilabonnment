@@ -47,5 +47,9 @@ public class CarService {
         int carId = repository.getCarId(originalCar);
         repository.updateCarById(carId, newCar);
     }
+
+    public int getUsedCars (){
+        return repository.carsInUse();
+    }
 }
 
