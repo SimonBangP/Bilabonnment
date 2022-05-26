@@ -54,13 +54,9 @@ public class BookingController {
 
     @GetMapping("/endBooking/{bookingId}")
     public String endBooking(HttpSession session, @PathVariable Integer bookingId){
-        Boolean ended = bookingService.endBooking(bookingId);
         if (session.getAttribute("authenticated") != null && ((boolean) session.getAttribute("authenticated"))) {
-            if (ended) {
+            bookingService.endBooking(bookingId);
                 return "redirect:/bookings";
-            } else {
-                return "redirect:/?location=bookings";
-            }
         }
         return "redirect:/?location=bookings";
     }
