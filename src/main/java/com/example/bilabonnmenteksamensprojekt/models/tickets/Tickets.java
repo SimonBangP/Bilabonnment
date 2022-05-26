@@ -1,6 +1,6 @@
 package com.example.bilabonnmenteksamensprojekt.models.tickets;
 
-public class Ticket {
+public class Tickets {
     private int ticketId;
     private int userId;
     private String serverity;
@@ -8,9 +8,9 @@ public class Ticket {
     private String ticketDescription;
 
 
-    public Ticket (){}
+    public Tickets(){}
 
-    public Ticket(int ticketId, int userId, String serverity, String ticketName, String ticketDescription) {
+    public Tickets(int ticketId, int userId, String serverity, String ticketName, String ticketDescription) {
         this.ticketId = ticketId;
         this.userId = userId;
         this.serverity = serverity;

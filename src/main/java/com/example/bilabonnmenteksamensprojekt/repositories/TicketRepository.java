@@ -1,6 +1,6 @@
 package com.example.bilabonnmenteksamensprojekt.repositories;
 
-import com.example.bilabonnmenteksamensprojekt.models.tickets.Ticket;
+import com.example.bilabonnmenteksamensprojekt.models.tickets.Tickets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,9 +15,9 @@ public class TicketRepository {
     @Autowired
     JdbcTemplate template;
 
-    public List<Ticket> getTickets (){
+    public List<Tickets> getTickets (){
         String sql = "SELECT * FROM tickets";
-        RowMapper<Ticket> rowMapper = new BeanPropertyRowMapper<>(Ticket.class);
+        RowMapper<Tickets> rowMapper = new BeanPropertyRowMapper<>(Tickets.class);
         return template.query(sql, rowMapper);
     }
 }

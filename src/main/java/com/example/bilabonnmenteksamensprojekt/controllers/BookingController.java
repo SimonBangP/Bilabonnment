@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -24,7 +22,7 @@ public class BookingController {
     UserAuthenticationService authenticationService;
 
     @GetMapping("/bookings")
-    public String bookings(HttpSession session, Model model){
+    public String viewBookings(HttpSession session, Model model){
         if (session.getAttribute("authenticated") != null && ((boolean) session.getAttribute("authenticated"))) {
             List<Booking> bookinglist = bookingService.getBookings();
             model.addAttribute("bookings", bookinglist);
