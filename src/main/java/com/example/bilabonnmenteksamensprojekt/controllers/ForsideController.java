@@ -33,9 +33,14 @@ public class ForsideController {
             List<Ticket> ticketList = ticketService.getTickets();
             model.addAttribute("tickets", ticketList);
 
+            //Add cars in active booking
             int usedCarAmount = carService.getUsedCarsAmount();
             model.addAttribute("usedCarAmount", usedCarAmount);
 
+            // Add cars thats in storage
+           /* List<Car> carsInStorage = carService.getCarsInStorage();
+            model.addAttribute("cars", carsInStorage);
+*/
             return "forside";
         }
         else {

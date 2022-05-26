@@ -90,12 +90,12 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="ticket: ${tickets}">
-                                <td th:text="${ticket.ticketId}"></td>
-                                <td th:text="${ticket.user.firstName}"></td>
-                                <td th:text="${ticket.severity}"></td>
-                                <td th:text="${ticket.ticketName}"></td>
-                                <td th:text="${ticket.ticketDescription}"></td>
+                            <tr th:each="inStorage: ${cars}">
+                                <td th:text="${inStorage.carSpecification.getBrand}"></td>
+                                <td th:text="${inStorage.carSpecification.getModel}"></td>
+                                <td th:text="${inStorage.carspecification.getVariant}"></td>
+                                <td th:text="${inStorage.price}"></td>
+                                <td th:text="${inStorage.carSpecification.getColor}"></td>
                             </tr>
                             </tbody>
                         </table>

@@ -93,4 +93,16 @@ public class CarRepository {
         String sql = "SELECT COUNT(Status) FROM view_cars WHERE Status = 'Bilen er i brug'";
         return template.queryForObject(sql, Integer.class);
     }
+
+    public List<Car> getCarsInStorage (){
+        String sql = "SELECT * FROM view_cars WHERE Status = 'Bilen er på lager";
+        RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
+        return template.query(sql, (ResultSet rs, int rowNum) -> {
+            Car foundCar = rowMapper.mapRow(rs, rowNum);
+
+            foundCar.setCarSpecification(carSpecificationService.getSpecificationById(rs.getInt(2)));
+            return foundCar;
+
+        });
+    }
 }
