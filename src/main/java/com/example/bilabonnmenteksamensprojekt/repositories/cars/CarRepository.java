@@ -94,8 +94,14 @@ public class CarRepository {
         return template.queryForObject(sql, Integer.class);
     }
 
+    public int getTotalPrice(){
+        String sql = "SELECT SUM(Price) FROM view_cars WHERE Status = 'Bilen er i brug'";
+
+        return template.queryForObject(sql, Integer.class);
+    }
+
     public List<Car> getCarsInStorage (){
-        String sql = "SELECT * FROM view_cars WHERE Status = 'Bilen er på lager";
+        String sql = "SELECT * FROM view_cars WHERE Status = 'Bilen er på lager'";
         RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
         return template.query(sql, (ResultSet rs, int rowNum) -> {
             Car foundCar = rowMapper.mapRow(rs, rowNum);

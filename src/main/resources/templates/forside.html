@@ -66,7 +66,8 @@
                     <p th:text="${usedCarAmount}" style="font-size: x-large"></p>
                 </div>
                 <div class="top-buttons">
-                <p>Samlet pris på udlejet biler</p>
+                <p>Samlet pris på udlejet biler (pr måned)</p>
+                    <p th:text="${totalPrice} + ' ,- kr'"></p>
                 </div>
 
                 <div class="top-buttons">
@@ -94,7 +95,7 @@
                             <tr th:each="inStorage: ${cars}">
                                 <td th:text="${inStorage.carSpecification.getBrand}"></td>
                                 <td th:text="${inStorage.carSpecification.getModel}"></td>
-                                <td th:text="${inStorage.carspecification.getVariant}"></td>
+                                <td th:text="${inStorage.carSpecification.getVariant}"></td>
                                 <td th:text="${inStorage.price}"></td>
                                 <td th:text="${inStorage.carSpecification.getColor}"></td>
                             </tr>

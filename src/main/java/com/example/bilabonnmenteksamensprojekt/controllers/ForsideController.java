@@ -38,9 +38,14 @@ public class ForsideController {
             model.addAttribute("usedCarAmount", usedCarAmount);
 
             // Add cars thats in storage
-           /* List<Car> carsInStorage = carService.getCarsInStorage();
+            List<Car> carsInStorage = carService.getCarsInStorage();
             model.addAttribute("cars", carsInStorage);
-*/
+
+
+            // Find Total amount on cars that are rented.
+            int carsPriceAmount = carService.getTotalPrice();
+            model.addAttribute("totalPrice", carsPriceAmount);
+
             return "forside";
         }
         else {
