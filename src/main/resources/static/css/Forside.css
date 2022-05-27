@@ -10,15 +10,17 @@
 .top-buttons {
     display: flex;
     flex-direction: column;
-    text-align: center;
-    align-items: center;
     justify-content: center;
-    width: 10%;
-
-    background-color: lightgrey;
-    font-size: 14px;
+    width: 20%;
+    height: 5%;
+    border: 2px solid;
+    border-color: #efeeee;
+    font-size: 25px;
+    color: #727272;
     transition: 0.3s;
-    padding: 30px;
+    padding: 15px;
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
 
 .statistic-buttons {

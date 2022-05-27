@@ -1,6 +1,7 @@
 package com.example.bilabonnmenteksamensprojekt.controllers;
 
 import com.example.bilabonnmenteksamensprojekt.models.cars.Car;
+import com.example.bilabonnmenteksamensprojekt.models.customers.Customer;
 import com.example.bilabonnmenteksamensprojekt.models.tickets.Ticket;
 import com.example.bilabonnmenteksamensprojekt.services.TicketService;
 import com.example.bilabonnmenteksamensprojekt.services.cars.CarService;
@@ -52,4 +53,14 @@ public class ForsideController {
             return "redirect:/?location=forside";
         }
     }
+    @GetMapping("/forsidetest")
+    public String getCustomers(HttpSession session, Model model){
+        if (session.getAttribute("authenticated") != null &&((boolean) session.getAttribute("authenticated"))) {
+            return "forsidetest";
+        }
+        else {
+            return "redirect:/?location=forsidetest";
+        }
+    }
+
 }

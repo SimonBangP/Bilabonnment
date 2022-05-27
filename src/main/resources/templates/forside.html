@@ -15,7 +15,11 @@
         <div id="topbar-menu-items">
             <div id="topbar-icon">
                 <img id="menu-icon" src="images/Logo.svg" onclick="window.location.href='/'">
+                <div style="padding-left: 3vh; font-size: x-large;color: #727272">
+                    <td>Forside</td>
+                </div>
             </div>
+
             <div class="topbar-item" id="user-menu" onclick="toggleDropdown()">
                 <span id="expand-more" class="material-icons">expand_more</span><p id="user-logged-on" th:text="${userFirstname} + ' ' + ${userLastnameChar} + '.'"></p>
                 <div>
@@ -50,9 +54,13 @@
             <div class="menu-button" onclick="window.location.href='/bookings'">
                 <span class="material-icons">description</span>
             </div>
-        
+
             <div class="menu-button" onclick="window.location.href='/forside'">
                 <span class="material-icons">trending_up</span>
+            </div>
+
+            <div class="menu-button" onclick="window.location.href='/tickets'">
+                <span class="material-icons">warning</span>
             </div>
         
             <div class="menu-button" onclick="window.location.href='/forside'">
@@ -62,16 +70,20 @@
         <div class="sideBody">
             <div class="button-container">
                 <div class="top-buttons">
-                    <p>Antal biler lejet ud: </p>
-                    <p th:text="${usedCarAmount}" style="font-size: x-large"></p>
+                    <p style="margin-top: 4%;margin-bottom: 2%">Aktive udlejninger:</p>
+                    <span class="material-icons" style="text-align: right;padding-top: -10%;margin-top: -5%;margin-bottom: -5%;font-size: 50px;">directions_car</span>
+                    <p th:text="${usedCarAmount}" style="font-size: 20px;margin-top: 2%;margin-bottom: 4%"></p>
                 </div>
                 <div class="top-buttons">
-                <p>Samlet pris på udlejet biler (pr måned)</p>
-                    <p th:text="${totalPrice} + ' ,- kr'"></p>
+                <p style="margin-top: 4%;margin-bottom: 2%">Månedlig indtægt:</p>
+                    <span class="material-icons" style="text-align: right;padding-top: -10%;margin-top: -5%;margin-bottom: -5%;font-size: 50px;">paid</span>
+                    <p th:text="${totalPrice} + ' ,- kr'" style="font-size: 20px;margin-top: 2%;margin-bottom: 4%"></p>
                 </div>
 
                 <div class="top-buttons">
-                <p>Afleveres i dag</p>
+                <p style="margin-top: 4%;margin-bottom: 2%">Afleveres i dag</p>
+                    <span class="material-icons" style="text-align: right;padding-top: -10%;margin-top: -5%;margin-bottom: -5%;font-size: 50px;">keyboard_return</span>
+                    <p style="margin-top: 2%;margin-bottom: 4%;font-size: 20px">N/A</p>
                 </div>
             </div>
 

@@ -1,0 +1,123 @@
+<!--
+DENNE SIDE ER LAVET SOM PROOF OF CONCEPT, DA JEG BLEV MEGET TRÆT AF AT SKULLE ÆNDRE KODE PÅ HVERT HTML DOKUMENT EFTER DESIGN ÆNDRINGER
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/sidenav.css">
+    <link rel="stylesheet" href="css/Forside.css">
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/TableStyle.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Forside</title>
+</head>
+<body>
+<div id="vertical-body-contents">
+    <div class="topbar" >
+        <div id="topbar-menu-items">
+            <div id="topbar-icon">
+                <img id="menu-icon" src="images/Logo.svg" onclick="window.location.href='/'">
+            </div>
+            <div class="topbar-item" id="user-menu" onclick="toggleDropdown()">
+                <span id="expand-more" class="material-icons">expand_more</span><p id="user-logged-on" th:text="${userFirstname} + ' ' + ${userLastnameChar} + '.'"></p>
+                <div>
+                    <button id="dropdown-button">
+                        <span id="user-icon-button" class="material-icons">account_circle</span>
+                    </button>
+                    <div id="dropdown-list-login" class="hide-dropdown">
+                        <button id="p-logud" type="submit" onclick="window.location.href='/logout'"><span class="material-icons">logout</span>Log Ud</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <div class="sidenav">
+            <div class="menu-button" onclick="navigateiFrame('/search', 'searchButton')">
+                <span id="searchButton" class="material-icons">search</span>
+            </div>
+        
+            <div class="menu-button" onclick="navigateiFrame('/forside', 'frontpageButton')">
+                <span id="frontpageButton" class="material-icons" style="color: dodgerblue">home</span>
+            </div>
+        
+            <div class="menu-button" onclick="navigateiFrame('/cars', 'carsButton')">
+                <span id="carsButton" class="material-icons">directions_car</span>
+            </div>
+        
+            <div class="menu-button" onclick="navigateiFrame('/customers', 'customersButton')">
+                <span id="customersButton" class="material-icons">group</span>
+            </div>
+        
+            <div class="menu-button"  onclick="navigateiFrame('/bookings', 'bookingsButton')">
+                <span id="bookingsButton" class="material-icons">description</span>
+            </div>
+
+            <div class="menu-button"  onclick="navigateiFrame('/forside', 'statisticsButton')">
+                <span id="statisticsButton" class="material-icons">trending_up</span>
+            </div>
+
+            <div class="menu-button"  onclick="navigateiFrame('/tickets', 'ticketsButton')">
+                <span id="ticketsButton" class="material-icons">warning</span>
+            </div>
+        
+            <div class="menu-button"  onclick="navigateiFrame('/forside', 'settingsButton')">
+                <span id="settingsButton" class="material-icons">settings</span>
+            </div>
+        </div>
+        <div class="sideBody">
+            <iframe name="navigationFrame" style="width: 100%;height: 100%;border: 0px" src="../forside"></iframe>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleDropdown() {
+        var dropdown = document.getElementById("dropdown-list-login");
+
+        if (dropdown.classList.contains("show-dropdown")) {
+            dropdown.classList.remove("show-dropdown");
+            dropdown.classList.add("hide-dropdown");
+        }
+        else {
+            dropdown.classList.add("show-dropdown");
+            dropdown.classList.remove("hide-dropdown");
+        }
+    }
+
+    window.onclick = function(event) {
+
+        const allowedIds = ["user-logged-on", "user-menu", "user-icon-button"]
+        console.log(event.target.id);
+        if (!allowedIds.includes(event.target.id)) {
+            hideDropdown();
+        }
+    }
+
+    function hideDropdown() {
+        var dropdown = document.getElementById("dropdown-list-login");
+
+        if (dropdown.classList.contains("show-dropdown")) {
+            dropdown.classList.remove("show-dropdown");
+            dropdown.classList.add("hide-dropdown");
+        }
+    }
+
+    function navigateiFrame(x, y){
+        document.getElementById('searchButton').setAttribute("style", "color: #727272")
+        document.getElementById('frontpageButton').setAttribute("style", "color: #727272")
+        document.getElementById('carsButton').setAttribute("style", "color: #727272")
+        document.getElementById('customersButton').setAttribute("style", "color: #727272")
+        document.getElementById('bookingsButton').setAttribute("style", "color: #727272")
+        document.getElementById('ticketsButton').setAttribute("style", "color: #727272")
+        document.getElementById('settingsButton').setAttribute("style", "color: #727272")
+        document.getElementById('statisticsButton').setAttribute("style", "color: #727272")
+        window.frames["navigationFrame"].location = x
+        document.getElementById(y).setAttribute("style", "color: dodgerblue")
+    }
+</script>
+
+</body>
+</html>

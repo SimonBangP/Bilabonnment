@@ -94,4 +94,15 @@ public class Booking {
     public void setCompleted(boolean completed) {
         this.completed = completed;
     }
+
+    public String getAllInfoToString(){
+        if(deliveryDate!=null) {
+            if(returnDate!=null) {
+                return (customer.getFirstName() + " " + customer.getLastName() + ", " + car.getCarSpecification().getBrand() + " " + car.getCarSpecification().getModel() + ", afhentes: " + deliveryDate.toString() + ", leveres: " + returnDate.toString());
+            }
+            return null;
+        }
+        return null;
+    }
+
 }

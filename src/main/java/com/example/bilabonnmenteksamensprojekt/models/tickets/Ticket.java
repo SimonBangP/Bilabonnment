@@ -66,4 +66,10 @@ public class Ticket {
     public void setTicketDescription(String ticketDescription) {
         this.ticketDescription = ticketDescription;
     }
+
+
+    public String getAllInfoToString(){
+        return ("Sag: " + ticketId + ", behandles af: " + user.getFirstName() + " " + user.getLastName() + " - " + ticketName + " - " + severity.toString() + " PRIORITY");
+    }
+
 }

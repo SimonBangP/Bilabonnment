@@ -92,4 +92,8 @@ public class Customer {
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
+
+    public String getAllInfoToString(){
+        return(firstName + " " + lastName + ", " + address.getZipCode() + " " + address.getStreet() + " " + address.getHouseNumber());
+    }
 }

@@ -25,6 +25,8 @@ public class Ticket {
         this.description = description;
     }
 
+
+
     public int getTicketId() {
         return TicketId;
     }
@@ -60,4 +62,5 @@ public class Ticket {
     public void setDescription(String description) {
         this.description = description;
     }
+
 }

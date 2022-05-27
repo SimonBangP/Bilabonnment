@@ -39,11 +39,16 @@
                     <div class="menu-button" onclick="window.location.href='/forside'">
                         <span class="material-icons">trending_up</span>
                     </div>
+
+                    <div class="menu-button" onclick="window.location.href='/tickets'">
+                        <span class="material-icons">warning</span>
+                    </div>
                 
                     <div class="menu-button" onclick="window.location.href='/forside'">
                         <span class="material-icons">settings</span>
                     </div>
                 </div>
+
                 <div id="details-body">
                     <div id="details-input">
                         <h1>Bil detaljer</h1>
@@ -85,12 +90,12 @@
                                         <p>Km/l:</p><input type="text" placeholder="Kilometer per liter" th:value="${car.carSpecification.carEngine.kilometersPerLiter}">
                                     </div>
                                 </div>
+                                <div class="tilbage-btn">
+                                    <button type="submit" class="login-button" onclick="window.location.href='/cars'">
+                                        <p>Tilbage</p>
+                                    </button>
+                                </div>
                             </form>
-                        </div>
-                        <div class="tilbage-btn">
-                            <button type="submit" class="login-button" onclick="window.location.href='/cars'">
-                                <p>Tilbage</p>
-                            </button>
                         </div>
                     </div>
                     <div id="details-image">
@@ -98,6 +103,7 @@
                         <span class="material-icons" style="display: block;text-align: center;font-size: 100px;justify-content: center;" >directions_car</span>
                     </div>
                 </div>
+
             </div>
         </div>
         </div>

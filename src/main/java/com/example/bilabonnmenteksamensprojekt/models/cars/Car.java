@@ -1,6 +1,7 @@
 package com.example.bilabonnmenteksamensprojekt.models.cars;
 
 import com.example.bilabonnmenteksamensprojekt.models.customers.Customer;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class Car {
 
@@ -99,4 +100,9 @@ public class Car {
     public String getStatus() {
         return status;
     }
+
+    public String getAllInfoToString(){
+        return(carSpecification.getBrand() + ", " + carSpecification.getModel() + ", " + carSpecification.getVariant() + ", " + status);
+    }
+
 }
