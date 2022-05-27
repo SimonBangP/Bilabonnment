@@ -35,7 +35,7 @@ public class AuthController {
             session.setAttribute("authenticated", true);
 
             if (location.equals("")) {
-                location = "forside";
+                location = "navigation";
             }
 
             return new RedirectView("/" + location);

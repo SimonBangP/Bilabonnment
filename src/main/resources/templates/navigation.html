@@ -68,7 +68,11 @@ DENNE SIDE ER LAVET SOM PROOF OF CONCEPT, DA JEG BLEV MEGET TRÃ†T AF AT SKULLE Ã
             </div>
         </div>
         <div class="sideBody">
-            <iframe name="navigationFrame" style="width: 100%;height: 100%;border: 0px" src="../forside"></iframe>
+            <!-- The loading indicator -->
+            <div class="loading" id="loading">
+                <img src="../images/loader.gif">
+            </div>
+            <iframe id="navFrame" name="navigationFrame" style="width: 100%;height: 100%;border: 0px" src="../forside"></iframe>
         </div>
     </div>
 </div>
@@ -104,8 +108,22 @@ DENNE SIDE ER LAVET SOM PROOF OF CONCEPT, DA JEG BLEV MEGET TRÃ†T AF AT SKULLE Ã
             dropdown.classList.add("hide-dropdown");
         }
     }
+    // Query the elements
+    const iframeEle = document.getElementById('navFrame');
+    const loadingEle = document.getElementById('loading');
+
+    iframeEle.addEventListener('load', function () {
+        // Hide the loading indicator
+        loadingEle.style.display = 'none';
+        // Bring the iframe back
+        iframeEle.style.opacity = 1;
+    });
 
     function navigateiFrame(x, y){
+        // Hide the loading indicator
+        loadingEle.style.display = 'flex';
+        // Bring the iframe back
+        iframeEle.style.opacity = 0;
         document.getElementById('searchButton').setAttribute("style", "color: #727272")
         document.getElementById('frontpageButton').setAttribute("style", "color: #727272")
         document.getElementById('carsButton').setAttribute("style", "color: #727272")

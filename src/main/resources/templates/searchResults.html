@@ -11,61 +11,10 @@
 </head>
 <body>
 <div id="vertical-body-contents">
-    <div class="topbar" >
-        <div id="topbar-menu-items">
-            <div id="topbar-icon">
-                <img id="menu-icon" src="../images/Logo.svg" onclick="window.location.href='/'">
-            </div>
-            <div class="topbar-item" id="user-menu" onclick="toggleDropdown()">
-                <span id="expand-more" class="material-icons">expand_more</span><p id="user-logged-on" th:text="${userFirstname} + ' ' + ${userLastnameChar} + '.'"></p>
-                <div>
-                    <button id="dropdown-button">
-                        <span id="user-icon-button" class="material-icons">account_circle</span>
-                    </button>
-                    <div id="dropdown-list-login" class="hide-dropdown">
-                        <button id="p-logud" type="submit" onclick="window.location.href='/logout'"><span class="material-icons">logout</span>   Log Ud</button> <br>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div id="body-container">
-        <div class="sidenav">
-            <div class="menu-button" onclick="window.location.href='/search'">
-                <span class="material-icons" style="color: dodgerblue">search</span>
-            </div>
-
-            <div class="menu-button" onclick="window.location.href='/forside'">
-                <span class="material-icons" >home</span>
-            </div>
-
-            <div class="menu-button" onclick="window.location.href='/cars'">
-                <span class="material-icons">directions_car</span>
-            </div>
-
-            <div class="menu-button" onclick="window.location.href='/customers'">
-                <span class="material-icons">group</span>
-            </div>
-
-            <div class="menu-button" onclick="window.location.href='/bookings'">
-                <span class="material-icons">description</span>
-            </div>
-
-            <div class="menu-button" onclick="window.location.href='/forside'">
-                <span class="material-icons">trending_up</span>
-            </div>
-
-            <div class="menu-button" onclick="window.location.href='/tickets'">
-                <span class="material-icons">warning</span>
-            </div>
-
-            <div class="menu-button" onclick="window.location.href='/forside'">
-                <span class="material-icons">settings</span>
-            </div>
-        </div>
         <div class=table-body>
             <div class="table-title">
-                <h1>Søge resultat </h1>
+                <h1 style="font-size: smaller">Søge resultat </h1>
             </div>
             <div class="table-container">
                 <div class="menu-table">

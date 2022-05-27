@@ -11,82 +11,45 @@
 </head>
 <body>
 <div id="vertical-body-contents">
-    <div class="topbar" >
-        <div id="topbar-menu-items">
-            <div id="topbar-icon">
-                <img id="menu-icon" src="images/Logo.svg" onclick="window.location.href='/'">
-            </div>
-            <div class="topbar-item" id="user-menu" onclick="toggleDropdown()">
-                <span id="expand-more" class="material-icons">expand_more</span><p id="user-logged-on" th:text="${userFirstname} + ' ' + ${userLastnameChar} + '.'"></p>
-                <div>
-                    <button id="dropdown-button">
-                        <span id="user-icon-button" class="material-icons">account_circle</span>
-                    </button>
-                    <div id="dropdown-list-login" class="hide-dropdown">
-                        <button id="p-logud" type="submit" onclick="window.location.href='/logout'"><span class="material-icons">logout</span>   Log Ud</button> <br>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div id="body-container">
-        <div class="sidenav">
-            <div class="menu-button" onclick="window.location.href='/search'">
-                <span class="material-icons" style="color: dodgerblue">search</span>
-            </div>
-
-            <div class="menu-button" onclick="window.location.href='/forside'">
-                <span class="material-icons" >home</span>
-            </div>
-
-            <div class="menu-button" onclick="window.location.href='/cars'">
-                <span class="material-icons">directions_car</span>
-            </div>
-
-            <div class="menu-button" onclick="window.location.href='/customers'">
-                <span class="material-icons">group</span>
-            </div>
-
-            <div class="menu-button" onclick="window.location.href='/bookings'">
-                <span class="material-icons">description</span>
-            </div>
-
-            <div class="menu-button" onclick="window.location.href='/forside'">
-                <span class="material-icons">trending_up</span>
-            </div>
-
-            <div class="menu-button" onclick="window.location.href='/tickets'">
-                <span class="material-icons">warning</span>
-            </div>
-
-            <div class="menu-button" onclick="window.location.href='/forside'">
-                <span class="material-icons">settings</span>
-            </div>
-        </div>
         <div class=table-body>
             <div class="table-title">
                 <h1>Søg i system</h1>
             </div>
-
             <div class="table-container">
-            <form id="form" role="search">
-                <input type="search" id="query" name="q"
-                       placeholder="Indtast stikord..."
-                       aria-label="Søg igennem database"
-                       style="width: 20%"
-                >
-                <button onclick="search()">Søg</button>
-            </form>
-            <script>
-                function search() {
-                    window.open('/search/'+document.getElementById('query').value);
-                }
-            </script>
-            </div>
+                    <input id="query" name="q" onkeydown="checkenter()"
+                           placeholder="Indtast stikord..."
+                           aria-label="Søg igennem database"
+                           style="width: 20%"
+                    >
+                    <button type='button' onclick="search()">Søg</button>
+                    <img id="loading_gif" style="margin-bottom: -0.7%;opacity: 0" src="../images/loadingsmall.gif">
+                <iframe id="searchFrame" name="navigationFrameSearch" style="width: 100%;height: 70vh;border: 0px" src="about:blank"></iframe>
+                <script>
+
+                    // Query the elements
+                    const iframeEle = document.getElementById('searchFrame');
+                    const loadingEle = document.getElementById('loading_gif');
+
+                    iframeEle.addEventListener('load', function () {
+                        loadingEle.style.opacity=0;
+                    });
+
+                    function checkenter() {
+                        if(event.key === 'Enter') {
+                            search()
+                        }
+                    }
+                    function search() {
+                        const url = window.location.origin + window.location.pathname + '/' + document.getElementById('query').value
+                        window.frames["navigationFrameSearch"].location = url;
+                        loadingEle.style.opacity=1;
+                    }
+                </script>
             </div>
         </div>
+    </div>
 
- </div>
 </div>
 </body>
 </html>
