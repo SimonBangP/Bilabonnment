@@ -2,6 +2,7 @@ package com.example.bilabonnmenteksamensprojekt.controllers;
 
 import com.example.bilabonnmenteksamensprojekt.models.cars.Car;
 import com.example.bilabonnmenteksamensprojekt.models.system.Ticket;
+import com.example.bilabonnmenteksamensprojekt.models.users.User;
 import com.example.bilabonnmenteksamensprojekt.services.TicketService;
 import com.example.bilabonnmenteksamensprojekt.services.cars.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,11 @@ public class ForsideController {
     @GetMapping("/navigation")
     public String getCustomers(HttpSession session, Model model, @RequestParam(required = false) String location){
         if (session.getAttribute("authenticated") != null &&((boolean) session.getAttribute("authenticated"))) {
+
+            User user = (User)session.getAttribute("userData");
+
+            model.addAttribute("userFirstname", user.getFirstName());
+            model.addAttribute("userLastnameChar", user.getLastName().charAt(0));
 
             if (location == null) {
                 location = "";
