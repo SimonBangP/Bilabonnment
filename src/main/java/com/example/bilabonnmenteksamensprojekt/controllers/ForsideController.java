@@ -1,13 +1,14 @@
 package com.example.bilabonnmenteksamensprojekt.controllers;
 
 import com.example.bilabonnmenteksamensprojekt.models.cars.Car;
-import com.example.bilabonnmenteksamensprojekt.models.tickets.Ticket;
+import com.example.bilabonnmenteksamensprojekt.models.system.Ticket;
 import com.example.bilabonnmenteksamensprojekt.services.TicketService;
 import com.example.bilabonnmenteksamensprojekt.services.cars.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -52,9 +53,17 @@ public class ForsideController {
             return "redirect:/?location=forside";
         }
     }
+
     @GetMapping("/navigation")
-    public String getCustomers(HttpSession session, Model model){
+    public String getCustomers(HttpSession session, Model model, @RequestParam(required = false) String location){
         if (session.getAttribute("authenticated") != null &&((boolean) session.getAttribute("authenticated"))) {
+
+            if (location == null) {
+                location = "";
+            }
+
+            model.addAttribute("location", location);
+
             return "navigation";
         }
         else {

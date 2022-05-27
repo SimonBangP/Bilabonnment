@@ -2,7 +2,9 @@ package com.example.bilabonnmenteksamensprojekt.models.users;
 
 import com.example.bilabonnmenteksamensprojekt.models.locations.Location;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     private int userId;
     private String firstName;

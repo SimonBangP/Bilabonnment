@@ -1,18 +1,19 @@
 package com.example.bilabonnmenteksamensprojekt.controllers;
 
+import com.example.bilabonnmenteksamensprojekt.models.system.Severity;
+import com.example.bilabonnmenteksamensprojekt.models.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import com.example.bilabonnmenteksamensprojekt.models.tickets.Ticket;
+import com.example.bilabonnmenteksamensprojekt.models.system.Ticket;
 import com.example.bilabonnmenteksamensprojekt.services.TicketService;
 import javax.servlet.http.HttpSession;
 import java.util.List;
-import com.example.bilabonnmenteksamensprojekt.services.TicketService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class TicketController {
@@ -44,8 +45,10 @@ public class TicketController {
         }
     }
 
-    @PostMapping ("/createTickets")
-    public String createTickets (@ModelAttribute Ticket ticket){
+    @PostMapping ("/createTicket")
+    public String createTickets (HttpSession session, @RequestParam("Severity")Severity severity, @RequestParam("Name")String name, @RequestParam("Description")String description){
+        User currentUser = (User)session.getAttribute("userData");
+        Ticket ticket = new Ticket(currentUser, severity, name, description);
         ticketService.createTicket(ticket);
         return "redirect:/tickets";
 

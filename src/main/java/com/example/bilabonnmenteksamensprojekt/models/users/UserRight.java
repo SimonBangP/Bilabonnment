@@ -1,6 +1,8 @@
 package com.example.bilabonnmenteksamensprojekt.models.users;
 
-public class UserRight {
+import java.io.Serializable;
+
+public class UserRight implements Serializable {
 
     private int RightsId;
     private String description;

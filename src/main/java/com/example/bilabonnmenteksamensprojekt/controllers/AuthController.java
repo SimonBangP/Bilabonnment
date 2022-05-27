@@ -32,13 +32,10 @@ public class AuthController {
             session.setAttribute("userFirstname", user.getFirstName());
             session.setAttribute("userLastname", user.getLastName());
             session.setAttribute("authorizedUsername", username);
+            session.setAttribute("userData", user);
             session.setAttribute("authenticated", true);
 
-            if (location.equals("")) {
-                location = "navigation";
-            }
-
-            return new RedirectView("/" + location);
+            return new RedirectView("/navigation?location=" + location);
         }
         else {
             session.setAttribute("authenticated", false);

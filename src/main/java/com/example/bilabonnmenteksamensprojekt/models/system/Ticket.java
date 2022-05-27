@@ -3,32 +3,36 @@ package com.example.bilabonnmenteksamensprojekt.models.system;
 import com.example.bilabonnmenteksamensprojekt.models.users.User;
 
 public class Ticket {
-
-    private int TicketId;
+    private int ticketId;
     private User user;
     private Severity severity;
-    private String TicketName;
-    private String description;
+    private String ticketName;
+    private String ticketDescription;
 
-    public Ticket(int ticketId, User user, Severity severity, String ticketName, String description) {
-        TicketId = ticketId;
-        this.user = user;
+
+    public Ticket(){}
+
+    public Ticket(int ticketId, User userId, Severity severity, String ticketName, String ticketDescription) {
+        this.ticketId = ticketId;
+        this.user = userId;
         this.severity = severity;
-        TicketName = ticketName;
-        this.description = description;
+        this.ticketName = ticketName;
+        this.ticketDescription = ticketDescription;
     }
 
-    public Ticket(User user, Severity severity, String ticketName, String description) {
+    public Ticket(User user, Severity severity, String ticketName, String ticketDescription) {
         this.user = user;
         this.severity = severity;
-        TicketName = ticketName;
-        this.description = description;
+        this.ticketName = ticketName;
+        this.ticketDescription = ticketDescription;
     }
-
-
 
     public int getTicketId() {
-        return TicketId;
+        return ticketId;
+    }
+
+    public void setTicketId(int ticketId) {
+        this.ticketId = ticketId;
     }
 
     public User getUser() {
@@ -48,19 +52,22 @@ public class Ticket {
     }
 
     public String getTicketName() {
-        return TicketName;
+        return ticketName;
     }
 
     public void setTicketName(String ticketName) {
-        TicketName = ticketName;
+        this.ticketName = ticketName;
     }
 
-    public String getDescription() {
-        return description;
+    public String getTicketDescription() {
+        return ticketDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setTicketDescription(String ticketDescription) {
+        this.ticketDescription = ticketDescription;
     }
 
+    public String getAllInfoToString(){
+        return ("Sag: " + ticketId + ", oprettet af: " + user.getFirstName() + " " + user.getLastName() + " - " + ticketName + " - " + severity.toString() + " PRIORITY");
+    }
 }

@@ -3,9 +3,8 @@ package com.example.bilabonnmenteksamensprojekt.services;
 import com.example.bilabonnmenteksamensprojekt.models.cars.Car;
 import com.example.bilabonnmenteksamensprojekt.models.customers.Customer;
 import com.example.bilabonnmenteksamensprojekt.models.bookings.Booking;
-import com.example.bilabonnmenteksamensprojekt.models.tickets.Ticket;
+import com.example.bilabonnmenteksamensprojekt.models.system.Ticket;
 import com.example.bilabonnmenteksamensprojekt.models.system.Search;
-import com.example.bilabonnmenteksamensprojekt.repositories.cars.CarRepository;
 import com.example.bilabonnmenteksamensprojekt.services.cars.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,6 +49,7 @@ public class SearchService {
 
         List<Booking> bookingResultsUnsorted = bookingService.getBookings();
         for(int i=0;i<bookingResultsUnsorted.size();i++){
+            System.out.println(bookingResultsUnsorted.get(i).getAllInfoToString());
             if(bookingResultsUnsorted.get(i).getAllInfoToString()!=null) {
                 if ((bookingResultsUnsorted.get(i).getAllInfoToString()).toLowerCase().contains(searchQuery.toLowerCase())) {  //Searching for customer results matching input string
                     outputList.add(new Search("Booking", bookingResultsUnsorted.get(i).getAllInfoToString(), "/bookings/" + bookingResultsUnsorted.get(i).getBookingId(), "/bookings"));
@@ -65,6 +65,7 @@ public class SearchService {
                 }
             }
         }
+
         return outputList;
     }
 }

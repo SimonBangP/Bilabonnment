@@ -1,6 +1,8 @@
 package com.example.bilabonnmenteksamensprojekt.models.locations;
 
-public class Location {
+import java.io.Serializable;
+
+public class Location implements Serializable {
 
     private int locationId;
     private String locationName;

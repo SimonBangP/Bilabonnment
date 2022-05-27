@@ -57,10 +57,8 @@ public class CarService {
         return repository.getTotalPrice();
     }
 
-    public List<Car> getCarsInStorage (){
+    public List<Car> getCarsInStorage () {
         return repository.getCarsInStorage();
-        }
-
-
+    }
 }
 

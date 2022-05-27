@@ -1,6 +1,8 @@
 package com.example.bilabonnmenteksamensprojekt.models.locations;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable {
 
     private int addressId;
     private String street;

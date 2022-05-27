@@ -100,7 +100,9 @@ public class Booking {
             if(returnDate!=null) {
                 return (customer.getFirstName() + " " + customer.getLastName() + ", " + car.getCarSpecification().getBrand() + " " + car.getCarSpecification().getModel() + ", afhentes: " + deliveryDate.toString() + ", leveres: " + returnDate.toString());
             }
-            return null;
+            else {
+                return (customer.getFirstName() + " " + customer.getLastName() + ", " + car.getCarSpecification().getBrand() + " " + car.getCarSpecification().getModel() + ", afhentes: " + deliveryDate.toString());
+            }
         }
         return null;
     }

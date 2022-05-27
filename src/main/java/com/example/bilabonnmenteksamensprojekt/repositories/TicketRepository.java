@@ -1,6 +1,6 @@
 package com.example.bilabonnmenteksamensprojekt.repositories;
 
-import com.example.bilabonnmenteksamensprojekt.models.tickets.Ticket;
+import com.example.bilabonnmenteksamensprojekt.models.system.Ticket;
 import com.example.bilabonnmenteksamensprojekt.services.UserAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -35,7 +35,7 @@ public class TicketRepository {
 
     public void createTicket(Ticket ticket){
         String sql = "INSERT INTO tickets VALUES (?, ?, ?, ?, ?)";
-        template.update(sql, ticket.getTicketId(), ticket.getUser(), ticket.getSeverity(), ticket.getTicketName(), ticket.getTicketDescription());
+        template.update(sql, ticket.getTicketId(), ticket.getUser().getUserId(), ticket.getSeverity().name(), ticket.getTicketName(), ticket.getTicketDescription());
 
     }
 
