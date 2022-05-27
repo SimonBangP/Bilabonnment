@@ -1,21 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>createTickets</title>
+    <link rel="stylesheet" href="../css/shared.css">
+    <link rel="stylesheet" href="../css/sidenav.css">
+    <link rel="stylesheet" href="../css/cars.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Opret ticket</title>
 </head>
 <body>
+<div id="vertical-body-contents">
+    <div id="body-container">
+        <div id="details-body">
+            <div id="details-input">
+                <h1>Opret ticket</h1>
+                <div id="inputs">
+                    <form action="/createTicket" method="post">
+                        <div class="input-row">
+                            <div class="input-column">
+                                <p>Emne:</p><input type="text" name="Name">
+                                <p>Prioritet:</p><select name="Severity" placeholder="MEDIUM">
+                                <option th:each="severity : ${T(com.example.bilabonnmenteksamensprojekt.models.system.Severity).values()}"
+                                        th:value="${severity}"
+                                        th:text="${severity}">
+                                </option>
+                            </select>
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-column">
+                                <p>Beskrivelse:</p><input type="text" name="Description">
+                            </div>
+                        </div>
+                        <div class="Gem ticket">
+                            <button type="submit" class="login-button" style="margin-top: 20px;">
+                                <p>Gem ticket</p>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
-<h1>Create ticket</h1>
-
-<form action="/createTicket" method="post">
-
-    <input type="text" name="Severity">
-    <input type="text" name="Name">
-    <input type="text" name="Description">
-
-    <input type="submit" value="Save ticket">
-
-</form>
+    </div>
+</div>
 </body>
 </html>

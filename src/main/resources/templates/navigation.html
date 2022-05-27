@@ -55,10 +55,6 @@ DENNE SIDE ER LAVET SOM PROOF OF CONCEPT, DA JEG BLEV MEGET TRÃ†T AF AT SKULLE Ã
                 <span id="bookingsButton" class="material-icons">description</span>
             </div>
 
-            <div class="menu-button"  onclick="navigateiFrame('/forside', 'statisticsButton')">
-                <span id="statisticsButton" class="material-icons">trending_up</span>
-            </div>
-
             <div class="menu-button"  onclick="navigateiFrame('/tickets', 'ticketsButton')">
                 <span id="ticketsButton" class="material-icons">warning</span>
             </div>
@@ -140,7 +136,6 @@ DENNE SIDE ER LAVET SOM PROOF OF CONCEPT, DA JEG BLEV MEGET TRÃ†T AF AT SKULLE Ã
         document.getElementById('bookingsButton').setAttribute("style", "color: #727272")
         document.getElementById('ticketsButton').setAttribute("style", "color: #727272")
         document.getElementById('settingsButton').setAttribute("style", "color: #727272")
-        document.getElementById('statisticsButton').setAttribute("style", "color: #727272")
         window.frames["navigationFrame"].location = x
         document.getElementById(y).setAttribute("style", "color: dodgerblue")
     }
