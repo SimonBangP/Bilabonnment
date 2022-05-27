@@ -32,4 +32,11 @@ public class TicketRepository {
             return foundTicket;
         });
     }
+
+    public void createTicket(Ticket ticket){
+        String sql = "INSERT INTO tickets VALUES (?, ?, ?, ?, ?)";
+        template.update(sql, ticket.getTicketId(), ticket.getUser(), ticket.getSeverity(), ticket.getTicketName(), ticket.getTicketDescription());
+
+    }
+
 }

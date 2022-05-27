@@ -11,6 +11,8 @@ import java.util.List;
 import com.example.bilabonnmenteksamensprojekt.services.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class TicketController {
@@ -29,6 +31,24 @@ public class TicketController {
         else {
             return "redirect:/?location=forside";
         }
+    }
+
+    @GetMapping ("/createTickets")
+    public String createTickets (HttpSession session){
+        if (session.getAttribute("authenticated") != null &&((boolean) session.getAttribute("authenticated"))) {
+
+            return "/tickets/createTickets";
+        }
+        else {
+            return "redirect:/?location=forside";
+        }
+    }
+
+    @PostMapping ("/createTickets")
+    public String createTickets (@ModelAttribute Ticket ticket){
+        ticketService.createTicket(ticket);
+        return "redirect:/tickets";
 
     }
+
 }

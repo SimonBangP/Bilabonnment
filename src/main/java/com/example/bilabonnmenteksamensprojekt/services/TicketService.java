@@ -16,4 +16,7 @@ public class TicketService {
     public List<Ticket> getTickets (){
         return ticketRepository.getTickets();
     }
+
+public void createTicket (Ticket ticket){ ticketRepository.createTicket(ticket);}
+
 }
