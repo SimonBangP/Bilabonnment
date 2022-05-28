@@ -33,10 +33,28 @@ public class TicketRepository {
         });
     }
 
-    public void createTicket(Ticket ticket){
-        String sql = "INSERT INTO tickets VALUES (?, ?, ?, ?, ?)";
-        template.update(sql, ticket.getTicketId(), ticket.getUser().getUserId(), ticket.getSeverity().name(), ticket.getTicketName(), ticket.getTicketDescription());
+    public void insertTicket(Ticket ticket){
+        String sql = "INSERT INTO tickets VALUES (DEFAULT, ?, ?, ?, ?)";
+        template.update(sql, ticket.getUser().getUserId(), ticket.getSeverity().name(), ticket.getTicketName(), ticket.getTicketDescription());
 
+    }
+
+    public int getCount() {
+        String sql = "SELECT COUNT(TicketId) FROM tickets";
+
+        return template.queryForObject(sql, Integer.class);
+    }
+
+    public int getCountWithWhereClause(String whereClause) {
+        String sql = "SELECT COUNT(TicketId) FROM tickets WHERE " + whereClause;
+
+        return template.queryForObject(sql, Integer.class);
+    }
+
+    public boolean ticketExists(Ticket ticket) {
+        String sql = "SELECT COUNT(TicketId) FROM tickets WHERE UserId = ? AND Severity = ? AND TicketName = ? AND TicketDescription = ?";
+
+        return template.queryForObject(sql, Integer.class, ticket.getUser().getUserId(), ticket.getSeverity().name(), ticket.getTicketName(), ticket.getTicketDescription()) > 0;
     }
 
 }

@@ -64,7 +64,7 @@ public class ForsideController {
             model.addAttribute("userFirstname", user.getFirstName());
             model.addAttribute("userLastnameChar", user.getLastName().charAt(0));
 
-            if (location == null) {
+            if (location == null || location.equals("navigation")) {
                 location = "";
             }
 

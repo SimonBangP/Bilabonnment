@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CustomerService {
+public class CustomerService implements SearchableAlarmService{
 
     @Autowired
     CustomerRepository repository;
@@ -21,4 +21,13 @@ public class CustomerService {
         return repository.getCustomers();
     }
 
+    @Override
+    public int getCount() {
+        return repository.getCount();
+    }
+
+    @Override
+    public int getCountWithWhereClause(String whereClause) {
+        return repository.getCountWithWhereClause(whereClause);
+    }
 }

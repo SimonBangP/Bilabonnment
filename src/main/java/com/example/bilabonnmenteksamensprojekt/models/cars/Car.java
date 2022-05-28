@@ -18,23 +18,21 @@ public class Car {
 
     }
 
-    public Car(int carId, CarSpecification carSpecification, double price, boolean insurranceIncluded, boolean ownersFeeIncluded, String shortDescription, Customer customer) {
+    public Car(int carId, CarSpecification carSpecification, double price, boolean insurranceIncluded, boolean ownersFeeIncluded, String shortDescription) {
         this.carId = carId;
         this.carSpecification = carSpecification;
         this.price = price;
         this.insuranceIncluded = insurranceIncluded;
         this.ownersFeeIncluded = ownersFeeIncluded;
         this.shortDescription = shortDescription;
-        this.customer = customer;
     }
 
-    public Car(CarSpecification carSpecification, double price, boolean insurranceIncluded, boolean ownersFeeIncluded, String shortDescription, Customer customer) {
+    public Car(CarSpecification carSpecification, double price, boolean insurranceIncluded, boolean ownersFeeIncluded, String shortDescription) {
         this.carSpecification = carSpecification;
         this.price = price;
         this.insuranceIncluded = insurranceIncluded;
         this.ownersFeeIncluded = ownersFeeIncluded;
         this.shortDescription = shortDescription;
-        this.customer = customer;
     }
 
     public int getCarId() {

@@ -100,6 +100,18 @@ public class CarRepository {
         return template.queryForObject(sql, Integer.class);
     }
 
+    public int getCount() {
+        String sql = "SELECT COUNT(CarId) FROM view_cars";
+
+        return template.queryForObject(sql, Integer.class);
+    }
+
+    public int getCountWithWhereClause(String whereClause) {
+        String sql = "SELECT COUNT(CarId) FROM view_cars WHERE " + whereClause;
+
+        return template.queryForObject(sql, Integer.class);
+    }
+
     public List<Car> getCarsInStorage (){
         String sql = "SELECT * FROM view_cars WHERE Status = 'Bilen er på lager'";
         RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);

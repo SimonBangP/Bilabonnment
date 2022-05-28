@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserAuthenticationService {
+public class UserAuthenticationService implements SearchableAlarmService {
 
     @Autowired
     UserRepository repository;
@@ -44,5 +44,15 @@ public class UserAuthenticationService {
 
     public User getUserById(int id) {
         return repository.getUserById(id);
+    }
+
+    @Override
+    public int getCount() {
+        return repository.getCount();
+    }
+
+    @Override
+    public int getCountWithWhereClause(String whereClause) {
+        return repository.getCountWithWhereClause(whereClause);
     }
 }

@@ -6,22 +6,31 @@ import com.example.bilabonnmenteksamensprojekt.models.users.User;
 public class Alarm {
 
     private int alarmId;
-    private WatchValue watchValue;
+    private WatchCategory watchCategory;
     private WatchFilter watchFilter;
+    private int watchValue;
+    private String watchOperator;
     private User user;
     private Severity severity;
 
-    public Alarm(int alarmId, WatchValue watchValue, WatchFilter watchFilter, User user, Severity severity) {
+    public Alarm() {
+    }
+
+    public Alarm(int alarmId, WatchCategory watchCategory, WatchFilter watchFilter, int watchValue, String watchOperator, User user, Severity severity) {
         this.alarmId = alarmId;
-        this.watchValue = watchValue;
+        this.watchCategory = watchCategory;
         this.watchFilter = watchFilter;
+        this.watchValue = watchValue;
+        this.watchOperator = watchOperator;
         this.user = user;
         this.severity = severity;
     }
 
-    public Alarm(WatchValue watchValue, WatchFilter watchFilter, User user, Severity severity) {
-        this.watchValue = watchValue;
+    public Alarm(WatchCategory watchCategory, WatchFilter watchFilter, int watchValue, String watchOperator, User user, Severity severity) {
+        this.watchCategory = watchCategory;
         this.watchFilter = watchFilter;
+        this.watchValue = watchValue;
+        this.watchOperator = watchOperator;
         this.user = user;
         this.severity = severity;
     }
@@ -30,12 +39,16 @@ public class Alarm {
         return alarmId;
     }
 
-    public WatchValue getWatchValue() {
-        return watchValue;
+    public void setAlarmId(int alarmId) {
+        this.alarmId = alarmId;
     }
 
-    public void setWatchValue(WatchValue watchValue) {
-        this.watchValue = watchValue;
+    public WatchCategory getWatchCategory() {
+        return watchCategory;
+    }
+
+    public void setWatchCategory(WatchCategory watchCategory) {
+        this.watchCategory = watchCategory;
     }
 
     public WatchFilter getWatchFilter() {
@@ -44,6 +57,22 @@ public class Alarm {
 
     public void setWatchFilter(WatchFilter watchFilter) {
         this.watchFilter = watchFilter;
+    }
+
+    public int getWatchValue() {
+        return watchValue;
+    }
+
+    public void setWatchValue(int watchValue) {
+        this.watchValue = watchValue;
+    }
+
+    public String getWatchOperator() {
+        return watchOperator;
+    }
+
+    public void setWatchOperator(String watchOperator) {
+        this.watchOperator = watchOperator;
     }
 
     public User getUser() {

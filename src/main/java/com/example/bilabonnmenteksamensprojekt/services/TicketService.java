@@ -8,15 +8,30 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class TicketService {
+public class TicketService implements SearchableAlarmService{
 
     @Autowired
-    TicketRepository ticketRepository;
+    TicketRepository repository;
 
     public List<Ticket> getTickets (){
-        return ticketRepository.getTickets();
+        return repository.getTickets();
     }
 
-public void createTicket (Ticket ticket){ ticketRepository.createTicket(ticket);}
+    public void insertTicket(Ticket ticket){ repository.insertTicket(ticket);}
 
+    public boolean ticketExists(Ticket ticket) {
+        return repository.ticketExists(ticket);
+    }
+
+    @Override
+    public int getCount() {
+        return repository.getCount();
+    }
+
+    @Override
+    public int getCountWithWhereClause(String whereClause) {
+        return repository.getCountWithWhereClause(whereClause);
+    }
 }
+
+

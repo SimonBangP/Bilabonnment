@@ -8,24 +8,34 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BookingService {
+public class BookingService implements SearchableAlarmService{
 
     @Autowired
-    BookingRepository bookingRepository;
+    BookingRepository repository;
 
     public List<Booking> getBookings (){
-        return bookingRepository.getBookings();
+        return repository.getBookings();
     }
 
     public List<Booking> getActiveBookings (){
-        return bookingRepository.getActiveBookings();
+        return repository.getActiveBookings();
     }
 
     public Booking getBookingById (int bookingId){
-        return bookingRepository.getBookingById(bookingId);
+        return repository.getBookingById(bookingId);
     }
 
     public void endBooking(int bookingId){
-        bookingRepository.endBooking(bookingId);
+        repository.endBooking(bookingId);
+    }
+
+    @Override
+    public int getCount() {
+        return repository.getCount();
+    }
+
+    @Override
+    public int getCountWithWhereClause(String whereClause) {
+        return repository.getCountWithWhereClause(whereClause);
     }
 }

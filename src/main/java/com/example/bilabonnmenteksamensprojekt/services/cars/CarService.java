@@ -3,13 +3,14 @@ package com.example.bilabonnmenteksamensprojekt.services.cars;
 import com.example.bilabonnmenteksamensprojekt.models.cars.Car;
 import com.example.bilabonnmenteksamensprojekt.models.customers.Customer;
 import com.example.bilabonnmenteksamensprojekt.repositories.cars.CarRepository;
+import com.example.bilabonnmenteksamensprojekt.services.SearchableAlarmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CarService {
+public class CarService implements SearchableAlarmService {
 
     @Autowired
     CarRepository repository;
@@ -40,7 +41,7 @@ public class CarService {
         repository.removeCarById(id);
     }
 
-    public void changeCarById(int id, Car newCar) {
+    public void updateCarById(int id, Car newCar) {
         repository.updateCarById(id, newCar);
     }
 
@@ -59,6 +60,16 @@ public class CarService {
 
     public List<Car> getCarsInStorage () {
         return repository.getCarsInStorage();
+    }
+
+    @Override
+    public int getCount() {
+        return repository.getCount();
+    }
+
+    @Override
+    public int getCountWithWhereClause(String whereClause) {
+        return repository.getCountWithWhereClause(whereClause);
     }
 }
 

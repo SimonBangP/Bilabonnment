@@ -3,19 +3,22 @@ package com.example.bilabonnmenteksamensprojekt.models.system.alarms;
 public class WatchFilter {
 
     private int filterId;
-    private Filter filter;
-    private char filterOperator;
-    private int filterValue;
+    private String filterColumn;
+    private String filterOperator;
+    private String filterValue;
 
-    public WatchFilter(int filterId, Filter filter, char filterOperator, int filterValue) {
+    public WatchFilter() {
+    }
+
+    public WatchFilter(int filterId, String filterColumn, String filterOperator, String filterValue) {
         this.filterId = filterId;
-        this.filter = filter;
+        this.filterColumn = filterColumn;
         this.filterOperator = filterOperator;
         this.filterValue = filterValue;
     }
 
-    public WatchFilter(Filter filter, char filterOperator, int filterValue) {
-        this.filter = filter;
+    public WatchFilter(String filterColumn, String filterOperator, String filterValue) {
+        this.filterColumn = filterColumn;
         this.filterOperator = filterOperator;
         this.filterValue = filterValue;
     }
@@ -24,27 +27,31 @@ public class WatchFilter {
         return filterId;
     }
 
-    public Filter getFilter() {
-        return filter;
+    public void setFilterId(int filterId) {
+        this.filterId = filterId;
     }
 
-    public void setFilter(Filter filter) {
-        this.filter = filter;
+    public String getFilterColumn() {
+        return filterColumn;
     }
 
-    public char getFilterOperator() {
+    public void setFilterColumn(String filterColumn) {
+        this.filterColumn = filterColumn;
+    }
+
+    public String getFilterOperator() {
         return filterOperator;
     }
 
-    public void setFilterOperator(char filterOperator) {
+    public void setFilterOperator(String filterOperator) {
         this.filterOperator = filterOperator;
     }
 
-    public int getFilterValue() {
+    public String getFilterValue() {
         return filterValue;
     }
 
-    public void setFilterValue(int filterValue) {
+    public void setFilterValue(String filterValue) {
         this.filterValue = filterValue;
     }
 }

@@ -61,12 +61,7 @@ public class CarController {
 
     @GetMapping("cars/new")
     public String newRandomCar() {
-        CarEngine engine = new CarEngine(450, CarEngine.GearType.Automatgear, CarEngine.FuelType.Diesel, 9852, 12);
-        CarSpecification spec = new CarSpecification(engine, "Audi", "RSQ8", "", "Red");
-        Address address = new Address("Hanschristiansvej", 25, 2600, "Glostrup");
-        Customer customer = new Customer("Karl", "Smart", address, true, true, Timestamp.from(Instant.now()));
-        Car car = new Car(spec, 8542, false, false, "This is the story of a man named Stanley", customer);
-        carService.insertCar(car);
+
 
         return "cars/cars";
     }

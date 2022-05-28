@@ -86,4 +86,16 @@ public class BookingRepository {
         String sql = "UPDATE bookings SET Completed = 0 WHERE bookingId = ?";
         template.update(sql, bookingId);
     }
+
+    public int getCount() {
+        String sql = "SELECT COUNT(BookingId) FROM bookings";
+
+        return template.queryForObject(sql, Integer.class);
+    }
+
+    public int getCountWithWhereClause(String whereClause) {
+        String sql = "SELECT COUNT(BookingId) FROM bookings WHERE " + whereClause;
+
+        return template.queryForObject(sql, Integer.class);
+    }
 }

@@ -57,4 +57,16 @@ public class CustomerRepository {
         }
     }
 
+    public int getCount() {
+        String sql = "SELECT COUNT(CustomerId) FROM customers";
+
+        return template.queryForObject(sql, Integer.class);
+    }
+
+    public int getCountWithWhereClause(String whereClause) {
+        String sql = "SELECT COUNT(CustomerId) FROM customers WHERE " + whereClause;
+
+        return template.queryForObject(sql, Integer.class);
+    }
+
 }

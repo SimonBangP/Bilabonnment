@@ -86,4 +86,16 @@ public class UserRepository {
             return rs.getString(1);
         }, userId);
     }
+
+    public int getCount() {
+        String sql = "SELECT COUNT(UserId) FROM users";
+
+        return template.queryForObject(sql, Integer.class);
+    }
+
+    public int getCountWithWhereClause(String whereClause) {
+        String sql = "SELECT COUNT(UserId) FROM users WHERE " + whereClause;
+
+        return template.queryForObject(sql, Integer.class);
+    }
 }
