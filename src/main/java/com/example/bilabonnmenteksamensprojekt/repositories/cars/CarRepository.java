@@ -49,9 +49,16 @@ public class CarRepository {
         String sql = "SELECT * FROM cars WHERE CarId = ?";
         RowMapper<Car> rowMapper = new BeanPropertyRowMapper<>(Car.class);
 
-        return template.query(sql, (ResultSet rs, int rowNum) -> {
+        List<Car> cars = template.query(sql, (ResultSet rs, int rowNum) -> {
             return mapRow(rowMapper, rs, rowNum);
-        }, id).get(0);
+        }, id);
+
+        if (cars.size() <= 0) {
+            return null;
+        }
+        else {
+            return cars.get(0);
+        }
     }
 
     public int insertNewCar (Car car) {

@@ -2,7 +2,7 @@ package com.example.bilabonnmenteksamensprojekt.controllers;
 
 import com.example.bilabonnmenteksamensprojekt.models.system.Search;
 import com.example.bilabonnmenteksamensprojekt.services.SearchService;
-import com.example.bilabonnmenteksamensprojekt.services.UserAuthenticationService;
+import com.example.bilabonnmenteksamensprojekt.services.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +16,7 @@ import java.util.List;
 public class SearchController {
 
     @Autowired
-    UserAuthenticationService authenticationService;
+    UserService authenticationService;
 
     @Autowired
     SearchService searchService;

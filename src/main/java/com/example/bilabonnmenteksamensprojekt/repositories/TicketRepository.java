@@ -1,7 +1,7 @@
 package com.example.bilabonnmenteksamensprojekt.repositories;
 
 import com.example.bilabonnmenteksamensprojekt.models.system.Ticket;
-import com.example.bilabonnmenteksamensprojekt.services.UserAuthenticationService;
+import com.example.bilabonnmenteksamensprojekt.services.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 @Repository
@@ -18,18 +19,22 @@ public class TicketRepository {
     JdbcTemplate template;
 
     @Autowired
-    UserAuthenticationService userService;
+    UserService userService;
+
+    private Ticket mapRow(RowMapper<Ticket> rowMapper, ResultSet rs, int rowNum) throws SQLException {
+        Ticket foundTicket = rowMapper.mapRow(rs, rowNum);
+
+        foundTicket.setUser(userService.getUserById(rs.getInt(2)));
+
+        return foundTicket;
+    }
 
     public List<Ticket> getTickets (){
         String sql = "SELECT * FROM tickets";
         RowMapper<Ticket> rowMapper = new BeanPropertyRowMapper<>(Ticket.class);
 
         return template.query(sql, (ResultSet rs, int rowNum) -> {
-            Ticket foundTicket = rowMapper.mapRow(rs, rowNum);
-
-            foundTicket.setUser(userService.getUserById(rs.getInt(2)));
-
-            return foundTicket;
+            return mapRow(rowMapper, rs, rowNum);
         });
     }
 
@@ -57,4 +62,31 @@ public class TicketRepository {
         return template.queryForObject(sql, Integer.class, ticket.getUser().getUserId(), ticket.getSeverity().name(), ticket.getTicketName(), ticket.getTicketDescription()) > 0;
     }
 
+    public Ticket getTicketById(int id) {
+        String sql = "SELECT * FROM tickets WHERE TicketId = ?";
+        RowMapper<Ticket> rowMapper = new BeanPropertyRowMapper<>(Ticket.class);
+
+        List<Ticket> tickets = template.query(sql, (ResultSet rs, int rowNum) -> {
+            return mapRow(rowMapper, rs, rowNum);
+        }, id);
+
+        if (tickets.size() <= 0) {
+            return null;
+        }
+        else {
+            return tickets.get(0);
+        }
+    }
+
+    public void updateTicket(int id, Ticket ticket) {
+        String sql = "UPDATE tickets SET UserId = ?, Severity = ?, TicketName = ?, TicketDescription = ? WHERE TicketId = ?";
+
+        template.update(sql, ticket.getUser().getUserId(), ticket.getSeverity().name(), ticket.getTicketName(), ticket.getTicketDescription());
+    }
+
+    public void removeTicket(Ticket ticket) {
+        String sql = "DELETE FROM tickets WHERE TicketId = ?";
+
+        template.update(sql, ticket.getTicketId());
+    }
 }

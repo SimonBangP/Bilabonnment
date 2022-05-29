@@ -21,6 +21,14 @@ public class CustomerService implements SearchableAlarmService{
         return repository.getCustomers();
     }
 
+    public void insertCustomer(Customer customer) {
+        repository.insertCustomer(customer);
+    }
+
+    public void updateCustomer(int id, Customer customer) {
+        repository.updateCustomer(id, customer);
+    }
+
     @Override
     public int getCount() {
         return repository.getCount();

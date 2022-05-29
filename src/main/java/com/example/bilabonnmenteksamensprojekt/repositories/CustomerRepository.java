@@ -69,4 +69,17 @@ public class CustomerRepository {
         return template.queryForObject(sql, Integer.class);
     }
 
+    public void insertCustomer(Customer customer) {
+        String sql = "INSERT INTO customer VALUES (DEFAULT, ?, ? ,?, ?, ?, DEFAULT)";
+
+        template.update(sql, customer.getFirstName(), customer.getLastName(),
+                customer.getAddress().getAddressId(), customer.isIdentityValidated(), customer.isCreditValidated());
+    }
+
+    public void updateCustomer(int id, Customer customer) {
+        String sql = "UPDATE customers SET FirstName = ?, LastName = ?, AddressId = ?, IdentityValidated = ?, CreditValidated = ? WHERE CustomerId = ?";
+
+        template.update(sql, customer.getFirstName(), customer.getLastName(),
+                customer.getAddress().getAddressId(), customer.isIdentityValidated(), customer.isCreditValidated(), id);
+    }
 }

@@ -1,14 +1,15 @@
-package com.example.bilabonnmenteksamensprojekt.services;
+package com.example.bilabonnmenteksamensprojekt.services.users;
 
 import com.example.bilabonnmenteksamensprojekt.models.users.User;
 import com.example.bilabonnmenteksamensprojekt.repositories.UserRepository;
+import com.example.bilabonnmenteksamensprojekt.services.SearchableAlarmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class UserAuthenticationService implements SearchableAlarmService {
+public class UserService implements SearchableAlarmService {
 
     @Autowired
     UserRepository repository;
@@ -54,5 +55,21 @@ public class UserAuthenticationService implements SearchableAlarmService {
     @Override
     public int getCountWithWhereClause(String whereClause) {
         return repository.getCountWithWhereClause(whereClause);
+    }
+
+    public List<User> getUsers() {
+        return repository.getUsers();
+    }
+
+    public void insertUser(User user) {
+        repository.insertUser(user);
+    }
+
+    public void updateUser(int id, User user) {
+        repository.updateUser(id, user);
+    }
+
+    public void removeUser(User user) {
+        repository.removeUserById(user.getUserId());
     }
 }

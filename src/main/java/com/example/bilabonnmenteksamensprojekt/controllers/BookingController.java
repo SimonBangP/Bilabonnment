@@ -2,7 +2,7 @@ package com.example.bilabonnmenteksamensprojekt.controllers;
 
 import com.example.bilabonnmenteksamensprojekt.models.bookings.Booking;
 import com.example.bilabonnmenteksamensprojekt.services.BookingService;
-import com.example.bilabonnmenteksamensprojekt.services.UserAuthenticationService;
+import com.example.bilabonnmenteksamensprojekt.services.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +19,7 @@ public class BookingController {
     BookingService bookingService;
 
     @Autowired
-    UserAuthenticationService authenticationService;
+    UserService authenticationService;
 
     @GetMapping("/bookings")
     public String viewBookings(HttpSession session, Model model){

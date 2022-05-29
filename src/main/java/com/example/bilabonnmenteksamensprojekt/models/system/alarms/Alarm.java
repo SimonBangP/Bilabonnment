@@ -7,7 +7,7 @@ public class Alarm {
 
     private int alarmId;
     private WatchCategory watchCategory;
-    private WatchFilter watchFilter;
+    private String filterClause;
     private int watchValue;
     private String watchOperator;
     private User user;
@@ -16,19 +16,19 @@ public class Alarm {
     public Alarm() {
     }
 
-    public Alarm(int alarmId, WatchCategory watchCategory, WatchFilter watchFilter, int watchValue, String watchOperator, User user, Severity severity) {
+    public Alarm(int alarmId, WatchCategory watchCategory, String filterClause, int watchValue, String watchOperator, User user, Severity severity) {
         this.alarmId = alarmId;
         this.watchCategory = watchCategory;
-        this.watchFilter = watchFilter;
+        this.filterClause = filterClause;
         this.watchValue = watchValue;
         this.watchOperator = watchOperator;
         this.user = user;
         this.severity = severity;
     }
 
-    public Alarm(WatchCategory watchCategory, WatchFilter watchFilter, int watchValue, String watchOperator, User user, Severity severity) {
+    public Alarm(WatchCategory watchCategory, String filterClause, int watchValue, String watchOperator, User user, Severity severity) {
         this.watchCategory = watchCategory;
-        this.watchFilter = watchFilter;
+        this.filterClause = filterClause;
         this.watchValue = watchValue;
         this.watchOperator = watchOperator;
         this.user = user;
@@ -51,12 +51,12 @@ public class Alarm {
         this.watchCategory = watchCategory;
     }
 
-    public WatchFilter getWatchFilter() {
-        return watchFilter;
+    public String getFilterClause() {
+        return filterClause;
     }
 
-    public void setWatchFilter(WatchFilter watchFilter) {
-        this.watchFilter = watchFilter;
+    public void setFilterClause(String filterClause) {
+        this.filterClause = filterClause;
     }
 
     public int getWatchValue() {

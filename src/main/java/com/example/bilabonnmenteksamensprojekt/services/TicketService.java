@@ -32,6 +32,18 @@ public class TicketService implements SearchableAlarmService{
     public int getCountWithWhereClause(String whereClause) {
         return repository.getCountWithWhereClause(whereClause);
     }
+
+    public Ticket getTicketById(int id) {
+        return repository.getTicketById(id);
+    }
+
+    public void updateTicket(int id, Ticket ticket) {
+        repository.updateTicket(id, ticket);
+    }
+
+    public void removeTicket(Ticket ticket) {
+        repository.removeTicket(ticket);
+    }
 }
 
 

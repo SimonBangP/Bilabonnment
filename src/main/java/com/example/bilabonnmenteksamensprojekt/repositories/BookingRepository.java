@@ -98,4 +98,18 @@ public class BookingRepository {
 
         return template.queryForObject(sql, Integer.class);
     }
+
+    public void insertBooking(Booking booking) {
+        String sql = "INSERT INTO bookings VALUES (DEFAULT, ?, ?, ?, ?, ?, DEFAULT)";
+
+        template.update(sql, booking.getCustomer().getCustomerId(), booking.getCar().getCarId(), booking.getPickupLocation().getLocationId(),
+                booking.getDeliveryDate(), booking.getReturnDate());
+    }
+
+    public void updateBooking(int id, Booking booking) {
+        String sql = "UPDATE bookings SET CustomerId = ?, CarId = ?, PickupLocationId = ?, DeliveryDate = ?, ReturnDate = ?, Completed = ?";
+
+        template.update(sql, booking.getCustomer().getCustomerId(), booking.getCar().getCarId(), booking.getPickupLocation().getLocationId(),
+                booking.getDeliveryDate(), booking.getReturnDate(), booking.isCompleted());
+    }
 }

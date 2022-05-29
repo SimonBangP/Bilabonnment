@@ -7,6 +7,9 @@ public class UserRight implements Serializable {
     private int RightsId;
     private String description;
 
+    public UserRight() {
+    }
+
     public UserRight(int rightsId, String description) {
         RightsId = rightsId;
         this.description = description;
@@ -14,6 +17,10 @@ public class UserRight implements Serializable {
 
     public UserRight(String description) {
         this.description = description;
+    }
+
+    public void setRightsId(int rightsId) {
+        RightsId = rightsId;
     }
 
     public int getRightsId() {

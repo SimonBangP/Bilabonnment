@@ -1,7 +1,7 @@
 package com.example.bilabonnmenteksamensprojekt.repositories.alarms;
 
 import com.example.bilabonnmenteksamensprojekt.models.system.alarms.Alarm;
-import com.example.bilabonnmenteksamensprojekt.services.UserAuthenticationService;
+import com.example.bilabonnmenteksamensprojekt.services.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,10 +18,7 @@ public class AlarmRepository {
     JdbcTemplate template;
 
     @Autowired
-    WatchFilterRepository watchFilterRepository;
-
-    @Autowired
-    UserAuthenticationService userService;
+    UserService userService;
 
     public List<Alarm> getAll() {
         String sql = "SELECT * FROM alarms";
@@ -31,9 +28,48 @@ public class AlarmRepository {
             Alarm foundAlarm = rowMapper.mapRow(rs, rowNum);
 
             foundAlarm.setUser(userService.getUserById(rs.getInt(6)));
-            foundAlarm.setWatchFilter(watchFilterRepository.getWatchFilterById(rs.getInt(3)));
 
             return foundAlarm;
         });
+    }
+
+    public Alarm getAlarmById(int id) {
+        String sql = "SELECT * FROM alarms WHERE AlarmId = ?";
+        RowMapper<Alarm> rowMapper = new BeanPropertyRowMapper<>(Alarm.class);
+
+        List<Alarm> alarms = template.query(sql, (ResultSet rs, int rowNum) -> {
+            Alarm foundAlarm = rowMapper.mapRow(rs, rowNum);
+
+            foundAlarm.setUser(userService.getUserById(rs.getInt(6)));
+
+            return foundAlarm;
+        }, id);
+
+        if (alarms.size() <= 0) {
+            return null;
+        }
+        else {
+            return alarms.get(0);
+        }
+    }
+
+    public void insertAlarm(Alarm alarm) {
+        String sql = "INSERT INTO alarms VALUES (DEFAULT, ?, ?, ?, ?, ?, ?)";
+
+        template.update(sql, alarm.getWatchCategory().name(), alarm.getFilterClause(), alarm.getWatchValue(),
+                            alarm.getWatchOperator(), alarm.getUser().getUserId(), alarm.getSeverity().name());
+    }
+
+    public void updateAlarm(int id, Alarm alarm) {
+        String sql = "UPDATE alarms SET WatchCategory = ?, FilterClause = ?, WatchValue = ?, WatchOperator = ?, UserId = ?, Severity = ? WHERE AlarmId = ?";
+
+        template.update(sql, alarm.getWatchCategory().name(), alarm.getFilterClause(), alarm.getWatchValue(),
+                alarm.getWatchOperator(), alarm.getUser().getUserId(), alarm.getSeverity().name(), id);
+    }
+
+    public void removeAlarmById(int id) {
+        String sql = "DELETE FROM alarms WHERE AlarmId = ?";
+
+        template.update(sql, id);
     }
 }

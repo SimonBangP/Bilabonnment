@@ -4,6 +4,7 @@ import com.example.bilabonnmenteksamensprojekt.models.system.Ticket;
 import com.example.bilabonnmenteksamensprojekt.models.system.alarms.Alarm;
 import com.example.bilabonnmenteksamensprojekt.repositories.alarms.AlarmRepository;
 import com.example.bilabonnmenteksamensprojekt.services.cars.CarService;
+import com.example.bilabonnmenteksamensprojekt.services.users.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class AlarmService {
     TicketService ticketService;
 
     @Autowired
-    UserAuthenticationService userService;
+    UserService userService;
 
     public final int ALARM_DURATION = 60000;
 
@@ -87,7 +88,7 @@ public class AlarmService {
     }
 
     private boolean getCountResult(SearchableAlarmService service, Alarm alarm) {
-        String whereClause = parseWhereClause(alarm);
+        String whereClause = alarm.getFilterClause();
 
         logger.debug("Tjekker alarm " + alarm.getAlarmId() + ": " + whereClause);
 
@@ -121,21 +122,32 @@ public class AlarmService {
         return result;
     }
 
-    private String parseWhereClause(Alarm alarm) {
-        String column = alarm.getWatchFilter().getFilterColumn();
-        String operator = alarm.getWatchFilter().getFilterOperator();
-        String value = alarm.getWatchFilter().getFilterValue();
-
-        return column + " " + operator + " " + value;
-    }
-
     private void createAlarmTicket(Alarm alarm) {
         Ticket ticket = new Ticket(alarm.getUser(), alarm.getSeverity(), "ALARM: " + alarm.getWatchCategory().name(),
-                "En alarm er blevet ramt: " + parseWhereClause(alarm));
+                "En alarm er blevet ramt: " + alarm.getFilterClause());
 
         if (!ticketService.ticketExists(ticket)) {
             ticketService.insertTicket(ticket);
         }
     }
 
+    public List<Alarm> getAllAlarms() {
+        return repository.getAll();
+    }
+
+    public Alarm getAlarmById(int id) {
+        return repository.getAlarmById(id);
+    }
+
+    public void insertAlarm(Alarm alarm) {
+        repository.insertAlarm(alarm);
+    }
+
+    public void updateAlarm(int id, Alarm alarm) {
+        repository.updateAlarm(id, alarm);
+    }
+
+    public void removeAlarm(Alarm alarm) {
+        repository.removeAlarmById(alarm.getAlarmId());
+    }
 }

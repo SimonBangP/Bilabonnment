@@ -29,6 +29,14 @@ public class BookingService implements SearchableAlarmService{
         repository.endBooking(bookingId);
     }
 
+    public void insertBooking(Booking booking) {
+        repository.insertBooking(booking);
+    }
+
+    public void updateBooking(int id, Booking booking) {
+        repository.updateBooking(id, booking);
+    }
+
     @Override
     public int getCount() {
         return repository.getCount();

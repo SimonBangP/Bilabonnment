@@ -2,11 +2,7 @@ package com.example.bilabonnmenteksamensprojekt.controllers;
 
 
 import com.example.bilabonnmenteksamensprojekt.models.cars.Car;
-import com.example.bilabonnmenteksamensprojekt.models.cars.CarEngine;
-import com.example.bilabonnmenteksamensprojekt.models.cars.CarSpecification;
-import com.example.bilabonnmenteksamensprojekt.models.customers.Customer;
-import com.example.bilabonnmenteksamensprojekt.models.locations.Address;
-import com.example.bilabonnmenteksamensprojekt.services.UserAuthenticationService;
+import com.example.bilabonnmenteksamensprojekt.services.users.UserService;
 import com.example.bilabonnmenteksamensprojekt.services.cars.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,9 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpSession;
-import java.sql.Timestamp;
-import java.time.Instant;
-import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -27,7 +20,7 @@ public class CarController {
     CarService carService;
 
     @Autowired
-    UserAuthenticationService authenticationService;
+    UserService authenticationService;
 
     @GetMapping("/cars")
     public String viewCars(HttpSession session, Model model){
