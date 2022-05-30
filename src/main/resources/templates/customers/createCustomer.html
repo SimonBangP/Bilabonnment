@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../css/shared.css">
+    <link rel="stylesheet" href="../css/sidenav.css">
+    <link rel="stylesheet" href="../css/popup.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Opret kunde</title>
+</head>
+<body>
+<div id="vertical-body-contents">
+    <div id="body-container">
+        <div id="details-body">
+            <div id="details-input">
+                <h1>Opret kunde</h1>
+                <div id="inputs">
+                    <form action="/v1/customer/" method="post">
+                        <div class="input-row">
+                            <div class="input-column">
+                                <p>Fornavn:</p><input type="text" name="FirstName">
+                                <p>Efternavn:</p><input type="text" name="LastName">
+                                <p>By:</p><input type="text" name="City">
+                                <p>Postnummer:</p><input type="text" name="ZipCode">
+                                <p>Adresse (Gade kun):</p><input type="text" name="Street">
+                                <p>Husnummer:</p><input type="text" name="HouseNumber">
+                            </div>
+                        </div>
+                        <div class="checkboxes">
+                            <br>
+                                <label>
+                                    <input type="checkbox" name="IdentityValidated" value="">Er identitet bekræftet?
+                                </label>
+                            <br>
+                            <br>
+                                <label>
+                                    <input type="checkbox" name="CreditValidated" value="">Er kredit valideret?
+                                </label>
+                            <br>
+                        </div>
+                        <button type="submit" class="login-button" style="margin-top: 20px;margin-bottom: 20px">
+                            <p>Gem og opret kunde</p>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

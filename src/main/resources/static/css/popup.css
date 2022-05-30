@@ -1,6 +1,4 @@
 select, input {
-    box-sizing: border-box;
-    width: 100%;
 }
 
 #details-body {
@@ -78,4 +76,15 @@ select, input {
     margin-top: 40%;
     font-size: 29px;
     font-weight: bold;
+}
+.checkboxes label {
+    display: inline-block;
+    padding-right: 10px;
+    white-space: nowrap;
+}
+.checkboxes input {
+    vertical-align: middle;
+}
+.checkboxes label span {
+    vertical-align: middle;
 }

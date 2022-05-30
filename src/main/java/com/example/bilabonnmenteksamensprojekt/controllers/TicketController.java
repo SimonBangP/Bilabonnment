@@ -34,9 +34,10 @@ public class TicketController {
     }
 
     @GetMapping ("/createTickets")
-    public String createTickets (HttpSession session){
+    public String createTickets (HttpSession session, Model model){
         if (session.getAttribute("authenticated") != null &&((boolean) session.getAttribute("authenticated"))) {
-
+            User user = (User)session.getAttribute("userData");
+            model.addAttribute("UserID", user.getUserId());
             return "/tickets/createTickets";
         }
         else {
@@ -50,6 +51,7 @@ public class TicketController {
         Ticket ticket = new Ticket(currentUser, severity, name, description);
         ticketService.insertTicket(ticket);
         return "redirect:/tickets";
+
 
     }
 

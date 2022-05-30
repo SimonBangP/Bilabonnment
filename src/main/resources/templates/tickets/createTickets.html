@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="../css/shared.css">
     <link rel="stylesheet" href="../css/sidenav.css">
-    <link rel="stylesheet" href="../css/createTicket.css">
+    <link rel="stylesheet" href="../css/popup.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Opret ticket</title>
 </head>
@@ -14,10 +14,11 @@
             <div id="details-input">
                 <h1>Opret ticket</h1>
                 <div id="inputs">
-                    <form action="/createTicket" method="post">
+                    <form action="/v1/tickets/" method="post">
+                        <input hidden="true" name="UserId" th:value="${UserID}">
                         <div class="input-row">
                             <div class="input-column">
-                                <p>Emne:</p><input type="text" name="Name">
+                                <p>Emne:</p><input type="text" name="TicketName">
                                 <p>Prioritet:</p><select name="Severity" placeholder="MEDIUM">
                                 <option th:each="severity : ${T(com.example.bilabonnmenteksamensprojekt.models.system.Severity).values()}"
                                         th:value="${severity}"
@@ -28,7 +29,7 @@
                         </div>
                         <div class="input-row">
                             <div class="input-column">
-                                <p>Beskrivelse:</p><input type="text" name="Description" style="width: 150%; padding-bottom: 15vh" placeholder="Indtast beskrivelse...">
+                                <p>Beskrivelse:</p><textarea type="text" name="Description" style="width: 98%; padding-bottom: 15vh" placeholder="Indtast beskrivelse..."></textarea>
                             </div>
 
                         </div>
