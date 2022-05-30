@@ -44,6 +44,10 @@ public class TicketService implements SearchableAlarmService{
     public void removeTicket(Ticket ticket) {
         repository.removeTicket(ticket);
     }
+
+    public int getTicketId(Ticket ticket){
+        return repository.getTicketId(ticket);
+    }
 }
 
 

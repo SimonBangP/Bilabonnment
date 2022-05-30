@@ -67,7 +67,7 @@ public class CustomersApi {
 
         locationsService.checkAddress(address);
 
-        Customer customer = new Customer(firstName, lastName, address, identityValidated, identityValidated, null);
+        Customer customer = new Customer(firstName, lastName, address, identityValidated, creditValidated, null);
         customerService.insertCustomer(customer);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
