@@ -113,6 +113,11 @@ public class CarRepository {
         return template.queryForObject(sql, Integer.class);
     }
 
+    public int getReturnCar (){
+        String sql = "SELECT COUNT(Status) FROM view_cars WHERE Status = 'Bilen er blevet planlagt til returnering idag'";
+        return template.queryForObject(sql, Integer.class);
+    }
+
     public int getCountWithWhereClause(String whereClause) {
         String sql = "SELECT COUNT(CarId) FROM view_cars WHERE " + whereClause;
 

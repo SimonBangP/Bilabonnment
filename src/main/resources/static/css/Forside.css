@@ -82,5 +82,17 @@
     margin-top: 40%;
     margin-left: 2%;
     border: 1px solid lightgrey;
+}
 
+#informations-box {
+    text-align: right;
+    padding-top: -10%;
+    margin-top: -5%;
+    margin-bottom: -5%;
+    font-size: 50px;
+}
+.informations-tekst {
+    margin-top: 2%;
+    margin-bottom: 4%;
+    font-size: 20px;
 }
