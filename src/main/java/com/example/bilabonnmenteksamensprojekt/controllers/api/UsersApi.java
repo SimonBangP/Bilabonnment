@@ -136,10 +136,9 @@ public class UsersApi {
 
     @Operation(summary = "Removes a right for a user", responses = {@ApiResponse(responseCode = "200"), @ApiResponse(responseCode = "400"), @ApiResponse(responseCode = "404")})
     @DeleteMapping("/rights/{id}")
-    public ResponseEntity<Void> removeRightFromUser(@PathVariable int Id, @RequestParam(name = "RightsDescription", required = false)Rights description,
-                                                 @RequestParam(name = "RightsId", required = false)int rightsId) {
+    public ResponseEntity<Void> removeRightFromUser(@PathVariable int id, @RequestParam(name = "RightsDescription", required = false)Rights description) {
 
-        User user = userService.getUserById(Id);
+        User user = userService.getUserById(id);
 
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -149,7 +148,7 @@ public class UsersApi {
 
         int accessIndex = 0;
         for (UserRight right : user.getRights()) {
-            if (right.getRightsId() != rightsId || right.getDescription() != description) {
+            if (right.getDescription() != description) {
                 newRights[accessIndex] = right;
                 accessIndex++;
             }
@@ -163,19 +162,15 @@ public class UsersApi {
 
     @Operation(summary = "Adds a right for a user", responses = {@ApiResponse(responseCode = "200"), @ApiResponse(responseCode = "400"), @ApiResponse(responseCode = "404")})
     @PostMapping("/rights/{id}")
-    public ResponseEntity<Void> addRightToUser(@PathVariable int Id, @RequestParam(name = "RightsDescription", required = false)Rights description,
-                                                    @RequestParam(name = "RightsId", required = false)int rightsId) {
+    public ResponseEntity<Void> addRightToUser(@PathVariable int id, @RequestParam(name = "RightsDescription", required = false)Rights description) {
 
-        User user = userService.getUserById(Id);
+        User user = userService.getUserById(id);
 
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        UserRight foundRight = rightsService.getRightById(rightsId);
-        if (foundRight == null) {
-            foundRight = rightsService.getRightByDescription(description.name());
-        }
+        UserRight foundRight = rightsService.getRightByDescription(description.name());
 
         if (foundRight == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
