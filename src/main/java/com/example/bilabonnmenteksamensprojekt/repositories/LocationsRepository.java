@@ -2,6 +2,7 @@ package com.example.bilabonnmenteksamensprojekt.repositories;
 
 import com.example.bilabonnmenteksamensprojekt.models.locations.Address;
 import com.example.bilabonnmenteksamensprojekt.models.locations.Location;
+import com.example.bilabonnmenteksamensprojekt.models.system.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -38,14 +39,6 @@ public class LocationsRepository {
         return foundLocation;
     }
 
-    public Address getAddressById(int id) {
-        String sql = "SELECT * FROM addresses WHERE AddressId = ?";
-        RowMapper<Address> rowMapper = new BeanPropertyRowMapper<>(Address.class);
-
-        return template.query(sql, (ResultSet rs, int rowNum) -> {
-            return mapAddressRow(rowMapper, rs, rowNum);
-        }, id).get(0);
-    }
 
     public Location getLocationById(int id) {
         String sql = "SELECT * FROM locations WHERE LocationId = ?";
@@ -74,7 +67,7 @@ public class LocationsRepository {
         }, id).get(0);
     }
 
-    public void insertAddress(Address address) {
+    public void insertNewAddress(Address address) {
         String sql = "INSERT INTO addresses VALUES (DEFAULT, ?, ?, ?)";
 
         insertZipCode(address.getZipCode(), address.getCity());
@@ -176,5 +169,29 @@ public class LocationsRepository {
             return mapLocationRow(rowMapper, rs, rowNum);
         });
     }
+    public boolean addressExists(Address address) {
+        String sql = "SELECT COUNT(AddressId) FROM addresses WHERE Street = ? AND HouseNumber = ? AND ZipCode = ?";
 
+        return template.queryForObject(sql, Integer.class, address.getStreet(), address.getHouseNumber(), address.getZipCode()) > 0;
+    }
+
+    public Address getAddressById(int id) {
+        String sql = "SELECT * FROM addresses WHERE AddressId = ?";
+        RowMapper<Address> rowMapper = new BeanPropertyRowMapper<>(Address.class);
+
+        return template.query(sql, (ResultSet rs, int rowNum) -> {
+            return mapAddressRow(rowMapper, rs, rowNum);
+        }, id).get(0);
+    }
+
+    public int checkAddress(Address address) {
+        String sql = "SELECT AddressId FROM addresses WHERE Street = ? AND HouseNumber = ? AND ZipCode = ?";
+        if (addressExists(address)) {
+            return template.queryForObject(sql, Integer.class, address.getStreet(), address.getHouseNumber(), address.getZipCode());
+        }
+        else {
+            insertNewAddress(address);
+            return template.queryForObject(sql, Integer.class, address.getStreet(), address.getHouseNumber(), address.getZipCode());
+        }
+    }
 }
