@@ -21,7 +21,6 @@ public class CustomerRepository {
     @Autowired
     LocationsService locationsService;
 
-
     public List<Customer> getCustomers() {
         String sql = "SELECT * FROM customers";
 
