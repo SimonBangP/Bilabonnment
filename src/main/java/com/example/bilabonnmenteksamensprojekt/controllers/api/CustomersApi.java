@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/customer")
+@RequestMapping("/v1/customers")
 public class CustomersApi {
 
     @Autowired
@@ -55,7 +55,7 @@ public class CustomersApi {
     }
 
     @Operation(summary = "Inserts an customer", responses = {@ApiResponse(responseCode = "201"), @ApiResponse(responseCode = "400")})
-    @PostMapping("/v1/createCustomer")
+    @PostMapping("/")
     public ResponseEntity<Void> insert(@RequestParam(name = "FirstName")String firstName, @RequestParam("LastName")String lastName,
                                        @RequestParam(name = "Street")String street,@RequestParam(name = "HouseNumber")int houseNumber,
                                        @RequestParam(name = "ZipCode")int zipCode, @RequestParam(name = "City")String city,
@@ -67,7 +67,7 @@ public class CustomersApi {
 
         locationsService.checkAddress(address);
 
-        Customer customer = new Customer(firstName, lastName, address, identityValidated, creditValidated, null);
+        Customer customer = new Customer(firstName, lastName, address, identityValidated, identityValidated, null);
         customerService.insertCustomer(customer);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

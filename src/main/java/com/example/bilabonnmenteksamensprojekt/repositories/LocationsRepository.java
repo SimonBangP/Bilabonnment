@@ -73,6 +73,7 @@ public class LocationsRepository {
         insertZipCode(address.getZipCode(), address.getCity());
 
         template.update(sql, address.getStreet(), address.getHouseNumber(), address.getZipCode());
+        address.setAddressId(getAddressId(address));
     }
 
     private void insertZipCode(int zipCode, String city) {
@@ -169,10 +170,17 @@ public class LocationsRepository {
             return mapLocationRow(rowMapper, rs, rowNum);
         });
     }
+
     public boolean addressExists(Address address) {
         String sql = "SELECT COUNT(AddressId) FROM addresses WHERE Street = ? AND HouseNumber = ? AND ZipCode = ?";
 
         return template.queryForObject(sql, Integer.class, address.getStreet(), address.getHouseNumber(), address.getZipCode()) > 0;
+    }
+
+    public int getAddressId(Address address) {
+        String sql = "SELECT AddressId FROM addresses WHERE Street = ? AND HouseNumber = ? AND ZipCode = ?";
+
+        return template.queryForObject(sql, Integer.class, address.getStreet(), address.getHouseNumber(), address.getZipCode());
     }
 
     public Address getAddressById(int id) {
@@ -185,13 +193,11 @@ public class LocationsRepository {
     }
 
     public void checkAddress(Address address) {
-        String sql = "SELECT AddressId FROM addresses WHERE Street = ? AND HouseNumber = ? AND ZipCode = ?";
-        if (addressExists(address)) {
-            template.queryForObject(sql, Integer.class, address.getStreet(), address.getHouseNumber(), address.getZipCode());
+        if (!addressExists(address)) {
+            insertNewAddress(address);
         }
         else {
-            insertNewAddress(address);
-            template.queryForObject(sql, Integer.class, address.getStreet(), address.getHouseNumber(), address.getZipCode());
+            address.setAddressId(getAddressId(address));
         }
     }
 }

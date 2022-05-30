@@ -67,6 +67,8 @@ public class CarService implements SearchableAlarmService {
         return repository.getCount();
     }
 
+    public int getReturnCar (){return repository.getReturnCar();}
+
     @Override
     public int getCountWithWhereClause(String whereClause) {
         return repository.getCountWithWhereClause(whereClause);

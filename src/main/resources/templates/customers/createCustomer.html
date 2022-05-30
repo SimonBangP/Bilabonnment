@@ -14,7 +14,7 @@
             <div id="details-input">
                 <h1>Opret kunde</h1>
                 <div id="inputs">
-                    <form action="/v1/createCustomer/" method="post">
+                    <form action="/v1/customers/" method="post">
                         <div class="input-row">
                             <div class="input-column">
                                 <p>Fornavn:</p><input type="text" name="FirstName">
@@ -28,12 +28,14 @@
                         <div class="checkboxes">
                             <br>
                                 <label>
-                                    <input type="checkbox" name="IdentityValidated" value="">Er identitet bekræftet?
+                                    <input id="identityCheckbox" type="checkbox">Er identitet bekræftet?
+                                    <input id="identityValue" hidden="true" name="IdentityValidated">
                                 </label>
                             <br>
                             <br>
                                 <label>
-                                    <input type="checkbox" name="CreditValidated" value="">Er kredit valideret?
+                                    <input id="creditCheckbox" type="checkbox">Er kredit valideret?
+                                    <input hidden="true" name="CreditValidated" id="creditValue">
                                 </label>
                             <br>
                         </div>
@@ -47,5 +49,22 @@
 
     </div>
 </div>
+<script>
+    const identityChecbox = document.getElementById("identityCheckbox");
+    const creditCheckbox = document.getElementById("identityCheckbox");
+
+    identityChecbox.addEventListener("change", () => {
+        document.getElementById("identityValue").value = identityChecbox.checked;
+    })
+
+    creditCheckbox.addEventListener("change", () => {
+        document.getElementById("creditValue").value = creditCheckbox.checked;
+    })
+
+    window.addEventListener("load", () => {
+        document.getElementById("identityValue").value = identityChecbox.checked;
+        document.getElementById("creditValue").value = creditCheckbox.checked;
+    })
+</script>
 </body>
 </html>

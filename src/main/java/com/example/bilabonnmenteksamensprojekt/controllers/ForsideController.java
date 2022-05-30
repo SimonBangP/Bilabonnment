@@ -48,6 +48,9 @@ public class ForsideController {
             int carsPriceAmount = carService.getTotalPrice();
             model.addAttribute("totalPrice", carsPriceAmount);
 
+            int carsReturn = carService.getReturnCar();
+            model.addAttribute("returnCars", carsReturn);
+
             return "forside";
         }
         else {
