@@ -60,6 +60,11 @@
     creditCheckbox.addEventListener("change", () => {
         document.getElementById("creditValue").value = creditCheckbox.checked;
     })
+
+    window.addEventListener("load", () => {
+        document.getElementById("identityValue").value = identityChecbox.checked;
+        document.getElementById("creditValue").value = creditCheckbox.checked;
+    })
 </script>
 </body>
 </html>
