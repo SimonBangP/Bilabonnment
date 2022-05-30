@@ -69,7 +69,8 @@ public class CarsApi {
                                  @RequestParam(name = "FuelType")CarEngine.FuelType fuelType,
                                  @RequestParam(name = "Emissions")int emissions, @RequestParam(name = "KilometersPerLiter")int kilometersPerLiter,
                                  @RequestParam(required = false, name = "EnginePower") int enginePower, @RequestParam(name = "Brand")String brand,
-                                 @RequestParam(name = "Model")String model, @RequestParam(name = "Variant")String variant, @RequestParam(name = "Color")String color,
+                                 @RequestParam(name = "Model")String model, @RequestParam(name = "Variant", required = false)String variant,
+                                 @RequestParam(name = "Color")String color,
                                  @RequestParam(name = "Price")int price, @RequestParam(name = "insuranceIncluded")boolean insuranceIncluded,
                                  @RequestParam(name = "OwnersFeeIncluded")boolean ownersFeeIncluded, @RequestParam(name = "Description")String description) {
         CarEngine engine = new CarEngine(enginePower, gearType, fuelType, emissions, kilometersPerLiter);

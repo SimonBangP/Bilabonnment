@@ -5,17 +5,17 @@ import java.io.Serializable;
 public class UserRight implements Serializable {
 
     private int RightsId;
-    private String description;
+    private Rights description;
 
     public UserRight() {
     }
 
-    public UserRight(int rightsId, String description) {
+    public UserRight(int rightsId, Rights description) {
         RightsId = rightsId;
         this.description = description;
     }
 
-    public UserRight(String description) {
+    public UserRight(Rights description) {
         this.description = description;
     }
 
@@ -27,11 +27,11 @@ public class UserRight implements Serializable {
         return RightsId;
     }
 
-    public String getDescription() {
+    public Rights getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(Rights description) {
         this.description = description;
     }
 }

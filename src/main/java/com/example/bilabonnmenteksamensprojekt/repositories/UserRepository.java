@@ -117,6 +117,7 @@ public class UserRepository {
         String sql = "INSERT INTO users VALUES (DEFAULT, ?, ?, ?, ?, ?)";
 
         template.update(sql, user.getFirstName(), user.getLastName(), user.getLocation().getLocationId(), user.getUsername(), user.getUserPassword());
+        user.setUserId(getUserId(user.getUsername()));
         rightsService.updateRightsForUser(user);
     }
 

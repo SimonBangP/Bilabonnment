@@ -4,6 +4,7 @@ import com.example.bilabonnmenteksamensprojekt.models.locations.Location;
 import com.example.bilabonnmenteksamensprojekt.models.system.Severity;
 import com.example.bilabonnmenteksamensprojekt.models.system.alarms.Alarm;
 import com.example.bilabonnmenteksamensprojekt.models.system.alarms.WatchCategory;
+import com.example.bilabonnmenteksamensprojekt.models.users.Rights;
 import com.example.bilabonnmenteksamensprojekt.models.users.User;
 import com.example.bilabonnmenteksamensprojekt.models.users.UserRight;
 import com.example.bilabonnmenteksamensprojekt.services.LocationsService;
@@ -72,16 +73,17 @@ public class UsersApi {
     @PostMapping("/")
     public ResponseEntity<Void> insert(@RequestParam(name = "FirstName")String firstName, @RequestParam(name = "LastName")String lastName,
                                        @RequestParam(name = "LocationId")int locationId, @RequestParam(name = "Username")String username,
-                                       @RequestParam(name = "Password")String password, @RequestParam(name = "UserRights")UserRight[] rights) {
+                                       @RequestParam(name = "Password")String password, @RequestParam(name = "UserRights")Rights[] rights) {
 
         Location location = locationsService.getLocationById(locationId);
+        List<UserRight> userRights = rightsService.getRightsByDescriptions(rights);
 
 
         if (location == null) {
             return new ResponseEntity("Location with LocationId: " + locationId + " not found", HttpStatus.BAD_REQUEST);
         }
 
-        User user = new User(firstName, lastName, location, username, password, rights);
+        User user = new User(firstName, lastName, location, username, password, userRights.toArray(new UserRight[] {}));
 
         userService.insertUser(user);
         return new ResponseEntity(HttpStatus.CREATED);
@@ -91,16 +93,16 @@ public class UsersApi {
     @PostMapping("/{id}")
     public ResponseEntity<Void> update(@PathVariable int id, @RequestParam(name = "FirstName")String firstName, @RequestParam(name = "LastName")String lastName,
                                        @RequestParam(name = "LocationId")int locationId, @RequestParam(name = "Username")String username,
-                                       @RequestParam(name = "Password")String password, @RequestParam(name = "UserRights")UserRight[] rights) {
+                                       @RequestParam(name = "Password")String password, @RequestParam(name = "UserRightDescriptions")Rights[] rights) {
 
         Location location = locationsService.getLocationById(locationId);
-
+        List<UserRight> userRights = rightsService.getRightsByDescriptions(rights);
 
         if (location == null) {
             return new ResponseEntity("Location with LocationId: " + locationId + " not found", HttpStatus.BAD_REQUEST);
         }
 
-        User user = new User(firstName, lastName, location, username, password, rights);
+        User user = new User(firstName, lastName, location, username, password, userRights.toArray(new UserRight[] {}));
 
         userService.updateUser(id, user);
         return new ResponseEntity(HttpStatus.OK);
@@ -134,12 +136,8 @@ public class UsersApi {
 
     @Operation(summary = "Removes a right for a user", responses = {@ApiResponse(responseCode = "200"), @ApiResponse(responseCode = "400"), @ApiResponse(responseCode = "404")})
     @DeleteMapping("/rights/{id}")
-    public ResponseEntity<Void> removeRightFromUser(@PathVariable int Id, @RequestParam(name = "RightsDescription", required = false)String description,
+    public ResponseEntity<Void> removeRightFromUser(@PathVariable int Id, @RequestParam(name = "RightsDescription", required = false)Rights description,
                                                  @RequestParam(name = "RightsId", required = false)int rightsId) {
-
-        if (description.trim().equals("") && rightsId == 0) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
 
         User user = userService.getUserById(Id);
 
@@ -151,7 +149,7 @@ public class UsersApi {
 
         int accessIndex = 0;
         for (UserRight right : user.getRights()) {
-            if (right.getRightsId() != rightsId || !right.getDescription().equalsIgnoreCase(description)) {
+            if (right.getRightsId() != rightsId || right.getDescription() != description) {
                 newRights[accessIndex] = right;
                 accessIndex++;
             }
@@ -165,12 +163,8 @@ public class UsersApi {
 
     @Operation(summary = "Adds a right for a user", responses = {@ApiResponse(responseCode = "200"), @ApiResponse(responseCode = "400"), @ApiResponse(responseCode = "404")})
     @PostMapping("/rights/{id}")
-    public ResponseEntity<Void> addRightToUser(@PathVariable int Id, @RequestParam(name = "RightsDescription", required = false)String description,
+    public ResponseEntity<Void> addRightToUser(@PathVariable int Id, @RequestParam(name = "RightsDescription", required = false)Rights description,
                                                     @RequestParam(name = "RightsId", required = false)int rightsId) {
-
-        if (description.trim().equals("") && rightsId == 0) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
 
         User user = userService.getUserById(Id);
 
@@ -180,7 +174,7 @@ public class UsersApi {
 
         UserRight foundRight = rightsService.getRightById(rightsId);
         if (foundRight == null) {
-            foundRight = rightsService.getRightByDescription(description);
+            foundRight = rightsService.getRightByDescription(description.name());
         }
 
         if (foundRight == null) {

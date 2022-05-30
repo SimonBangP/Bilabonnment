@@ -1,13 +1,13 @@
 package com.example.bilabonnmenteksamensprojekt.services.users;
 
+import com.example.bilabonnmenteksamensprojekt.models.users.Rights;
 import com.example.bilabonnmenteksamensprojekt.models.users.User;
 import com.example.bilabonnmenteksamensprojekt.models.users.UserRight;
 import com.example.bilabonnmenteksamensprojekt.repositories.RightsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,5 +30,15 @@ public class RightsService {
 
     public UserRight getRightByDescription(String description) {
         return repository.getRightByDescription(description);
+    }
+
+    public List<UserRight> getRightsByDescriptions(Rights[] rights) {
+        List<UserRight> userRights = new ArrayList<>();
+
+        for (Rights right : rights) {
+            userRights.add(getRightByDescription(right.name()));
+        }
+
+        return userRights;
     }
 }
