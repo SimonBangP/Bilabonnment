@@ -90,4 +90,8 @@ public class Alarm {
     public void setSeverity(Severity severity) {
         this.severity = severity;
     }
+
+    public String getAlarmInLaymansTermsToString(){
+        return("Hvis " + getWatchCategory().name() + " " + getWatchOperator() + " " + getWatchValue());
+    }
 }

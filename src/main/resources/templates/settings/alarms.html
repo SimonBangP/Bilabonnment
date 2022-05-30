@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../css/sidenav.css">
+    <link rel="stylesheet" href="../css/Forside.css">
+    <link rel="stylesheet" href="../css/shared.css">
+    <link rel="stylesheet" href="../css/TableStyle.css">
+    <link rel="stylesheet" href="../css/popup.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Alarmer</title>
+</head>
+<body>
+<div id="vertical-body-contents">
+    <div id="body-container">
+        <div class=table-body>
+            <div class="table-title">
+                <h1>Opret alarm</h1>
+            </div>
+            <div class="table-container">
+                <div class="input-column">
+                    <form action="/v1/alarms/" method="post" style="display: grid;">
+                        <p>Hvis:</p>
+                        <select name="Category" id="Category">
+                            <option value="Biler">Biler</option>
+                            <option value="Bookinger">Bookinger</option>
+                            <option value="Kunder">Kunder</option>
+                            <option value="Sager">Sager</option>
+                            <option value="Brugere">Brugere</option>
+                        </select>
+                        <p>er:</p>
+                        <select name="Operator" id="Operator">
+                            <option value=">">&gt;</option>
+                            <option value="<">&lt;</option>
+                            <option value="=">=</option>
+                        </select>
+                        <p>værdien:</p>
+                        <input type="text" name="Value" placeholder="Indtast en værdi her...">
+                        <p>så opret ticket med følgende prioritet:</p>
+                        <select name="Severity" id="Severity">
+                            <option value="Lav">Lav</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Høj">Høj</option>
+                        </select>
+                        <p>Fra brugeren:</p>
+                        <select name="UserId" id="UserId">
+                            <option th:each="user: ${users}"
+                                    th:value="${user.getUserId}"
+                                    th:text="${user.getUsername + ' (' + user.getFirstName + ' ' + user.getLastName + ')'}">
+                            </option>
+                        </select>
+                        <button type="submit" class="login-button" style="margin-top: 20px;">
+                            <p>Opret alarm</p>
+                        </button>
+                        <img id="loading_gif_create" style="margin-bottom: -1.5%;opacity: 0" src="../images/loadingsmall.gif">
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <div class=table-body>
+            <div class="table-title">
+                <h1>Slet alarm</h1>
+            </div>
+            <div class="table-container">
+                <div class="input-column">
+                    <p>Vælg eksisterende alarm:</p><select name="id" id="alarmSelectCombobox">
+                    <option th:each="alarm: ${alarms}"
+                            th:value="${alarm.getAlarmId}"
+                            th:text="${alarm.getAlarmInLaymansTermsToString}">
+                    </option>
+                </select><br><br>
+                    <button onclick="deleteAlarm()">
+                        <p>Slet valgt alarm</p>
+                    </button>
+                    <img id="loading_gif_delete" style="margin-bottom: -1.5%;opacity: 0" src="../images/loadingsmall.gif">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+<script type="text/javascript">
+    function deleteAlarm() {
+        document.getElementById("loading_gif_delete").setAttribute("style", "margin-bottom: -1.5%;opacity: 1");
+        var select = document.getElementById('alarmSelectCombobox');
+        var id = select.options[select.selectedIndex].value;
+        fetch('/v1/alarms/' + id,  {
+            method: 'DELETE'
+        })
+        window.location.href='../settings/alarms'
+    }
+    function createAlarm() {
+        document.getElementById("loading_gif_create").setAttribute("style", "margin-bottom: -1.5%;opacity: 1");
+        var id = select.options[select.selectedIndex].value;
+        fetch('/v1/alarms/',  {
+            method: 'POST'
+        })
+        window.location.href='../settings/alarms'
+    }
+
+</script>
+</html>
