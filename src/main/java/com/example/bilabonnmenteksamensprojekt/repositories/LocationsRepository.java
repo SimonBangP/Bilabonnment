@@ -184,14 +184,14 @@ public class LocationsRepository {
         }, id).get(0);
     }
 
-    public int checkAddress(Address address) {
+    public void checkAddress(Address address) {
         String sql = "SELECT AddressId FROM addresses WHERE Street = ? AND HouseNumber = ? AND ZipCode = ?";
         if (addressExists(address)) {
-            return template.queryForObject(sql, Integer.class, address.getStreet(), address.getHouseNumber(), address.getZipCode());
+            template.queryForObject(sql, Integer.class, address.getStreet(), address.getHouseNumber(), address.getZipCode());
         }
         else {
             insertNewAddress(address);
-            return template.queryForObject(sql, Integer.class, address.getStreet(), address.getHouseNumber(), address.getZipCode());
+            template.queryForObject(sql, Integer.class, address.getStreet(), address.getHouseNumber(), address.getZipCode());
         }
     }
 }
