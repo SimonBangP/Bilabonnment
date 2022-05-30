@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/customer")
+@RequestMapping("/v1/customers")
 public class CustomersApi {
 
     @Autowired
@@ -57,21 +57,22 @@ public class CustomersApi {
     @Operation(summary = "Inserts an customer", responses = {@ApiResponse(responseCode = "201"), @ApiResponse(responseCode = "400")})
     @PostMapping("/")
     public ResponseEntity<Void> insert(@RequestParam(name = "FirstName")String firstName, @RequestParam("LastName")String lastName,
-                                       @RequestParam(name = "AddressId")int addressId, @RequestParam(name = "IdentityValidated")boolean identityValidated,
+                                       @RequestParam(name = "Street")String street,@RequestParam(name = "HouseNumber")int houseNumber,
+                                       @RequestParam(name = "ZipCode")int zipCode, @RequestParam(name = "City")String city,
+                                       @RequestParam(name = "IdentityValidated")boolean identityValidated,
                                        @RequestParam(name = "CreditValidated")boolean creditValidated) {
 
-        Address address = locationsService.getAddressById(addressId);
 
-        if (address == null) {
-            return new ResponseEntity("Address with addressid: " + addressId + " not found", HttpStatus.BAD_REQUEST);
-        }
+        Address address = new Address(street, houseNumber,zipCode, city);
 
-        Customer customer = new Customer(firstName, lastName, address, identityValidated, creditValidated, null);
+        locationsService.checkAddress(address);
+
+        Customer customer = new Customer(firstName, lastName, address, identityValidated, identityValidated, null);
         customerService.insertCustomer(customer);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @Operation(summary = "Updates an alarm", responses = {@ApiResponse(responseCode = "200"), @ApiResponse(responseCode = "400")})
+    @Operation(summary = "Updates a customer", responses = {@ApiResponse(responseCode = "200"), @ApiResponse(responseCode = "400")})
     @PostMapping("/{id}")
     public ResponseEntity<Void> update(@PathVariable int id, @RequestParam(name = "FirstName")String firstName, @RequestParam("LastName")String lastName,
                                        @RequestParam(name = "AddressId")int addressId, @RequestParam(name = "IdentityValidated")boolean identityValidated,

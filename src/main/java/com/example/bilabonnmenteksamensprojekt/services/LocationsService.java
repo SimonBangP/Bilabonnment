@@ -31,7 +31,11 @@ public class LocationsService {
     }
 
     public void insertAddress(Address address) {
-        repository.insertAddress(address);
+        repository.insertNewAddress(address);
+    }
+
+    public void checkAddress (Address address){
+        repository.checkAddress(address);
     }
 
     public void updateAddress(int id, Address address) {

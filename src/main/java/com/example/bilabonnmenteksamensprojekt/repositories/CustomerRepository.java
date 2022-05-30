@@ -21,7 +21,6 @@ public class CustomerRepository {
     @Autowired
     LocationsService locationsService;
 
-
     public List<Customer> getCustomers() {
         String sql = "SELECT * FROM customers";
 
@@ -70,7 +69,7 @@ public class CustomerRepository {
     }
 
     public void insertCustomer(Customer customer) {
-        String sql = "INSERT INTO customer VALUES (DEFAULT, ?, ? ,?, ?, ?, DEFAULT)";
+        String sql = "INSERT INTO customers VALUES (DEFAULT, ?, ? ,?, ?, ?, DEFAULT)";
 
         template.update(sql, customer.getFirstName(), customer.getLastName(),
                 customer.getAddress().getAddressId(), customer.isIdentityValidated(), customer.isCreditValidated());

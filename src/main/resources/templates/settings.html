@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../css/sidenav.css">
+    <link rel="stylesheet" href="../css/Forside.css">
+    <link rel="stylesheet" href="../css/shared.css">
+    <link rel="stylesheet" href="../css/TableStyle.css">
+    <link rel="stylesheet" href="../css/popup.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Indstillinger</title>
+</head>
+<body>
+<div id="vertical-body-contents">
+    <div id="body-container">
+        <div class=table-body>
+            <div class="table-title">
+                <h1>Indstillinger for brugere</h1>
+            </div>
+            <div class="table-container">
+                    <div class="input-column">
+                        <p>Vælg bruger:</p><select name="id" id="userSelectCombobox">
+                            <option th:each="user: ${users}"
+                                    th:value="${user.getUserId}"
+                                    th:text="${user.getUsername + ' (' + user.getFirstName + ' ' + user.getLastName + ')'}">
+                            </option>
+                    </select><br><br>
+                        <button onclick="deleteUser()">
+                            <p>Slet bruger</p>
+                        </button>
+                        <img id="loading_gif" style="margin-bottom: -1.5%;opacity: 0" src="../images/loadingsmall.gif">
+                    </div>
+            </div>
+        </div>
+
+        <div class=table-body>
+            <div class="table-title">
+                <h1>Indstillinger for udviklere</h1>
+            </div>
+            <div class="table-container">
+                <button onclick="window.location.href='/swagger-ui/index.html'">
+                    <p>Se OpenAPI definition (Swagger UI)</p>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+<script type="text/javascript">
+    function deleteUser() {
+        document.getElementById("loading_gif").setAttribute("style", "margin-bottom: -1.5%;opacity: 1");
+        var select = document.getElementById('userSelectCombobox');
+        var id = select.options[select.selectedIndex].value;
+        fetch('/v1/users/' + id,  {
+            method: 'DELETE'
+        })
+        window.location.href='/settings'
+    }
+</script>
+</html>
