@@ -33,6 +33,7 @@ public class LocationsService {
     public void insertAddress(Address address) {
         repository.insertNewAddress(address);
     }
+
     public void checkAddress (Address address){
         repository.checkAddress(address);
     }
