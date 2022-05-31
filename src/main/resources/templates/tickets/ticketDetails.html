@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../css/shared.css">
+    <link rel="stylesheet" href="../css/sidenav.css">
+    <link rel="stylesheet" href="../css/popup.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Opret ticket</title>
+</head>
+<body>
+<div id="vertical-body-contents">
+    <div id="body-container">
+        <div id="details-body">
+            <div id="details-input">
+                <h1>Sag detaljer</h1>
+                <div id="inputs">
+                    <form th:action="${'/v1/tickets/' + ticket.getTicketId()}" method="post">
+                        <input hidden="true" name="UserId" th:value="${user.getUserId}">
+                        <input hidden="true" name="TicketId" th:value="${ticket.getTicketId()}">
+                        <div class="input-row">
+                            <div class="input-column">
+                                <p>Emne:</p><input type="text" name="TicketName" th:value="${ticket.getTicketName}">
+                                <p>Prioritet:</p><select name="Severity">
+                                <option th:each="severity : ${T(com.example.bilabonnmenteksamensprojekt.models.system.Severity).values()}"
+                                        th:value="${severity}"
+                                        th:text="${severity}">
+                                </option>
+                                <option
+                                        th:value="${ticket.getSeverity()}"
+                                        th:text="${ticket.getSeverity()}"
+                                        selected hidden>
+                                </option>
+                            </select>
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-column">
+                                <p>Beskrivelse:</p><textarea type="text" name="Description" style="width: 98%; padding-bottom: 15vh" th:text="${ticket.ticketDescription}"></textarea>
+                            </div>
+
+                        </div>
+                        <div class="Gem ticket">
+                            <button class="login-button" onclick="deleteTicket()" style="margin-top: 20px;">
+                                <p>Slet ticket</p>
+                            </button>
+                            <img id="loading_gif_del" style="margin-bottom: -3%;opacity: 0" src="../images/loadingsmall.gif">
+                            <button type="submit"  class="login-button" style="margin-top: 20px;">
+                                <p>Opdater ticket</p>
+                            </button>
+                            <img id="loading_gif_update" style="margin-bottom: -3%;opacity: 0" src="../images/loadingsmall.gif">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+
+<script type="text/javascript">
+    async function deleteTicket() {
+        document.getElementById("loading_gif_del").setAttribute("style", "margin-bottom: -1.5%;opacity: 1");
+        var id = document.getElementById('ticketId').getAttribute('value');
+        fetch('/v1/tickets/' + id, {
+            method: 'DELETE'
+        })
+        await new Promise(r => setTimeout(() => r(), 2500));
+        window.close()
+    }
+</script>
+
+</html>
