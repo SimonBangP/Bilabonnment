@@ -95,6 +95,4 @@ public class TicketRepository {
 
         return template.queryForObject(sql, Integer.class, ticket.getSeverity().name(), ticket.getTicketName(), ticket.getTicketDescription());
     }
-
-
 }

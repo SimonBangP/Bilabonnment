@@ -1,13 +1,7 @@
 package com.example.bilabonnmenteksamensprojekt;
 
-import com.example.bilabonnmenteksamensprojekt.controllers.api.TicketsApi;
-import com.example.bilabonnmenteksamensprojekt.models.locations.Address;
-import com.example.bilabonnmenteksamensprojekt.models.locations.Location;
 import com.example.bilabonnmenteksamensprojekt.models.system.Severity;
 import com.example.bilabonnmenteksamensprojekt.models.system.Ticket;
-import com.example.bilabonnmenteksamensprojekt.models.users.Rights;
-import com.example.bilabonnmenteksamensprojekt.models.users.User;
-import com.example.bilabonnmenteksamensprojekt.models.users.UserRight;
 import com.example.bilabonnmenteksamensprojekt.services.TicketService;
 import com.example.bilabonnmenteksamensprojekt.services.users.UserService;
 import org.junit.jupiter.api.Test;
@@ -23,6 +17,7 @@ public class TicketApiTest {
     @Autowired
     UserService userService;
 
+
     @Test
     public void testTicket(){
         Ticket ticket = new Ticket(userService.getUserByUsername("gruppe1"), Severity.Medium, "Test", "Test");
@@ -34,7 +29,6 @@ public class TicketApiTest {
         deleteTicket(ticket);
 
     }
-
     private void insertTicket(Ticket ticket){
         ticketService.insertTicket(ticket);
         if (!ticketService.ticketExists(ticket)){
