@@ -31,14 +31,14 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="booking: ${activeBookings}">
-                                <td><a th:text="${booking.customer.firstName} + ' ' + ${booking.customer.lastName}" th:href="'/customers/' + ${booking.customer.customerId}"></a></td>
-                                <td><a th:text="${booking.car.carSpecification.brand} + ' ' + ${booking.car.carSpecification.model}" th:href="'/cars/' + ${booking.car.carId}"></a></td>
-                                <td th:text="${booking.pickupLocation.locationName}"></td>
-                                <td th:text="${booking.deliveryDate}"></td>
-                                <td th:text="${booking.returnDate}"></td>
-                                <td><a th:href="@{'/bookings/'+${booking.bookingId}}">Rediger</a></td>
-                                <td><a th:href="@{'/endBooking/'+${booking.bookingId}}">Afslut</a></td>
+                            <tr th:each="activeBooking: ${activeBookings}">
+                                <td><a th:text="${activeBooking.customer.firstName} + ' ' + ${activeBooking.customer.lastName}" th:href="'/customers/' + ${activeBooking.customer.customerId}"></a></td>
+                                <td><a th:text="${activeBooking.car.carSpecification.brand} + ' ' + ${activeBooking.car.carSpecification.model}" th:href="'/cars/' + ${activeBooking.car.carId}"></a></td>
+                                <td th:text="${activeBooking.pickupLocation.locationName}"></td>
+                                <td th:text="${activeBooking.deliveryDate}"></td>
+                                <td th:text="${activeBooking.returnDate}"></td>
+                                <td><a th:href="@{'bookings/'+${activeBooking.bookingId}}">Rediger</a></td>
+                                <td><button th:onclick="'endBooking(' + ${activeBooking.bookingId} + ')'">Afslut</button></td>
                               </tr>
                               </tbody>
                           </table>
@@ -83,5 +83,14 @@
         </div>
     </div>
 </div>
+<script>
+    function endBooking(id) {
+        fetch('/v1/bookings/complete/' + id, {
+            method: 'POST'
+        });
+
+        location.reload();
+    }
+</script>
 </body>
 </html>

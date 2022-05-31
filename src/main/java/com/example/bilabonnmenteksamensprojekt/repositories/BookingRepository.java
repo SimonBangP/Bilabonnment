@@ -44,7 +44,7 @@ public class BookingRepository {
         });
     }
     public List<Booking> getActiveBookings() {
-        String sql = "SELECT * FROM bookings WHERE Completed = 1";
+        String sql = "SELECT * FROM bookings WHERE Completed = 0";
 
         RowMapper<Booking> rowMapper = new BeanPropertyRowMapper<>(Booking.class);
 
@@ -83,7 +83,7 @@ public class BookingRepository {
     }
 
     public void endBooking(int bookingId){
-        String sql = "UPDATE bookings SET Completed = 0 WHERE bookingId = ?";
+        String sql = "UPDATE bookings SET Completed = 1 WHERE bookingId = ?";
         template.update(sql, bookingId);
     }
 
