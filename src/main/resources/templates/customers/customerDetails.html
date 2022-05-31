@@ -27,21 +27,28 @@
 
                         <div class="input-row">
                             <div class="input-column">
-                                <p>Adresse:</p><input type="text" placeholder="Adresse" th:value="${customer.address.street} +' '+ ${customer.address.getHouseNumber()}">
+                                <p>Adresse:</p><input type="text" placeholder="Adresse" th:value="${customer.address.street}">
                             </div>
                             <div class="input-column">
-                                <p>Postnummer:</p><input type="text" placeholder="Postnummer" th:value="${customer.address.zipCode}">
+                                <p>Husnummer:</p><input type="text" placeholder="Husnummer" th:value="${customer.address.getHouseNumber()}">
                             </div>
                         </div>
 
                         <div class="input-row">
                             <div class="input-column">
+                                <p>Postnummer:</p><input type="text" placeholder="Postnummer" th:value="${customer.address.zipCode}">
+                            </div>
+                            <div class="input-column">
                                 <p>By:</p><input type="text" placeholder="By" th:value="${customer.address.city}">
                             </div>
 
-
+                            <label><input class="checkbox" id="insuranceCheckbox" type="checkbox">Identity Validated
+                                <input id="insuranceValue" hidden="true" name="IdentityValidated">
+                            </label>
+                            <label><input class="checkbox" id="ownersFeeIncludedCheckbox" type="checkbox">Credit Validated
+                                <input id="OwnersFeeIncludedValue" hidden="true" name="CreditValidated">
+                            </label>
                         </div>
-
                     </form>
                 </div>
                 <div class="tilbage-btn">
@@ -54,4 +61,23 @@
     </div>
 </div>
 </body>
+<script>
+    const insuranceCheckbox = document.getElementById("insuranceCheckbox");
+    const OwnersFeeIncludedCheckbox = document.getElementById("ownersFeeIncludedCheckbox");
+
+    insuranceCheckbox.addEventListener("change", () => {
+        document.getElementById("insuranceValue").value = insuranceCheckbox.checked;
+    })
+
+    OwnersFeeIncludedCheckbox.addEventListener("change", () => {
+        document.getElementById("OwnersFeeIncludedValue").value = OwnersFeeIncludedCheckbox.checked;
+    })
+
+    window.addEventListener("load", () => {
+        insuranceCheckbox.checked=[[${customer.identityValidated}]]
+        OwnersFeeIncludedCheckbox.checked=[[${customer.creditValidated}]]
+        document.getElementById("insuranceValue").value = insuranceCheckbox.checked;
+        document.getElementById("OwnersFeeIncludedValue").value = OwnersFeeIncludedCheckbox.checked;
+    })
+</script>
 </html>
