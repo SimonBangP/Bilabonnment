@@ -6,6 +6,7 @@ import com.example.bilabonnmenteksamensprojekt.models.users.User;
 import com.example.bilabonnmenteksamensprojekt.services.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
@@ -43,5 +44,12 @@ public class AuthController {
     @GetMapping("/authError")
     public String showAuthError() {
         return "autherror";
+    }
+
+    @GetMapping("/changePassword")
+    public String changeUserpassword(HttpSession session, Model model) {
+        User user = (User)session.getAttribute("userData");
+        model.addAttribute("userId", user.getUserId());
+        return "settings/changePassword";
     }
 }

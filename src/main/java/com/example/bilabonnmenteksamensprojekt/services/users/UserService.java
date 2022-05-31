@@ -4,6 +4,7 @@ import com.example.bilabonnmenteksamensprojekt.models.users.Rights;
 import com.example.bilabonnmenteksamensprojekt.models.users.User;
 import com.example.bilabonnmenteksamensprojekt.models.users.UserRight;
 import com.example.bilabonnmenteksamensprojekt.repositories.UserRepository;
+import com.example.bilabonnmenteksamensprojekt.services.LocationsService;
 import com.example.bilabonnmenteksamensprojekt.services.SearchableAlarmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,9 @@ public class UserService implements SearchableAlarmService {
 
     @Autowired
     RightsService rightsService;
+
+    @Autowired
+    LocationsService locationsService;
 
     public boolean authenticateUser(String username, String password){
         User user = repository.getByUsername(username);
@@ -68,6 +72,7 @@ public class UserService implements SearchableAlarmService {
 
     public void insertUser(User user) {
         if (repository.getByUsername(user.getUsername()) == null) {
+            locationsService.insertLocation(user.getLocation());
             repository.insertUser(user);
         }
     }

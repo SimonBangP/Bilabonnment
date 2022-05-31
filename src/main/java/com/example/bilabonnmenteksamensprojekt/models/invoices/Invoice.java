@@ -3,16 +3,17 @@ package com.example.bilabonnmenteksamensprojekt.models.invoices;
 import com.example.bilabonnmenteksamensprojekt.models.customers.Customer;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Invoice {
 
     private String invoiceId;
     private Customer customer;
-    private Date invoiceDate;
+    private LocalDate invoiceDate;
     private double invoicedAmount;
     private InvoiceItem[] invoicedItems;
 
-    public Invoice(String invoiceId, Customer customer, Date invoiceDate, double invoicedAmount, InvoiceItem[] invoicedItems) {
+    public Invoice(String invoiceId, Customer customer, LocalDate invoiceDate, double invoicedAmount, InvoiceItem[] invoicedItems) {
         this.invoiceId = invoiceId;
         this.customer = customer;
         this.invoiceDate = invoiceDate;
@@ -36,11 +37,11 @@ public class Invoice {
         this.customer = customer;
     }
 
-    public Date getInvoiceDate() {
+    public LocalDate getInvoiceDate() {
         return invoiceDate;
     }
 
-    public void setInvoiceDate(Date invoiceDate) {
+    public void setInvoiceDate(LocalDate invoiceDate) {
         this.invoiceDate = invoiceDate;
     }
 

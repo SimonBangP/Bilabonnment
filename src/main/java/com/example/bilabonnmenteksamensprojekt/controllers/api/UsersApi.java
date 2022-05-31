@@ -189,4 +189,24 @@ public class UsersApi {
         rightsService.updateRightsForUser(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @Operation(summary = "Changes password for a user", responses = {@ApiResponse(responseCode = "200"), @ApiResponse(responseCode = "400"), @ApiResponse(responseCode = "404")})
+    @PostMapping("/password/{id}")
+    public ResponseEntity<Void> changePassword(@PathVariable int id, @RequestParam(name = "OldPassword")String oldPassword,
+                                               @RequestParam(name = "NewPassword")String newPassword) {
+
+        User user = userService.getUserById(id);
+
+        if (user == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        if (!user.getUserPassword().equals(oldPassword)) {
+            return new ResponseEntity("old password does not match", HttpStatus.BAD_REQUEST);
+        }
+
+        user.setUserPassword(newPassword);
+        userService.updateUser(id, user);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

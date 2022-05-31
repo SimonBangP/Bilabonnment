@@ -14,12 +14,18 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 @RequestMapping("v1/bookings")
@@ -64,8 +70,10 @@ public class BookingsApi {
     @Operation(summary = "Inserts a booking", responses = {@ApiResponse(responseCode = "201"), @ApiResponse(responseCode = "400")})
     @PostMapping("/")
     public ResponseEntity<Void> insert(@RequestParam(name = "CustomerId")int customerId, @RequestParam(name = "CarId")int carId,
-                                 @RequestParam(name = "PickupLocationId")int locationId, @RequestParam(name = "DeliveryDate")Date deliveryDate,
-                                 @RequestParam(name = "ReturnDate", required = false)Date returnDate) {
+                                 @RequestParam(name = "PickupLocationId")int locationId,
+                                 @RequestParam(name = "DeliveryDate") @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate deliveryDate,
+                                 @RequestParam(name = "ReturnDate", required = false) @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate returnDate) {
+
         Customer customer = customerService.getCustomerById(customerId);
         Car car = service.getCarById(carId);
         Location location = locationsService.getPickupLocationById(locationId);
@@ -91,8 +99,8 @@ public class BookingsApi {
     @Operation(summary = "Updates a booking", responses = {@ApiResponse(responseCode = "200"), @ApiResponse(responseCode = "400")})
     @PostMapping("/{id}")
     public ResponseEntity<Void> update(@PathVariable int id, @RequestParam(name = "CustomerId")int customerId, @RequestParam(name = "CarId")int carId,
-                                 @RequestParam(name = "PickupLocationId")int locationId, @RequestParam(name = "DeliveryDate")Date deliveryDate,
-                                 @RequestParam(name = "ReturnDate", required = false)Date returnDate,
+                                 @RequestParam(name = "PickupLocationId")int locationId, @RequestParam(name = "DeliveryDate")LocalDate deliveryDate,
+                                 @RequestParam(name = "ReturnDate", required = false)LocalDate returnDate,
                                  @RequestParam(name = "Completed", required = false)boolean completed) {
 
         Customer customer = customerService.getCustomerById(customerId);
