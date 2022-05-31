@@ -16,7 +16,7 @@
                 <div id="inputs">
                     <form th:action="${'/v1/tickets/' + ticket.getTicketId()}" method="post">
                         <input hidden="true" name="UserId" th:value="${user.getUserId}">
-                        <input hidden="true" name="TicketId" th:value="${ticket.getTicketId()}">
+                        <input hidden="true" name="TicketId" id="ticketId" th:value="${ticket.getTicketId}">
                         <div class="input-row">
                             <div class="input-column">
                                 <p>Emne:</p><input type="text" name="TicketName" th:value="${ticket.getTicketName}">
@@ -40,7 +40,7 @@
 
                         </div>
                         <div class="Gem ticket">
-                            <button class="login-button" onclick="deleteTicket()" style="margin-top: 20px;">
+                            <button class="login-button" type="button" onclick="deleteTicket()" style="margin-top: 20px;">
                                 <p>Slet ticket</p>
                             </button>
                             <img id="loading_gif_del" style="margin-bottom: -3%;opacity: 0" src="../images/loadingsmall.gif">
