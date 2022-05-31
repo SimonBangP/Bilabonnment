@@ -53,7 +53,7 @@ public class CarsApi {
                           @RequestParam(name = "Emissions")int emissions, @RequestParam(name = "KilometersPerLiter")double kilometersPerLiter,
                           @RequestParam(required = false, name = "EnginePower") Integer enginePower, @RequestParam(name = "Brand")String brand,
                           @RequestParam(name = "Model")String model, @RequestParam(name = "Variant")String variant, @RequestParam(name = "Color")String color,
-                          @RequestParam(name = "Price")int price, @RequestParam(name = "insuranceIncluded")boolean insuranceIncluded,
+                          @RequestParam(name = "Price")double price, @RequestParam(name = "insuranceIncluded")boolean insuranceIncluded,
                           @RequestParam(name = "OwnersFeeIncluded")boolean ownersFeeIncluded, @RequestParam(name = "Description")String description) {
         CarEngine engine = new CarEngine(enginePower, gearType, fuelType, emissions, kilometersPerLiter);
         CarSpecification spec = new CarSpecification(engine, brand, model, variant, color);
@@ -71,7 +71,7 @@ public class CarsApi {
                                  @RequestParam(required = false, name = "EnginePower") Integer enginePower, @RequestParam(name = "Brand")String brand,
                                  @RequestParam(name = "Model")String model, @RequestParam(name = "Variant", required = false)String variant,
                                  @RequestParam(name = "Color")String color,
-                                 @RequestParam(name = "Price")int price, @RequestParam(name = "insuranceIncluded")boolean insuranceIncluded,
+                                 @RequestParam(name = "Price")double price, @RequestParam(name = "insuranceIncluded")boolean insuranceIncluded,
                                  @RequestParam(name = "OwnersFeeIncluded")boolean ownersFeeIncluded, @RequestParam(name = "Description")String description) {
         CarEngine engine = new CarEngine(enginePower, gearType, fuelType, emissions, kilometersPerLiter);
         CarSpecification spec = new CarSpecification(engine, brand, model, variant, color);
