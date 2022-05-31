@@ -51,7 +51,7 @@ public class CarsApi {
     @PostMapping("/")
     public ResponseEntity<Void> insert(@RequestParam(name = "GearType")CarEngine.GearType gearType, @RequestParam(name = "FuelType")CarEngine.FuelType fuelType,
                           @RequestParam(name = "Emissions")int emissions, @RequestParam(name = "KilometersPerLiter")double kilometersPerLiter,
-                          @RequestParam(required = false, name = "EnginePower") int enginePower, @RequestParam(name = "Brand")String brand,
+                          @RequestParam(required = false, name = "EnginePower") Integer enginePower, @RequestParam(name = "Brand")String brand,
                           @RequestParam(name = "Model")String model, @RequestParam(name = "Variant")String variant, @RequestParam(name = "Color")String color,
                           @RequestParam(name = "Price")int price, @RequestParam(name = "insuranceIncluded")boolean insuranceIncluded,
                           @RequestParam(name = "OwnersFeeIncluded")boolean ownersFeeIncluded, @RequestParam(name = "Description")String description) {
@@ -68,7 +68,7 @@ public class CarsApi {
     public ResponseEntity<Void> update(@PathVariable int id, @RequestParam(name = "GearType")CarEngine.GearType gearType,
                                  @RequestParam(name = "FuelType")CarEngine.FuelType fuelType,
                                  @RequestParam(name = "Emissions")int emissions, @RequestParam(name = "KilometersPerLiter")double kilometersPerLiter,
-                                 @RequestParam(required = false, name = "EnginePower") int enginePower, @RequestParam(name = "Brand")String brand,
+                                 @RequestParam(required = false, name = "EnginePower") Integer enginePower, @RequestParam(name = "Brand")String brand,
                                  @RequestParam(name = "Model")String model, @RequestParam(name = "Variant", required = false)String variant,
                                  @RequestParam(name = "Color")String color,
                                  @RequestParam(name = "Price")int price, @RequestParam(name = "insuranceIncluded")boolean insuranceIncluded,

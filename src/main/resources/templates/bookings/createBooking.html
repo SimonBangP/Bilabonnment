@@ -21,19 +21,19 @@
                                 <div class="table-container">
                                     <div class="input-column">
                                         <p>Vælg kunde:</p><select name="id" id="userSelectCombobox">
-                                        <option th:each="customer: ${customers}"
-                                                th:value="${customer.customerId}"
-                                                th:text="${customer.firstName + ' ' + customer.lastName}">
-                                        </option>
+                                            <option th:each="customer: ${customers}"
+                                                    th:value="${customer.customerId}"
+                                                    th:text="${customer.firstName + ' ' + customer.lastName}">
+                                            </option>
                                         </select> 
                                     </div>
 
                                     <div class="input-column">
                                         <p>Vælg bil:</p><select name="id" id="userSelectCombobox">
-                                        <option th:each="car: ${cars}"
-                                                th:value="${car.carId}"
-                                                th:text="${car.carSpecification.brand + ' ' + car.carSpecification.model + ' ' + car.carSpecification.variant}">
-                                        </option>
+                                            <option th:each="car: ${cars}"
+                                                    th:value="${car.carId}"
+                                                    th:text="${car.carSpecification.brand + ' ' + car.carSpecification.model + ' ' + car.carSpecification.variant}">
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
