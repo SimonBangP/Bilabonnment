@@ -93,7 +93,7 @@ public class AlarmService {
         logger.debug("Tjekker alarm " + alarm.getAlarmId() + ": " + whereClause);
 
         boolean result = false;
-        if (whereClause.trim().equals("")) {
+        if (whereClause == null || whereClause.trim().equals("")) {
             switch (alarm.getWatchOperator()) {
                 case "<":
                     result = (service.getCount() < alarm.getWatchValue());
