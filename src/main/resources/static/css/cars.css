@@ -48,6 +48,20 @@ select, input {
     color: rgb(95, 95, 95);
 }
 
+.input-column label:first-of-type {
+    margin-top: 0;
+}
+
+.checkbox {
+    width: fit-content;
+}
+
+.input-column label {
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+}
+
 .input-row .input-column:first-of-type {
     margin-right: 3vw;
 }
@@ -90,3 +104,4 @@ label {
     font-size: 29px;
     font-weight: bold;
 }
+
