@@ -123,7 +123,7 @@ public class UserRepository {
     }
 
     public void updateUser(int id, User user) {
-        String sql = "UPDATE users SET FirstName = ?, LastName = ?, LocationId = ?, Username = ?, Password = ? WHERE UserId = ?";
+        String sql = "UPDATE users SET FirstName = ?, LastName = ?, LocationId = ?, Username = ?, UserPassword = ? WHERE UserId = ?";
 
         template.update(sql, user.getFirstName(), user.getLastName(), user.getLocation().getLocationId(), user.getUsername(), user.getUserPassword(), id);
         rightsService.updateRightsForUser(user);
