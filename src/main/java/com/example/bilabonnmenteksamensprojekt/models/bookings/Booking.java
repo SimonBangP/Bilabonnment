@@ -17,7 +17,6 @@ public class Booking {
     private boolean completed;
 
     public Booking() {
-
     }
 
     public Booking(int bookingId, Customer customer, Car car, Location pickupLocation, Date deliveryDate, Date returnDate, boolean completed) {
