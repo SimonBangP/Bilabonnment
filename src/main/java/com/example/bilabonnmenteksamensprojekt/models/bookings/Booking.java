@@ -5,6 +5,7 @@ import com.example.bilabonnmenteksamensprojekt.models.locations.Location;
 import com.example.bilabonnmenteksamensprojekt.models.cars.Car;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Booking {
 
@@ -12,14 +13,14 @@ public class Booking {
     private Customer customer;
     private Car car;
     private Location pickupLocation;
-    private Date deliveryDate;
-    private Date returnDate;
+    private LocalDate deliveryDate;
+    private LocalDate returnDate;
     private boolean completed;
 
     public Booking() {
     }
 
-    public Booking(int bookingId, Customer customer, Car car, Location pickupLocation, Date deliveryDate, Date returnDate, boolean completed) {
+    public Booking(int bookingId, Customer customer, Car car, Location pickupLocation, LocalDate deliveryDate, LocalDate returnDate, boolean completed) {
         this.bookingId = bookingId;
         this.customer = customer;
         this.car = car;
@@ -29,7 +30,7 @@ public class Booking {
         this.completed = completed;
     }
 
-    public Booking(Customer customer, Car car, Location pickupLocation, Date deliveryDate, Date returnDate, boolean completed) {
+    public Booking(Customer customer, Car car, Location pickupLocation, LocalDate deliveryDate, LocalDate returnDate, boolean completed) {
         this.customer = customer;
         this.car = car;
         this.pickupLocation = pickupLocation;
@@ -70,19 +71,19 @@ public class Booking {
         this.pickupLocation = pickupLocation;
     }
 
-    public Date getDeliveryDate() {
+    public LocalDate getDeliveryDate() {
         return deliveryDate;
     }
 
-    public void setDeliveryDate(Date deliveryDate) {
+    public void setDeliveryDate(LocalDate deliveryDate) {
         this.deliveryDate = deliveryDate;
     }
 
-    public Date getReturnDate() {
+    public LocalDate getReturnDate() {
         return returnDate;
     }
 
-    public void setReturnDate(Date returnDate) {
+    public void setReturnDate(LocalDate returnDate) {
         this.returnDate = returnDate;
     }
 

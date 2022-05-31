@@ -3,14 +3,15 @@ package com.example.bilabonnmenteksamensprojekt.models.bookings;
 import com.example.bilabonnmenteksamensprojekt.models.locations.Location;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class ScheduledReturn {
 
     private Booking booking;
     private Location dropoffLocation;
-    private Date plannedReturnDate;
+    private LocalDate plannedReturnDate;
 
-    public ScheduledReturn(Booking booking, Location dropoffLocation, Date plannedReturnDate) {
+    public ScheduledReturn(Booking booking, Location dropoffLocation, LocalDate plannedReturnDate) {
         this.booking = booking;
         this.dropoffLocation = dropoffLocation;
         this.plannedReturnDate = plannedReturnDate;
@@ -32,11 +33,11 @@ public class ScheduledReturn {
         this.dropoffLocation = dropoffLocation;
     }
 
-    public Date getPlannedReturnDate() {
+    public LocalDate getPlannedReturnDate() {
         return plannedReturnDate;
     }
 
-    public void setPlannedReturnDate(Date plannedReturnDate) {
+    public void setPlannedReturnDate(LocalDate plannedReturnDate) {
         this.plannedReturnDate = plannedReturnDate;
     }
 }

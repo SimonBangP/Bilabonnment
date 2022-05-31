@@ -3,16 +3,17 @@ package com.example.bilabonnmenteksamensprojekt.models.cars.repairs;
 import com.example.bilabonnmenteksamensprojekt.models.cars.Car;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Repair {
 
     private Car car;
     private Mechanic mechanic;
-    private Date startDate;
-    private Date expectedEndDate;
+    private LocalDate startDate;
+    private LocalDate expectedEndDate;
     private String repairDescription;
 
-    public Repair(Car car, Mechanic mechanic, Date startDate, Date expectedEndDate, String repairDescription) {
+    public Repair(Car car, Mechanic mechanic, LocalDate startDate, LocalDate expectedEndDate, String repairDescription) {
         this.car = car;
         this.mechanic = mechanic;
         this.startDate = startDate;
@@ -36,19 +37,19 @@ public class Repair {
         this.mechanic = mechanic;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getExpectedEndDate() {
+    public LocalDate getExpectedEndDate() {
         return expectedEndDate;
     }
 
-    public void setExpectedEndDate(Date expectedEndDate) {
+    public void setExpectedEndDate(LocalDate expectedEndDate) {
         this.expectedEndDate = expectedEndDate;
     }
 

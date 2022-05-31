@@ -53,12 +53,8 @@ public class BookingController {
         }
     }
 
-    @GetMapping("/endBooking/{bookingId}")
-    public String endBooking(HttpSession session, @PathVariable Integer bookingId){
-        if (session.getAttribute("authenticated") != null && ((boolean) session.getAttribute("authenticated"))) {
-            bookingService.endBooking(bookingId);
-                return "redirect:/bookings";
-        }
-        return "redirect:/?location=bookings";
+    @GetMapping("/createBooking")
+    public String createBooking() {
+        return "bookings/createBooking";
     }
 }
