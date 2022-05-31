@@ -92,6 +92,6 @@ public class Alarm {
     }
 
     public String getAlarmInLaymansTermsToString(){
-        return("Hvis " + getWatchCategory().name() + " " + getWatchOperator() + " " + getWatchValue());
+        return(getWatchCategory().name() + " " + getWatchOperator() + " " + getWatchValue());
     }
 }
