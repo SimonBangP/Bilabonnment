@@ -27,5 +27,4 @@ public class RepositoryTests {
         Assert.notNull(testCar.getCarSpecification().getCarEngine(), "Car engine not found");
 
     }
-
 }

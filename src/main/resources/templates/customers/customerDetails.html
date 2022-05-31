@@ -23,12 +23,25 @@
                             <div class="input-column">
                                 <p>Efternavn:</p><input type="text" placeholder="EfterNavn" th:value="${customer.lastName}">
                             </div>
+                        </div>
 
+                        <div class="input-row">
                             <div class="input-column">
-                                <p>Adresse:</p><input type="text" placeholder="Adresse" th:value="${customer.address.street}">
+                                <p>Adresse:</p><input type="text" placeholder="Adresse" th:value="${customer.address.street} +' '+ ${customer.address.getHouseNumber()}">
+                            </div>
+                            <div class="input-column">
+                                <p>Postnummer:</p><input type="text" placeholder="Postnummer" th:value="${customer.address.zipCode}">
+                            </div>
+                        </div>
+
+                        <div class="input-row">
+                            <div class="input-column">
+                                <p>By:</p><input type="text" placeholder="By" th:value="${customer.address.city}">
                             </div>
 
+
                         </div>
+
                     </form>
                 </div>
                 <div class="tilbage-btn">

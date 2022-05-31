@@ -1,6 +1,7 @@
 package com.example.bilabonnmenteksamensprojekt.repositories;
 
 import com.example.bilabonnmenteksamensprojekt.models.system.Ticket;
+import com.example.bilabonnmenteksamensprojekt.services.TicketService;
 import com.example.bilabonnmenteksamensprojekt.services.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -41,7 +42,6 @@ public class TicketRepository {
     public void insertTicket(Ticket ticket){
         String sql = "INSERT INTO tickets VALUES (DEFAULT, ?, ?, ?, ?)";
         template.update(sql, ticket.getUser().getUserId(), ticket.getSeverity().name(), ticket.getTicketName(), ticket.getTicketDescription());
-
     }
 
     public int getCount() {
@@ -87,6 +87,12 @@ public class TicketRepository {
     public void removeTicket(Ticket ticket) {
         String sql = "DELETE FROM tickets WHERE TicketId = ?";
 
-        template.update(sql, ticket.getTicketId());
+        template.update(sql, getTicketId(ticket));
+    }
+
+    public int getTicketId(Ticket ticket){
+        String sql = "SELECT TicketId FROM tickets WHERE Severity = ? AND TicketName = ? AND TicketDescription = ?";
+
+        return template.queryForObject(sql, Integer.class, ticket.getSeverity().name(), ticket.getTicketName(), ticket.getTicketDescription());
     }
 }

@@ -134,4 +134,9 @@ public class UserRepository {
 
         template.update(sql, userId);
     }
+
+    public boolean userExists(User user){
+        String sql = "SELECT COUNT(userId)";
+        return false;
+    }
 }
