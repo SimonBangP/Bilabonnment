@@ -9,8 +9,10 @@ public enum Rights {
     AddCars,
     RemoveCars,
     CreateBooking,
+    ViewBookingDetails,
     EditBooking,
     CancelBooking,
-    CreateDamageReport,
-    CancelDamageReport
+    CreateTickets,
+    EditTickets,
+    ViewCustomerDetails
 }

@@ -2,6 +2,7 @@ package com.example.bilabonnmenteksamensprojekt.controllers;
 
 
 import com.example.bilabonnmenteksamensprojekt.models.cars.Car;
+import com.example.bilabonnmenteksamensprojekt.models.users.Rights;
 import com.example.bilabonnmenteksamensprojekt.services.users.UserService;
 import com.example.bilabonnmenteksamensprojekt.services.cars.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class CarController {
     @GetMapping("/cars/{carId}")
     public String getCarDetails(HttpSession session, Model model, @PathVariable Integer carId) {
         if (session.getAttribute("authenticated") != null && ((boolean) session.getAttribute("authenticated"))) {
-            if (authenticationService.userHasRight((String)session.getAttribute("authorizedUsername"), "ViewCarDetails")) {
+            if (authenticationService.userHasRight((String)session.getAttribute("authorizedUsername"), Rights.ViewCarDetails)) {
                 Car car = carService.getCarById(carId);
                 model.addAttribute("car", car);
                 return "cars/carDetails";

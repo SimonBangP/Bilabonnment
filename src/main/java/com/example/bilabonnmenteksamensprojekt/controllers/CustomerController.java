@@ -2,6 +2,7 @@ package com.example.bilabonnmenteksamensprojekt.controllers;
 
 import com.example.bilabonnmenteksamensprojekt.models.customers.Customer;
 
+import com.example.bilabonnmenteksamensprojekt.models.users.Rights;
 import com.example.bilabonnmenteksamensprojekt.models.users.User;
 import com.example.bilabonnmenteksamensprojekt.services.CustomerService;
 import com.example.bilabonnmenteksamensprojekt.services.users.UserService;
@@ -36,7 +37,7 @@ public class CustomerController {
     @GetMapping("/customers/{customerId}")
     public String getCustomerDetails(HttpSession session, Model model, @PathVariable Integer customerId) {
         if (session.getAttribute("authenticated") != null && ((boolean) session.getAttribute("authenticated"))) {
-            if (authenticationService.userHasRight((String)session.getAttribute("authorizedUsername"), "ViewCustomerDetails")) {
+            if (authenticationService.userHasRight((String)session.getAttribute("authorizedUsername"), Rights.ViewCustomerDetails)) {
                 Customer customer = customerService.getCustomerById(customerId);
                 model.addAttribute("customer", customer);
                 return "customers/customerDetails";

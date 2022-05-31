@@ -1,5 +1,6 @@
 package com.example.bilabonnmenteksamensprojekt.repositories;
 
+import com.example.bilabonnmenteksamensprojekt.models.users.Rights;
 import com.example.bilabonnmenteksamensprojekt.models.users.User;
 import com.example.bilabonnmenteksamensprojekt.models.users.UserRight;
 import com.example.bilabonnmenteksamensprojekt.services.LocationsService;
@@ -82,13 +83,13 @@ public class UserRepository {
         }
     }
 
-    public List<String> getUserRights(String username) {
+    public List<Rights> getUserRights(String username) {
         String sql = "SELECT RightsDescriptions FROM rights WHERE RightsId IN (SELECT RightsId FROM users_rights WHERE UserId = ?)";
 
         int userId = getUserId(username);
 
         return template.query(sql, (ResultSet rs, int rowNum) -> {
-            return rs.getString(1);
+            return Rights.valueOf(rs.getString(1));
         }, userId);
     }
 

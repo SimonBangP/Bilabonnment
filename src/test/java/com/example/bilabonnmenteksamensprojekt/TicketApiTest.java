@@ -38,6 +38,7 @@ public class TicketApiTest {
     private void updateTicket(Ticket ticket){
         int id = ticketService.getTicketId(ticket);
 
+        ticket.setTicketId(id);
         ticket.setTicketDescription("ændret");
 
         ticketService.updateTicket(id, ticket);

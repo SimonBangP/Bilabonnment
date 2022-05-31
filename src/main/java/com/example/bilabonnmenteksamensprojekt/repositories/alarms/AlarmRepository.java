@@ -27,6 +27,9 @@ public class AlarmRepository {
         return template.query(sql, (ResultSet rs, int rowNum) -> {
             Alarm foundAlarm = rowMapper.mapRow(rs, rowNum);
 
+            if (foundAlarm.getFilterClause() == null) {
+                foundAlarm.setFilterClause("");
+            }
             foundAlarm.setUser(userService.getUserById(rs.getInt(6)));
 
             return foundAlarm;
@@ -40,6 +43,9 @@ public class AlarmRepository {
         List<Alarm> alarms = template.query(sql, (ResultSet rs, int rowNum) -> {
             Alarm foundAlarm = rowMapper.mapRow(rs, rowNum);
 
+            if (foundAlarm.getFilterClause() == null) {
+                foundAlarm.setFilterClause("");
+            }
             foundAlarm.setUser(userService.getUserById(rs.getInt(6)));
 
             return foundAlarm;
