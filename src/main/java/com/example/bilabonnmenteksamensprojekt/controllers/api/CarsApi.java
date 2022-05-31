@@ -55,6 +55,11 @@ public class CarsApi {
                           @RequestParam(name = "Model")String model, @RequestParam(name = "Variant")String variant, @RequestParam(name = "Color")String color,
                           @RequestParam(name = "Price")double price, @RequestParam(name = "InsuranceIncluded")boolean insuranceIncluded,
                           @RequestParam(name = "OwnersFeeIncluded")boolean ownersFeeIncluded, @RequestParam(name = "Description")String description) {
+
+        if (enginePower == null) {
+            enginePower = 0;
+        }
+
         CarEngine engine = new CarEngine(enginePower, gearType, fuelType, emissions, kilometersPerLiter);
         CarSpecification spec = new CarSpecification(engine, brand, model, variant, color);
         Car car = new Car(spec, price, insuranceIncluded, ownersFeeIncluded, description);
@@ -73,6 +78,11 @@ public class CarsApi {
                                  @RequestParam(name = "Color")String color,
                                  @RequestParam(name = "Price")double price, @RequestParam(name = "InsuranceIncluded")boolean insuranceIncluded,
                                  @RequestParam(name = "OwnersFeeIncluded")boolean ownersFeeIncluded, @RequestParam(name = "Description")String description) {
+
+        if (enginePower == null) {
+            enginePower = 0;
+        }
+
         CarEngine engine = new CarEngine(enginePower, gearType, fuelType, emissions, kilometersPerLiter);
         CarSpecification spec = new CarSpecification(engine, brand, model, variant, color);
         Car car = new Car(spec, price, insuranceIncluded, ownersFeeIncluded, description);

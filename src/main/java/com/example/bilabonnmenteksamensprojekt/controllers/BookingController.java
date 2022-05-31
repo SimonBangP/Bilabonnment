@@ -65,11 +65,11 @@ public class BookingController {
 
     @GetMapping("/createBooking")
     public String createBooking(Model model) {
-          List<Customer> customers = customerService.getCustomers();
-          model.addAttribute("customers", customers);
+      List<Customer> customers = customerService.getCustomers();
+      model.addAttribute("customers", customers);
 
         List<Car> cars = carService.getCars();
-        model.addAttribute("car", cars);
+        model.addAttribute("cars", cars);
         return "bookings/createBooking";
     }
 }
