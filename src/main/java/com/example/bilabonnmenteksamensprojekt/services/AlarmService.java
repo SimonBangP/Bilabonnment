@@ -124,7 +124,7 @@ public class AlarmService {
 
     private void createAlarmTicket(Alarm alarm) {
         Ticket ticket = new Ticket(alarm.getUser(), alarm.getSeverity(), "ALARM: " + alarm.getWatchCategory().name(),
-                "En alarm er blevet ramt: " + alarm.getFilterClause());
+                "En alarm er blevet ramt\n" + alarm.getFilterClause());
 
         if (!ticketService.ticketExists(ticket)) {
             ticketService.insertTicket(ticket);
