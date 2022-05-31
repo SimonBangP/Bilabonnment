@@ -14,6 +14,7 @@ import com.example.bilabonnmenteksamensprojekt.services.TicketService;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -61,8 +62,16 @@ public class TicketController {
         Ticket ticket = new Ticket(currentUser, severity, name, description);
         ticketService.insertTicket(ticket);
         return "redirect:/tickets";
+    }
 
 
+    @GetMapping ("/tickets/{ticketID}")
+    public String getTicket (HttpSession session, Model model, @PathVariable int ticketID){
+        Ticket ticket = ticketService.getTicketById(ticketID);
+        User user = ticket.getUser();
+        model.addAttribute("user", user);
+        model.addAttribute("ticket", ticket);
+        return "/tickets/ticketDetails";
     }
 
 }

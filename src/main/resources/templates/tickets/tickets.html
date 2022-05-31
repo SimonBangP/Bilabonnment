@@ -22,7 +22,7 @@
                         <thead>
                         <tr>
                             <th>Sag nr.</th>
-                            <th>Behandles af</th>
+                            <th>Oprettet af</th>
                             <th>Prioritet</th>
                             <th>Emne</th>
                             <th>Detaljer</th>
@@ -34,7 +34,7 @@
                             <td th:text="${ticket.user.firstName} + ' ' + ${ticket.user.lastName}"></td>
                             <td th:text="${ticket.severity}"></td>
                             <td th:text="${ticket.ticketName}"></td>
-                            <td>Her skal et link være til sag!</td>
+                            <td><button class="login-button" th:data-url="'/tickets/' + ${ticket.ticketId}" onclick="MyWindow=window.open(this.getAttribute('data-url'),'Sag detaljer','width=300,height=650'); return false;">Åben sag</button></td>
                         </tr>
                         </tbody>
                     </table>
@@ -48,5 +48,9 @@
  </div>
 </div>
 </body>
+<script>
+var link = "'/createTickets/";
+var symbol = "'";
+</script>
 </html>
 
