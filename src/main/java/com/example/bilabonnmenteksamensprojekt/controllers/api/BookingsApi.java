@@ -62,7 +62,7 @@ public class BookingsApi {
     }
 
     @Operation(summary = "Inserts a booking", responses = {@ApiResponse(responseCode = "201"), @ApiResponse(responseCode = "400")})
-    @PostMapping("/")
+    @PostMapping("/createBooking")
     public ResponseEntity<Void> insert(@RequestParam(name = "CustomerId")int customerId, @RequestParam(name = "CarId")int carId,
                                  @RequestParam(name = "PickupLocationId")int locationId, @RequestParam(name = "DeliveryDate")Date deliveryDate,
                                  @RequestParam(name = "ReturnDate", required = false)Date returnDate) {
