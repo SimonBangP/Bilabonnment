@@ -50,7 +50,7 @@ public class CarsApi {
     @Operation(summary = "Inserts a car", responses = {@ApiResponse(responseCode = "201")})
     @PostMapping("/")
     public ResponseEntity<Void> insert(@RequestParam(name = "GearType")CarEngine.GearType gearType, @RequestParam(name = "FuelType")CarEngine.FuelType fuelType,
-                          @RequestParam(name = "Emissions")int emissions, @RequestParam(name = "KilometersPerLiter")int kilometersPerLiter,
+                          @RequestParam(name = "Emissions")int emissions, @RequestParam(name = "KilometersPerLiter")double kilometersPerLiter,
                           @RequestParam(required = false, name = "EnginePower") int enginePower, @RequestParam(name = "Brand")String brand,
                           @RequestParam(name = "Model")String model, @RequestParam(name = "Variant")String variant, @RequestParam(name = "Color")String color,
                           @RequestParam(name = "Price")int price, @RequestParam(name = "insuranceIncluded")boolean insuranceIncluded,
@@ -67,7 +67,7 @@ public class CarsApi {
     @PostMapping("/{id}")
     public ResponseEntity<Void> update(@PathVariable int id, @RequestParam(name = "GearType")CarEngine.GearType gearType,
                                  @RequestParam(name = "FuelType")CarEngine.FuelType fuelType,
-                                 @RequestParam(name = "Emissions")int emissions, @RequestParam(name = "KilometersPerLiter")int kilometersPerLiter,
+                                 @RequestParam(name = "Emissions")int emissions, @RequestParam(name = "KilometersPerLiter")double kilometersPerLiter,
                                  @RequestParam(required = false, name = "EnginePower") int enginePower, @RequestParam(name = "Brand")String brand,
                                  @RequestParam(name = "Model")String model, @RequestParam(name = "Variant", required = false)String variant,
                                  @RequestParam(name = "Color")String color,
