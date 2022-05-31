@@ -59,6 +59,9 @@ public class CarsApi {
         if (enginePower == null) {
             enginePower = 0;
         }
+        if (variant == null) {
+            variant = "";
+        }
 
         CarEngine engine = new CarEngine(enginePower, gearType, fuelType, emissions, kilometersPerLiter);
         CarSpecification spec = new CarSpecification(engine, brand, model, variant, color);
@@ -81,6 +84,9 @@ public class CarsApi {
 
         if (enginePower == null) {
             enginePower = 0;
+        }
+        if (variant == null) {
+            variant = "";
         }
 
         CarEngine engine = new CarEngine(enginePower, gearType, fuelType, emissions, kilometersPerLiter);
