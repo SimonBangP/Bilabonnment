@@ -87,7 +87,7 @@ public class TicketRepository {
     public void removeTicket(Ticket ticket) {
         String sql = "DELETE FROM tickets WHERE TicketId = ?";
 
-        template.update(sql, getTicketId(ticket));
+        template.update(sql, ticket.getTicketId());
     }
 
     public int getTicketId(Ticket ticket){
