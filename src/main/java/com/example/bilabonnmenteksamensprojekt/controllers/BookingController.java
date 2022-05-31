@@ -1,8 +1,12 @@
 package com.example.bilabonnmenteksamensprojekt.controllers;
 
 import com.example.bilabonnmenteksamensprojekt.models.bookings.Booking;
+import com.example.bilabonnmenteksamensprojekt.models.cars.Car;
+import com.example.bilabonnmenteksamensprojekt.models.customers.Customer;
 import com.example.bilabonnmenteksamensprojekt.models.users.Rights;
 import com.example.bilabonnmenteksamensprojekt.services.BookingService;
+import com.example.bilabonnmenteksamensprojekt.services.CustomerService;
+import com.example.bilabonnmenteksamensprojekt.services.cars.CarService;
 import com.example.bilabonnmenteksamensprojekt.services.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +25,12 @@ public class BookingController {
 
     @Autowired
     UserService authenticationService;
+
+    @Autowired
+    CustomerService customerService;
+
+    @Autowired
+    CarService carService;
 
     @GetMapping("/bookings")
     public String viewBookings(HttpSession session, Model model){
@@ -54,7 +64,12 @@ public class BookingController {
     }
 
     @GetMapping("/createBooking")
-    public String createBooking() {
+    public String createBooking(Model model) {
+          List<Customer> customers = customerService.getCustomers();
+          model.addAttribute("customers", customers);
+
+        List<Car> cars = carService.getCars();
+        model.addAttribute("car", cars);
         return "bookings/createBooking";
     }
 }
