@@ -1,71 +1,117 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="../css/shared.css">
-        <link rel="stylesheet" href="../css/sidenav.css">
-        <link rel="stylesheet" href="../css/cars.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <title th:text="'Detaljer: ' + ${car.carSpecification.brand} + ' ' + ${car.carSpecification.model}"></title>
-    </head>
-    <body>
-        <div id="vertical-body-contents">
-            <div id="body-container">
-                <div id="details-body">
-                    <div id="details-input">
-                        <h1>Bil detaljer</h1>
-                        <div id="inputs">
-                            <form action="../add" method="post">
-                                <div class="input-row">
-                                    <div class="input-column">
-                                        <p>Mærke:</p><input type="text" placeholder="Mærke" th:value="${car.carSpecification.brand}">
-                                    </div>
-                                    <div class="input-column">
-                                        <p>Model:</p><input type="text" placeholder="Model" th:value="${car.carSpecification.model}">
-                                    </div>  
-                                </div>
-                                <div class="input-row">
-                                    <div class="input-column">
-                                        <p>Gear type:</p><select placeholder="Geartype">
-                                            <option th:each="gearType : ${T(com.example.bilabonnmenteksamensprojekt.models.cars.CarEngine.GearType).values()}"
-                                                    th:value="${gearType}"
-                                                    th:text="${gearType}"
-                                                    th:selected="${gearType eq car.carSpecification.carEngine.gearType}">
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="input-column">
-                                        <p>Brændstof type:</p><select placeholder="Brændstof type">
-                                            <option th:each="fuelType : ${T(com.example.bilabonnmenteksamensprojekt.models.cars.CarEngine.FuelType).values()}"
-                                                    th:value="${fuelType}"
-                                                    th:text="${fuelType}"
-                                                    th:selected="${fuelType eq car.carSpecification.carEngine.fuelType}">
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="input-row">
-                                    <div class="input-column">
-                                        <p>Co2 Udledning:</p><input type="text" placeholder="Co2 udledning" th:value="${car.carSpecification.carEngine.emissions}">
-                                    </div>
-                                    <div class="input-column">
-                                        <p>Km/l:</p><input type="text" placeholder="Kilometer per liter" th:value="${car.carSpecification.carEngine.kilometersPerLiter}">
-                                    </div>
-                                </div>
-                                <div class="tilbage-btn">
-                                    <button type="submit" class="login-button" onclick="window.location.href='/cars'">
-                                        <p>Tilbage</p>
-                                    </button>
-                                </div>
-                            </form>
+<head>
+    <link rel="stylesheet" href="../css/shared.css">
+    <link rel="stylesheet" href="../css/sidenav.css">
+    <link rel="stylesheet" href="../css/cars.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title th:text="'Detaljer: ' + ${car.carSpecification.brand} + ' ' + ${car.carSpecification.model}"></title>
+</head>
+<body>
+<div id="vertical-body-contents">
+    <div id="body-container">
+        <div id="details-body">
+            <div id="details-input">
+                <h1>Bil detaljer</h1>
+                <div id="inputs">
+                    <form th:action="${'../v1/cars/' + carId}" method="post">
+                        <div class="input-row">
+                            <input hidden type="text" name="id" th:value="${carId}">
+                            <div class="input-column">
+                                <p>Mærke:</p><input type="text" name="Brand" placeholder="Mærke" th:value="${car.carSpecification.brand}">
+                            </div>
+                            <div class="input-column">
+                                <p>Model:</p><input type="text" name="Model" placeholder="Model" th:value="${car.carSpecification.model}">
+                            </div>
                         </div>
-                    </div>
-                    <div id="details-image">
-                        <p id="car-brand"><td th:text="${car.carSpecification.brand}"></td></p>
-                        <span class="material-icons" style="display: block;text-align: center;font-size: 100px;justify-content: center;" >directions_car</span>
-                    </div>
+                        <div class="input-row">
+                            <div class="input-column">
+                                <p>Gear type:</p><select placeholder="Geartype" name="GearType">
+                                <option th:each="gearType : ${T(com.example.bilabonnmenteksamensprojekt.models.cars.CarEngine.GearType).values()}"
+                                        th:value="${gearType}"
+                                        th:text="${gearType}"
+                                        th:selected="${gearType eq car.carSpecification.carEngine.gearType}">
+                                </option>
+                            </select>
+                            </div>
+                            <div class="input-column">
+                                <p>Brændstof type:</p><select name="FuelType" placeholder="Brændstof type">
+                                <option th:each="fuelType : ${T(com.example.bilabonnmenteksamensprojekt.models.cars.CarEngine.FuelType).values()}"
+                                        th:value="${fuelType}"
+                                        th:text="${fuelType}"
+                                        th:selected="${fuelType eq car.carSpecification.carEngine.fuelType}">
+                                </option>
+                            </select>
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-column">
+                                <p>Co2 Udledning:</p><input type="text" name="Emissions" placeholder="Co2 udledning" th:value="${car.carSpecification.carEngine.emissions}">
+                            </div>
+                            <div class="input-column">
+                                <p>Km/l:</p><input type="text" name="KilometersPerLiter" placeholder="Kilometer per liter" th:value="${car.carSpecification.carEngine.kilometersPerLiter}">
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-column">
+                                <p>Farve:</p><input type="text" name="Color" placeholder="Farve" th:value="${car.carSpecification.color}">
+                            </div>
+                            <div class="input-column">
+                                <p>Pris per måned:</p><input type="text" name="Price" placeholder="Pris per måned" th:value="${car.getPrice()}">
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-column">
+                                <p>Beskrivelse:</p><textarea type="text" name="Description" style="width: 98%; padding-bottom: 15vh" placeholder="Indtast beskrivelse..." th:text="${car.shortDescription}"></textarea>
+                            </div>
+                            <div class="input-column">
+                                <p>Diverse:</p>
+                                <div class="checkbox">
+                                    <label><input id="insuranceCheckbox" type="checkbox">Er forsikring inkluderet?
+                                        <input id="insuranceValue" hidden="true" name="insuranceIncluded">
+                                    </label>
+                                    <label><input id="ownersFeeIncludedCheckbox" type="checkbox">Er ejerafgift inkluderet?
+                                        <input id="OwnersFeeIncludedValue" hidden="true" name="OwnersFeeIncludedIncluded">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tilbage-btn">
+                            <button type="submit" class="login-button" onclick="window.location.href='/cars'">
+                                <p>Tilbage</p>
+                            </button>
+                        </div>
+                    </form>
                 </div>
-
+            </div>
+            <div id="details-image">
+                <p id="car-brand"><td th:text="${car.carSpecification.brand}"></td></p>
+                <span class="material-icons" style="display: block;text-align: center;font-size: 100px;justify-content: center;" >directions_car</span>
             </div>
         </div>
-    </body>
+
+    </div>
+</div>
+</body>
+
+<script>
+    const insuranceCheckbox = document.getElementById("insuranceCheckbox");
+    const OwnersFeeIncludedCheckbox = document.getElementById("ownersFeeIncludedCheckbox");
+
+    insuranceCheckbox.addEventListener("change", () => {
+        document.getElementById("insuranceValue").value = insuranceCheckbox.checked;
+    })
+
+    OwnersFeeIncludedCheckbox.addEventListener("change", () => {
+        document.getElementById("OwnersFeeIncludedValue").value = OwnersFeeIncludedCheckbox.checked;
+    })
+
+    window.addEventListener("load", () => {
+        insuranceCheckbox.checked=[[${car.insuranceIncluded}]]
+        OwnersFeeIncludedCheckbox.checked=[[${car.ownersFeeIncluded}]]
+        document.getElementById("insuranceValue").value = insuranceCheckbox.checked;
+        document.getElementById("OwnersFeeIncludedValue").value = OwnersFeeIncludedCheckbox.checked;
+    })
+</script>
+
 </html>

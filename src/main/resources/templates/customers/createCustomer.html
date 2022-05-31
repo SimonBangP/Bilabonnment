@@ -49,9 +49,9 @@
 
     </div>
 </div>
-<script>
+<script th:inline="javascript">
     const identityChecbox = document.getElementById("identityCheckbox");
-    const creditCheckbox = document.getElementById("identityCheckbox");
+    const creditCheckbox = document.getElementById("creditCheckbox");
 
     identityChecbox.addEventListener("change", () => {
         document.getElementById("identityValue").value = identityChecbox.checked;

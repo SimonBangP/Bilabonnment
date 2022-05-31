@@ -75,6 +75,15 @@ select, input {
     font-weight: bold;
 }
 
+input[type=checkbox] {
+    vertical-align: middle;
+    position: relative;
+    bottom: 1px;
+}
+
+label {
+    display: block;
+}
 #car-brand {
     text-align: center;
     margin-top: 40%;
