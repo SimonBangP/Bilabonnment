@@ -1,6 +1,7 @@
 package com.example.bilabonnmenteksamensprojekt.controllers;
 
 import com.example.bilabonnmenteksamensprojekt.models.bookings.Booking;
+import com.example.bilabonnmenteksamensprojekt.models.users.Rights;
 import com.example.bilabonnmenteksamensprojekt.services.BookingService;
 import com.example.bilabonnmenteksamensprojekt.services.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class BookingController {
     @GetMapping("/bookings/{bookingId}")
     public String getBookingDetails(HttpSession session, Model model, @PathVariable Integer bookingId) {
         if (session.getAttribute("authenticated") != null && ((boolean) session.getAttribute("authenticated"))) {
-            if (authenticationService.userHasRight((String)session.getAttribute("authorizedUsername"), "ViewBookingDetails")) {
+            if (authenticationService.userHasRight((String)session.getAttribute("authorizedUsername"), Rights.ViewBookingDetails)) {
                 Booking booking = bookingService.getBookingById(bookingId);
                 model.addAttribute("booking", booking);
                 return "bookings/bookingDetails";

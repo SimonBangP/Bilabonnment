@@ -29,14 +29,14 @@ public class UserService implements SearchableAlarmService {
         }
     }
 
-    public boolean userHasRight(String username, String right) {
-        List<String> userRights = repository.getUserRights(username);
+    public boolean userHasRight(String username, Rights right) {
+        List<Rights> userRights = repository.getUserRights(username);
 
-        for (String r : userRights) {
-            if (r.equalsIgnoreCase("administrator")) {
+        for (Rights r : userRights) {
+            if (r == Rights.Administrator) {
                 return true;
             }
-            if (r.equalsIgnoreCase(right)) {
+            if (r == right) {
                 return true;
             }
         }

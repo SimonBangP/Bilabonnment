@@ -81,7 +81,7 @@ public class TicketRepository {
     public void updateTicket(int id, Ticket ticket) {
         String sql = "UPDATE tickets SET UserId = ?, Severity = ?, TicketName = ?, TicketDescription = ? WHERE TicketId = ?";
 
-        template.update(sql, ticket.getUser().getUserId(), ticket.getSeverity().name(), ticket.getTicketName(), ticket.getTicketDescription());
+        template.update(sql, ticket.getUser().getUserId(), ticket.getSeverity().name(), ticket.getTicketName(), ticket.getTicketDescription(), id);
     }
 
     public void removeTicket(Ticket ticket) {

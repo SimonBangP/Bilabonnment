@@ -1,7 +1,10 @@
 package com.example.bilabonnmenteksamensprojekt.controllers;
 
 import com.example.bilabonnmenteksamensprojekt.models.system.Severity;
+import com.example.bilabonnmenteksamensprojekt.models.users.Rights;
 import com.example.bilabonnmenteksamensprojekt.models.users.User;
+import com.example.bilabonnmenteksamensprojekt.services.users.RightsService;
+import com.example.bilabonnmenteksamensprojekt.services.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +23,8 @@ public class TicketController {
     @Autowired
     TicketService ticketService;
 
+    @Autowired
+    UserService userService;
 
     @GetMapping ("/tickets")
     public String viewTickets (HttpSession session, Model model){
@@ -36,9 +41,14 @@ public class TicketController {
     @GetMapping ("/createTickets")
     public String createTickets (HttpSession session, Model model){
         if (session.getAttribute("authenticated") != null &&((boolean) session.getAttribute("authenticated"))) {
-            User user = (User)session.getAttribute("userData");
-            model.addAttribute("UserID", user.getUserId());
-            return "/tickets/createTickets";
+            if (userService.userHasRight((String)session.getAttribute("authorizedUsername"), Rights.CreateTickets)) {
+                User user = (User)session.getAttribute("userData");
+                model.addAttribute("UserID", user.getUserId());
+                return "/tickets/createTickets";
+            }
+            else {
+                return "redirect:/?authError";
+            }
         }
         else {
             return "redirect:/?location=forside";
