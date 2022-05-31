@@ -15,32 +15,25 @@
                 <h1>Opret booking</h1>
                 <div id="inputs">
                     <form action="/v1/bookings/" method="post">
-                        <div class="input-row">
+                        <div>
                             <div class="input-column">
-                                <div class="table-container">
-                                    <div class="input-column">
-                                        <p>Vælg kunde:</p><select name="id" id="userSelectCombobox">
-                                            <option th:each="customer: ${customers}"
-                                                    th:value="${customer.customerId}"
-                                                    th:text="${customer.firstName + ' ' + customer.lastName}">
-                                            </option>
-                                        </select> 
-                                    </div>
-
-                                    <div class="input-column">
-                                        <p>Vælg bil:</p><select name="id" id="userSelectCombobox">
-                                            <option th:each="car: ${cars}"
-                                                    th:value="${car.carId}"
-                                                    th:text="${car.carSpecification.brand + ' ' + car.carSpecification.model + ' ' + car.carSpecification.variant}">
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+                                <p>Vælg kunde:</p><select name="CustomerId" id="userSelectCombobox">
+                                    <option th:each="customer: ${customers}"
+                                            th:value="${customer.customerId}"
+                                            th:text="${customer.firstName + ' ' + customer.lastName}">
+                                    </option>
+                                </select> 
+                                <p>Vælg bil:</p><select name="CarId" id="userSelectCombobox">
+                                    <option th:each="car: ${cars}"
+                                            th:value="${car.carId}"
+                                            th:text="${car.carSpecification.brand + ' ' + car.carSpecification.model + ' ' + car.carSpecification.variant}">
+                                    </option>
+                                </select>
                                 <p>By:</p><input type="text" name="PickupLocationId">
                                 <p>Postnummer:</p><input type="date" name="DeliveryDate">
                                 <p>Adresse (Gade kun):</p><input type="date" name="ReturnDate">
                             </div>
+                        </div>
                         <button type="submit" class="login-button" style="margin-top: 20px;margin-bottom: 20px">
                             <p>Gem og opret booking</p>
                         </button>
