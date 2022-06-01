@@ -29,9 +29,14 @@
                                             th:text="${car.carSpecification.brand + ' ' + car.carSpecification.model + ' ' + car.carSpecification.variant}">
                                     </option>
                                 </select>
-                                <p>By:</p><input type="text" name="PickupLocationId">
-                                <p>Postnummer:</p><input type="date" name="DeliveryDate">
-                                <p>Adresse (Gade kun):</p><input type="date" name="ReturnDate">
+                                <p>Vælg udleveringslokation:</p><select name="LocationId" id="userSelectCombobox">
+                                    <option th:each="location: ${locations}"
+                                            th:value="${location.locationId}"
+                                            th:text="${location.locationName}">
+                                    </option>
+                                </select>
+                                <p>Afleverings dato:</p><input type="date" name="DeliveryDate">
+                                <p>Retur dato:</p><input type="date" name="ReturnDate">
                             </div>
                         </div>
                         <button type="submit" class="login-button" style="margin-top: 20px;margin-bottom: 20px">
