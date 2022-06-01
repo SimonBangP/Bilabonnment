@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+    <script>
+        //Script to change page after form submit
+        var count = 0;
+        async function onLoadClose(){
+            if(count===1){
+                await new Promise(r => setTimeout(() => r(), 1500));
+                window.location.href="../cars";
+            }else{count++;}
+        }
+    </script>
+
     <link rel="stylesheet" href="../css/shared.css">
     <link rel="stylesheet" href="../css/sidenav.css">
     <link rel="stylesheet" href="../css/cars.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title th:text="'Detaljer: ' + ${car.carSpecification.brand} + ' ' + ${car.carSpecification.model}"></title>
+    <title>Opret bil</title>
 </head>
 <body>
 <div id="vertical-body-contents">
@@ -14,22 +26,23 @@
             <div id="details-input">
                 <h1>Bil detaljer</h1>
                 <div id="inputs">
-                    <form th:action="${'../v1/cars/' + carId}" method="post">
+                    <iframe name="dummyframe" id="dummyframe" onload="onLoadClose()" style="display: none;"></iframe>
+                    <form th:action="${'../v1/cars/'}" method="post" target="dummyframe">
                         <div class="input-row">
                             <input hidden type="text" name="id" th:value="${carId}">
                             <div class="input-column">
-                                <p>Mærke:</p><input type="text" name="Brand" placeholder="Mærke" th:value="${car.carSpecification.brand}">
+                                <p>Mærke:</p><input type="text" name="Brand" placeholder="Mærke">
                             </div>
                             <div class="input-column">
-                                <p>Model:</p><input type="text" name="Model" placeholder="Model" th:value="${car.carSpecification.model}">
+                                <p>Model:</p><input type="text" name="Model" placeholder="Model">
                             </div>
                         </div>
                         <div class="input-row">
                             <div class="input-column">
-                                <p>Variant:</p><input type="text" name="Variant" placeholder="Variant" th:value="${car.carSpecification.variant}">
+                                <p>Variant:</p><input type="text" name="Variant" placeholder="Variant">
                             </div>
                             <div class="input-column">
-                                <p>Farve:</p><input type="text" name="Color" placeholder="Farve" th:value="${car.carSpecification.color}">
+                                <p>Farve:</p><input type="text" name="Color" placeholder="Farve">
                             </div>
                         </div>
                         <div class="input-row">
@@ -38,7 +51,6 @@
                                 <option th:each="gearType : ${T(com.example.bilabonnmenteksamensprojekt.models.cars.CarEngine.GearType).values()}"
                                         th:value="${gearType}"
                                         th:text="${gearType}"
-                                        th:selected="${gearType eq car.carSpecification.carEngine.gearType}">
                                 </option>
                             </select>
                             </div>
@@ -47,22 +59,21 @@
                                 <option th:each="fuelType : ${T(com.example.bilabonnmenteksamensprojekt.models.cars.CarEngine.FuelType).values()}"
                                         th:value="${fuelType}"
                                         th:text="${fuelType}"
-                                        th:selected="${fuelType eq car.carSpecification.carEngine.fuelType}">
                                 </option>
                             </select>
                             </div>
                         </div>
                         <div class="input-row">
                             <div class="input-column">
-                                <p>Co2 Udledning:</p><input type="number" name="Emissions" placeholder="Co2 udledning" th:value="${car.carSpecification.carEngine.emissions}">
+                                <p>Co2 Udledning:</p><input type="number" name="Emissions" placeholder="Co2 udledning">
                             </div>
                             <div class="input-column">
-                                <p>Km/l:</p><input type="number" step=".1" name="KilometersPerLiter" placeholder="Kilometer per liter" th:value="${car.carSpecification.carEngine.kilometersPerLiter}">
+                                <p>Km/l:</p><input type="number" step=".1" name="KilometersPerLiter" placeholder="Kilometer per liter">
                             </div>
                         </div>
                         <div class="input-row">
                             <div class="input-column">
-                                <p>Pris per måned:</p><input type="number" name="Price" placeholder="Pris per måned" step=".1" th:value="${car.getPrice()}">
+                                <p>Pris per måned:</p><input type="number" name="Price" placeholder="Pris per måned" step=".1">
                             </div>
                             <div class="input-column">
                                 <p>Diverse:</p>
@@ -78,26 +89,23 @@
                         </div>
                         <div class="input-row">
                             <div class="input-column">
-                                <p>Beskrivelse:</p><textarea type="text" name="Description" style="width: 98%; padding-bottom: 15vh" placeholder="Indtast beskrivelse..." th:text="${car.shortDescription}"></textarea>
+                                <p>Beskrivelse:</p><textarea type="text" name="Description" style="width: 98%; padding-bottom: 15vh" placeholder="Indtast beskrivelse..."></textarea>
                             </div>
                         </div>
                         <div class="tilbage-btn">
-                            <button type="button" class="login-button" onclick="window.location.href='../cars'">
-                                <p>Tilbage</p>
+                            <button type="button" onclick="window.location.href='../cars'" class="login-button">
+                                <p>Annuller</p>
                             </button>
-                            <img id="loading_gif_del" style="margin-bottom: -3%;opacity: 0" src="../images/loadingsmall.gif">
-                            <button type="button" class="login-button" onclick="deleteCar()">
-                                <p>Slet bil</p>
+                            <button type="submit" onclick="document.getElementById('loading_gif_update').setAttribute('style', 'margin-bottom: -1.5%;opacity: 1');" class="login-button">
+                                <p>Opret bil</p>
                             </button>
-                            <button type="submit" class="login-button" onclick="window.location.href='../cars'">
-                                <p>Gem ændringer</p>
-                            </button>
+                            <img id="loading_gif_update" style="margin-bottom: -3%;opacity: 0" src="../images/loadingsmall.gif">
                         </div>
                     </form>
                 </div>
             </div>
             <div id="details-image">
-                <p id="car-brand"><td th:text="${car.carSpecification.brand}"></td></p>
+                <p id="car-brand"><td text="OPRET BIL"></td></p>
                 <span class="material-icons" style="display: block;text-align: center;font-size: 100px;justify-content: center;" >directions_car</span>
             </div>
         </div>
@@ -119,21 +127,9 @@
     })
 
     window.addEventListener("load", () => {
-        InsuranceCheckbox.checked=[[${car.insuranceIncluded}]]
-        OwnersFeeIncludedCheckbox.checked=[[${car.ownersFeeIncluded}]]
         document.getElementById("InsuranceValue").value = InsuranceCheckbox.checked;
         document.getElementById("OwnersFeeIncludedValue").value = OwnersFeeIncludedCheckbox.checked;
     })
-
-    async function deleteCar() {
-        document.getElementById("loading_gif_del").setAttribute("style", "margin-bottom: -1.5%;opacity: 1");
-        var id = [[${car.carId}]];
-        fetch('/v1/cars/' + id, {
-            method: 'DELETE'
-        })
-        await new Promise(r => setTimeout(() => r(), 2500));
-        window.location.href='../cars';
-    }
 </script>
 
 </html>

@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+    <script>
+        //Script to close popup after form submit
+        var count = 0;
+        function onLoadClose(){
+            if(count===1){window.close();}else{count++;}
+        }
+    </script>
+
     <link rel="stylesheet" href="../css/shared.css">
     <link rel="stylesheet" href="../css/sidenav.css">
     <link rel="stylesheet" href="../css/popup.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title>Opret ticket</title>
+    <title>Sag detaljer</title>
 </head>
 <body>
 <div id="vertical-body-contents">
@@ -14,7 +23,8 @@
             <div id="details-input">
                 <h1>Sag detaljer</h1>
                 <div id="inputs">
-                    <form th:action="${'/v1/tickets/' + ticket.getTicketId()}" method="post">
+                    <iframe name="dummyframe" id="dummyframe" onload="onLoadClose()" style="display: none;"></iframe>
+                    <form th:action="${'/v1/tickets/' + ticket.getTicketId()}" method="post" target="dummyframe">
                         <input hidden="true" name="UserId" th:value="${user.getUserId}">
                         <input hidden="true" name="TicketId" id="ticketId" th:value="${ticket.getTicketId}">
                         <div class="input-row">
@@ -41,11 +51,11 @@
                         </div>
                         <div class="Gem ticket">
                             <button class="login-button" type="button" onclick="deleteTicket()" style="margin-top: 20px;">
-                                <p>Slet ticket</p>
+                                <p>Afslut sag</p>
                             </button>
                             <img id="loading_gif_del" style="margin-bottom: -3%;opacity: 0" src="../images/loadingsmall.gif">
-                            <button type="submit"  class="login-button" style="margin-top: 20px;">
-                                <p>Opdater ticket</p>
+                            <button type="submit"  class="login-button" onclick="document.getElementById('loading_gif_update').setAttribute('style', 'margin-bottom: -1.5%;opacity: 1');" style="margin-top: 20px;">
+                                <p>Opdater sag</p>
                             </button>
                             <img id="loading_gif_update" style="margin-bottom: -3%;opacity: 0" src="../images/loadingsmall.gif">
                         </div>

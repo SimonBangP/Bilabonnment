@@ -46,6 +46,20 @@ public class BookingController {
         }
     }
 
+    @GetMapping("/bookings/history")
+    public String viewHistoricalBookings(HttpSession session, Model model){
+        if (session.getAttribute("authenticated") != null && ((boolean) session.getAttribute("authenticated"))) {
+            List<Booking> bookinglist = bookingService.getBookings();
+            model.addAttribute("bookings", bookinglist);
+
+            List<Booking> activeBookingList = bookingService.getActiveBookings();
+            model.addAttribute("activeBookings", activeBookingList);
+            return "bookings/bookingsHistory";
+        } else {
+            return "redirect:/?location=bookings/bookingsHistory";
+        }
+    }
+
     @GetMapping("/bookings/{bookingId}")
     public String getBookingDetails(HttpSession session, Model model, @PathVariable Integer bookingId) {
         if (session.getAttribute("authenticated") != null && ((boolean) session.getAttribute("authenticated"))) {

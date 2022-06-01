@@ -34,13 +34,13 @@
                             <td th:text="${ticket.user.firstName} + ' ' + ${ticket.user.lastName}"></td>
                             <td th:text="${ticket.severity}"></td>
                             <td th:text="${ticket.ticketName}"></td>
-                            <td><button class="login-button" th:data-url="'/tickets/' + ${ticket.ticketId}" onclick="MyWindow=window.open(this.getAttribute('data-url'),'Sag detaljer','width=300,height=650'); return false;">Åben sag</button></td>
+                            <td><button class="login-button" th:data-url="'/tickets/' + ${ticket.ticketId}" onclick="editTicket(this.getAttribute('data-url'))">Åben detaljer</button></td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
-                <button onclick="MyWindow=window.open('/createTickets','Opret ticket','width=300,height=650'); return false;" style="float: right">
-                    <p>Opret ticket</p>
+                <button onclick="newTicket()" style="float: right">
+                    <p>Opret ny sag</p>
                 </button>
             </div>
         </div>
@@ -48,8 +48,24 @@
 </div>
 </body>
 <script>
-var link = "'/createTickets/";
-var symbol = "'";
+function editTicket(url){
+    var win = window.open(url,'Sag detaljer','width=300,height=650');
+    var timer = setInterval(function() {
+        if(win.closed) {
+            clearInterval(timer);
+            window.location.href = ('../tickets')
+        }
+    }, 1000);
+}
+function newTicket(){
+    var win = window.open('/createTickets','Opret ticket','width=300,height=650');
+    var timer = setInterval(function() {
+        if(win.closed) {
+            clearInterval(timer);
+            window.location.href = ('../tickets')
+        }
+    }, 1000);
+}
 </script>
 </html>
 

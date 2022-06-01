@@ -124,20 +124,22 @@ DENNE SIDE ER LAVET SOM PROOF OF CONCEPT, DA JEG BLEV MEGET TRÃ†T AF AT SKULLE Ã
         iframeEle.style.opacity = 1;
     });
 
-    function navigateiFrame(x, y){
-        // Hide the loading indicator
+    function displayLoading(){
         loadingEle.style.display = 'flex';
-        // Bring the iframe back
         iframeEle.style.opacity = 0;
-        document.getElementById('searchButton').setAttribute("style", "color: #727272")
-        document.getElementById('frontpageButton').setAttribute("style", "color: #727272")
-        document.getElementById('carsButton').setAttribute("style", "color: #727272")
-        document.getElementById('customersButton').setAttribute("style", "color: #727272")
-        document.getElementById('bookingsButton').setAttribute("style", "color: #727272")
-        document.getElementById('ticketsButton').setAttribute("style", "color: #727272")
-        document.getElementById('settingsButton').setAttribute("style", "color: #727272")
-        window.frames["navigationFrame"].location = x
-        document.getElementById(y).setAttribute("style", "color: dodgerblue")
+    };
+
+    function navigateiFrame(x, y){
+        displayLoading();
+        document.getElementById('searchButton').setAttribute("style", "color: #727272");
+        document.getElementById('frontpageButton').setAttribute("style", "color: #727272");
+        document.getElementById('carsButton').setAttribute("style", "color: #727272");
+        document.getElementById('customersButton').setAttribute("style", "color: #727272");
+        document.getElementById('bookingsButton').setAttribute("style", "color: #727272");
+        document.getElementById('ticketsButton').setAttribute("style", "color: #727272");
+        document.getElementById('settingsButton').setAttribute("style", "color: #727272");
+        window.frames["navigationFrame"].location = x;
+        document.getElementById(y).setAttribute("style", "color: dodgerblue");
     }
 </script>
 
