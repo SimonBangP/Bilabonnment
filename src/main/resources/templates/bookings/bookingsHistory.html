@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../css/shared.css">
+    <link rel="stylesheet" href="../css/sidenav.css">
+    <link rel="stylesheet" href="../css/bookings.css">
+    <link rel="stylesheet" href="../css/tablestyle.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>booking over biler</title>
+</head>
+<body>
+<div id="vertical-body-contents">
+    <div id="body-container">
+        <div id="tables-container">
+            <div class=table-body>
+                <div class="table-title">
+                    <h1>Alle Bookings</h1>
+                </div>
+                <div class="table-container">
+                    <div class="menu-table">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Kunde</th>
+                                <th>Bil</th>
+                                <th>Afhentningssted</th>
+                                <th>Leveringssted</th>
+                                <th>Leveringsdato</th>
+                                <th>Aktioner</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="booking: ${bookings}">
+                                <td><a th:text="${booking.customer.firstName+ ' ' + booking.customer.lastName}" th:href="'/customers/' + ${booking.customer.customerId}"></a></td>
+                                <td><a th:text="${booking.car.carSpecification.brand} + ' ' + ${booking.car.carSpecification.model}" th:href="'/cars/' + ${booking.car.carId}"></a></td>
+                                <td th:text="${booking.pickupLocation.locationName}"></td>
+                                <td th:text="${booking.deliveryDate}"></td>
+                                <td th:text="${booking.returnDate}"></td>
+                                <td><a th:href="@{'/bookings/'+${booking.bookingId}}">Rediger</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button onclick="window.location.href='../bookings'" style="float: left">
+                        <p>Tilbage</p>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

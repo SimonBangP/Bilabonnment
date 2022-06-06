@@ -53,6 +53,21 @@ public class CarController {
         }
     }
 
+    @GetMapping("/cars/createCar")
+    public String createCar(HttpSession session, Model model) {
+        if (session.getAttribute("authenticated") != null && ((boolean) session.getAttribute("authenticated"))) {
+            if (authenticationService.userHasRight((String)session.getAttribute("authorizedUsername"), Rights.ViewCarDetails)) {
+                return "cars/createCar";
+            }
+            else {
+                return "redirect:/authError";
+            }
+        }
+        else {
+            return "redirect:/?location=cars/createCar";
+        }
+    }
+
     @GetMapping("cars/new")
     public String newRandomCar() {
 

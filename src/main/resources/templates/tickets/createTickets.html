@@ -1,20 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+    <script>
+        //Script to close popup after form submit
+        var count = 0;
+        function onLoadClose(){
+            if(count===1){window.close();}else{count++;}
+        }
+    </script>
+
     <link rel="stylesheet" href="../css/shared.css">
     <link rel="stylesheet" href="../css/sidenav.css">
     <link rel="stylesheet" href="../css/popup.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title>Opret ticket</title>
+    <title>Opret sag</title>
 </head>
 <body>
 <div id="vertical-body-contents">
     <div id="body-container">
         <div id="details-body">
             <div id="details-input">
-                <h1>Opret ticket</h1>
+                <h1>Opret ny sag</h1>
                 <div id="inputs">
-                    <form action="/v1/tickets/" method="post">
+                    <iframe name="dummyframe" id="dummyframe" onload="onLoadClose()" style="display: none;"></iframe>
+                    <form action="/v1/tickets/" method="post" target="dummyframe">
                         <input hidden="true" name="UserId" th:value="${UserID}">
                         <div class="input-row">
                             <div class="input-column">
@@ -34,9 +44,10 @@
 
                         </div>
                         <div class="Gem ticket">
-                            <button type="submit" class="login-button" style="margin-top: 20px;">
-                                <p>Gem ticket</p>
+                            <button type="submit" onclick="document.getElementById('loading_gif_update').setAttribute('style', 'margin-bottom: -1.5%;opacity: 1');" class="login-button" style="margin-top: 20px;">
+                                <p>Opret sag</p>
                             </button>
+                            <img id="loading_gif_update" style="margin-bottom: -3%;opacity: 0" src="../images/loadingsmall.gif">
                         </div>
                     </form>
                 </div>
@@ -46,4 +57,5 @@
     </div>
 </div>
 </body>
+
 </html>

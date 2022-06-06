@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+    <script>
+        //Script to close popup after form submit
+        var count = 0;
+        function onLoadClose(){
+            if(count===1){window.close();}else{count++;}
+        }
+    </script>
+
     <link rel="stylesheet" href="../css/shared.css">
     <link rel="stylesheet" href="../css/sidenav.css">
     <link rel="stylesheet" href="../css/popup.css">
@@ -14,7 +23,8 @@
             <div id="details-input">
                 <h1>Opret kunde</h1>
                 <div id="inputs">
-                    <form action="/v1/customers/" method="post">
+                    <iframe name="dummyframe" id="dummyframe" onload="onLoadClose()" style="display: none;"></iframe>
+                    <form action="/v1/customers/" method="post" target="dummyframe">
                         <div class="input-row">
                             <div class="input-column">
                                 <p>Fornavn:</p><input type="text" name="FirstName">
@@ -39,9 +49,10 @@
                                 </label>
                             <br>
                         </div>
-                        <button type="submit" class="login-button" style="margin-top: 20px;margin-bottom: 20px">
+                        <button type="submit" class="login-button" onclick="document.getElementById('loading_gif_update').setAttribute('style', 'margin-bottom: -1.5%;opacity: 1');" style="margin-top: 20px;margin-bottom: 20px">
                             <p>Gem og opret kunde</p>
                         </button>
+                        <img id="loading_gif_update" style="margin-bottom: -3%;opacity: 0" src="../images/loadingsmall.gif">
                     </form>
                 </div>
             </div>

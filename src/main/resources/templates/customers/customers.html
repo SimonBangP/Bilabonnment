@@ -38,7 +38,7 @@
                         </tbody>
                     </table>
                 </div>
-                <button onclick="MyWindow=window.open('/createCustomer','Opret kunde','width=300,height=800'); return false;" style="float: right">
+                <button onclick="newCustomer()" style="float: right">
                     <p>Opret kunde</p>
                 </button>
             </div>
@@ -46,4 +46,17 @@
     </div>
 </div>
 </body>
+<script>
+    function newCustomer(){
+        var win = window.open("/createCustomer",
+            "Opret kunde",
+            "width=300,height=800");
+        var timer = setInterval(function() {
+            if(win.closed) {
+                clearInterval(timer);
+                window.location.href = ('../customers')
+            }
+        }, 1000);
+    }
+</script>
 </html>

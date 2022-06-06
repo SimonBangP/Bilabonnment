@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="css/shared.css">
-    <link rel="stylesheet" href="css/sidenav.css">
-    <link rel="stylesheet" href="css/bookings.css">
-    <link rel="stylesheet" href="css/tablestyle.css">
+    <link rel="stylesheet" href="../css/shared.css">
+    <link rel="stylesheet" href="../css/sidenav.css">
+    <link rel="stylesheet" href="../css/bookings.css">
+    <link rel="stylesheet" href="../css/tablestyle.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>booking over biler</title>
 </head>
@@ -43,43 +43,14 @@
                               </tbody>
                           </table>
                       </div>
-                  </div>
-              </div>
-            <br><br>
-            <div class=table-body>
-                <div class="table-title">
-                    <h1>Alle Bookings</h1>
-                </div>
-                <div class="table-container">
-                    <div class="menu-table">
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>Kunde</th>
-                                <th>Bil</th>
-                                <th>Afhentningssted</th>
-                                <th>Leveringssted</th>
-                                <th>Leveringsdato</th>
-                                <th>Aktioner</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="booking: ${bookings}">
-                                <td><a th:text="${booking.customer.firstName+ ' ' + booking.customer.lastName}" th:href="'/customers/' + ${booking.customer.customerId}"></a></td>
-                                <td><a th:text="${booking.car.carSpecification.brand} + ' ' + ${booking.car.carSpecification.model}" th:href="'/cars/' + ${booking.car.carId}"></a></td>
-                                <td th:text="${booking.pickupLocation.locationName}"></td>
-                                <td th:text="${booking.deliveryDate}"></td>
-                                <td th:text="${booking.returnDate}"></td>
-                                <td><a th:href="@{'/bookings/'+${booking.bookingId}}">Rediger</a></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <button onclick="MyWindow=window.open('/createBooking','Opret booking','width=300,height=800'); return false;" style="float: right">
+                    <button onclick="newBooking()" style="float: right;">
                         <p>Opret booking</p>
                     </button>
-                </div>
-            </div>
+                    <button onclick="window.location.href='../bookings/history'" style="float: right; margin-right: 20px">
+                        <p>Gå til booking historik</p>
+                    </button>
+                  </div>
+              </div>
         </div>
     </div>
 </div>
@@ -90,6 +61,17 @@
         });
 
         location.reload();
+    }
+    function newBooking(){
+        var win = window.open("/createBooking",
+            "Opret booking",
+            "width=300,height=800");
+        var timer = setInterval(function() {
+            if(win.closed) {
+                clearInterval(timer);
+                window.location.href = ('../bookings')
+            }
+        }, 1000);
     }
 </script>
 </body>
