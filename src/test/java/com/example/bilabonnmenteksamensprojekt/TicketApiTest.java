@@ -24,35 +24,35 @@ public class TicketApiTest {
 
         insertTicket(ticket);
 
+        ticket.setTicketId(ticketService.getTicketId(ticket));
+
         updateTicket(ticket);
 
         deleteTicket(ticket);
-
     }
     private void insertTicket(Ticket ticket){
         ticketService.insertTicket(ticket);
         if (!ticketService.ticketExists(ticket)){
-            throw new IllegalArgumentException("resultat er forkert");
+            throw new IllegalArgumentException("Ticket findes ikke i databasen");
         }
     }
     private void updateTicket(Ticket ticket){
-        int id = ticketService.getTicketId(ticket);
 
-        ticket.setTicketId(id);
         ticket.setTicketDescription("ændret");
 
-        ticketService.updateTicket(id, ticket);
+        ticketService.updateTicket(ticket.getTicketId(), ticket);
 
         if (!ticketService.ticketExists(ticket)){
-            throw new IllegalArgumentException("resultat er forkert");
+            throw new IllegalArgumentException("Ticket er ikke opdateret i databasen");
         }
     }
 
     private void deleteTicket(Ticket ticket){
 
         ticketService.removeTicket(ticket);
+
         if (ticketService.ticketExists(ticket)){
-            throw new IllegalArgumentException("resultat er forkert");
+            throw new IllegalArgumentException("Ticket er ikke slettet fra databasen");
         }
     }
 }
